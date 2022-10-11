@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import HivemindPage from './HivemindPage'
+import ActionBox from './ActionBox'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//   https://redwoodjs.com/docs/testing#testing-pages-layouts
+//    https://redwoodjs.com/docs/testing#testing-components
 
-describe('HivemindPage', () => {
+describe('ActionBox', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<HivemindPage />)
+      render(<ActionBox />)
     }).not.toThrow()
   })
 })
