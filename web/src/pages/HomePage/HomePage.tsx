@@ -1,14 +1,22 @@
 import { useState, useEffect } from 'react'
 
+import { ethers } from 'ethers'
+
+import { isBrowser } from '@redwoodjs/prerender/browserUtils'
 import { MetaTags } from '@redwoodjs/web'
 
 import ActionBox from 'src/components/ActionBox/ActionBox'
+import ActiveHm from 'src/components/ActiveHm/ActiveHm'
+import ChangeHm from 'src/components/ChangeHm/ChangeHm'
 
 const tagArr = [
   "A DAO's singular voice",
   'Be part of something',
   "This is just some fun, this won't be in the live version",
   'What else could be a good tag?',
+  'The easiest way to contribute to a DAO',
+  "A DAO's single voice",
+  'Be anyone',
 ]
 
 const HomePage = () => {
@@ -22,6 +30,14 @@ const HomePage = () => {
     return () => clearInterval(interval)
   })
   //End rotating tags
+
+  const connect = async () => {
+    if (isBrowser) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum, 'any')
+      await provider.send('eth_requestAccounts', [])
+      console.log(JSON.stringify(provider))
+    }
+  }
 
   return (
     <>
@@ -38,7 +54,15 @@ const HomePage = () => {
             </span>
           </h1>
         </div>
-        <ActionBox></ActionBox>
+        <button
+          onClick={connect}
+          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Connect wallet test
+        </button>
+        <ActionBox />
+        <ActiveHm />
+        <ChangeHm />
       </main>
     </>
   )
