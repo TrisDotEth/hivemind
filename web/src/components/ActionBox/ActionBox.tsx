@@ -44,12 +44,6 @@ const ActionBox = () => {
     <Form onSubmit={onSubmit} style={{ fontSize: '2rem' }}>
       <FormError error={error} wrapperClassName="form-error" />
       <div className="sm:col-span-6">
-        <label
-          htmlFor="content"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Cast
-        </label>
         <div className="mt-1">
           <TextAreaField
             id="content"
