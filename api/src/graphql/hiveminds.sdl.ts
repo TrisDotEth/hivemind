@@ -2,6 +2,7 @@ export const schema = gql`
   type Hivemind {
     id: Int!
     name: String!
+    profileImageURL: String
     actions: [Action]!
   }
 
@@ -12,10 +13,12 @@ export const schema = gql`
 
   input CreateHivemindInput {
     name: String!
+    profileImageURL: String
   }
 
   input UpdateHivemindInput {
     name: String
+    profileImageURL: String
   }
 
   type Mutation {

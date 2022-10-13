@@ -2,11 +2,14 @@ import type { FindHivemindById } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
+import UpdateHmContext from '../UpdateHmContext/UpdateHmContext'
+
 export const QUERY = gql`
   query FindHivemindById($id: Int!) {
     hivemind: hivemind(id: $id) {
       id
       name
+      profileImageURL
     }
   }
 `
@@ -20,5 +23,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ hivemind }: CellSuccessProps<FindHivemindById>) => {
-  return <h1>{hivemind.name + ' -active'}</h1>
+  return <UpdateHmContext data={hivemind} />
 }

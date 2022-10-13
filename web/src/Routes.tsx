@@ -21,6 +21,7 @@ const Routes = () => {
         <Route path="/hiveminds/{id:Int}" page={HivemindHivemindPage} name="hivemind" />
         <Route path="/hiveminds" page={HivemindHivemindsPage} name="hiveminds" />
       </Set>
+      <Route path="/{name}" page={HomePage} name="home" prerender />
       <Route notfound page={NotFoundPage} prerender />
     </Router>
   )

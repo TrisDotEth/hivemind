@@ -9,6 +9,7 @@ export const QUERY = gql`
     hivemind: hivemind(id: $id) {
       id
       name
+      profileImageURL
     }
   }
 `

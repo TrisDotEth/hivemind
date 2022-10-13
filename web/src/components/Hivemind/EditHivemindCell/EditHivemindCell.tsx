@@ -12,6 +12,7 @@ export const QUERY = gql`
     hivemind: hivemind(id: $id) {
       id
       name
+      profileImageURL
     }
   }
 `
@@ -20,6 +21,7 @@ const UPDATE_HIVEMIND_MUTATION = gql`
     updateHivemind(id: $id, input: $input) {
       id
       name
+      profileImageURL
     }
   }
 `

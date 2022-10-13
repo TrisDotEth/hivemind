@@ -1,11 +1,14 @@
+import type {
+  DeleteHivemindMutationVariables,
+  FindHiveminds,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Hivemind/HivemindsCell'
 import { truncate } from 'src/lib/formatters'
-
-import type { DeleteHivemindMutationVariables, FindHiveminds } from 'types/graphql'
 
 const DELETE_HIVEMIND_MUTATION = gql`
   mutation DeleteHivemindMutation($id: Int!) {
@@ -43,6 +46,7 @@ const HivemindsList = ({ hiveminds }: FindHiveminds) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Profile image url</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -51,6 +55,19 @@ const HivemindsList = ({ hiveminds }: FindHiveminds) => {
             <tr key={hivemind.id}>
               <td>{truncate(hivemind.id)}</td>
               <td>{truncate(hivemind.name)}</td>
+              <td>
+                <a
+                  href={hivemind.profileImageURL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src={hivemind.profileImageURL}
+                    style={{ maxWidth: '50px' }}
+                    alt="profile"
+                  />
+                </a>
+              </td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

@@ -3,8 +3,8 @@ import type { ScenarioData } from '@redwoodjs/testing/api'
 
 export const standard = defineScenario<Prisma.HivemindCreateArgs>({
   hivemind: {
-    one: { data: { name: 'String4279105' } },
-    two: { data: { name: 'String3003412' } },
+    one: { data: { name: 'String7043981' } },
+    two: { data: { name: 'String4935610' } },
   },
 })
 
