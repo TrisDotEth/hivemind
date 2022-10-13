@@ -5,11 +5,11 @@ import ActiveHmCell from '../ActiveHmCell/ActiveHmCell'
 
 const ChangeHm = () => {
   // const { activeHmID, setActiveHm } = useContext(HivemindContext)
-  const [toggle, setToggle] = useState(1)
+  const [toggle, setToggle] = useState(6)
 
   //hack for now, will be built out later
   const changeHm = () => {
-    setToggle(toggle == 1 ? 2 : 1)
+    setToggle(toggle == 6 ? 7 : 6)
   }
   return (
     <>

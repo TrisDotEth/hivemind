@@ -10,6 +10,7 @@ export const QUERY = gql`
     hiveminds {
       id
       name
+      profileImageURL
     }
   }
 `

@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { PickerInline } from 'filestack-react'
 import type { EditHivemindById, UpdateHivemindInput } from 'types/graphql'
 
 import {
@@ -20,8 +23,14 @@ interface HivemindFormProps {
 }
 
 const HivemindForm = (props: HivemindFormProps) => {
+  const [profileImageURL, setUrl] = useState(props?.hivemind?.profileImageURL)
   const onSubmit = (data: FormHivemind) => {
-    props.onSave(data, props?.hivemind?.id)
+    const dataWithUrl = Object.assign(data, { profileImageURL })
+    props.onSave(dataWithUrl, props?.hivemind?.id)
+  }
+
+  const onFileUpload = (response) => {
+    setUrl(response.filesUploaded[0].url)
   }
 
   return (
@@ -51,6 +60,28 @@ const HivemindForm = (props: HivemindFormProps) => {
         />
 
         <FieldError name="name" className="rw-field-error" />
+
+        <Label
+          name="profileImageURL"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Profile image url
+        </Label>
+
+        <TextField
+          name="profileImageURL"
+          defaultValue={props.hivemind?.profileImageURL}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
+
+        <FieldError name="profileImageURL" className="rw-field-error" />
+
+        <PickerInline
+          apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
+          onSuccess={onFileUpload}
+        />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

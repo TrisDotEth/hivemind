@@ -9,7 +9,7 @@ const UpdateHmContext = (data) => {
   useEffect(() => {
     setActiveHmData(data.data)
     navigate(routes.home({ name: data.data.name }))
-  })
+  }, [data.data, setActiveHmData])
 
   return <></>
 }
