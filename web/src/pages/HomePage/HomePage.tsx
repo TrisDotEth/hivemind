@@ -26,7 +26,7 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       tagArr.length - 2 >= index ? setIndex(index + 1) : setIndex(0)
-    }, 5000)
+    }, 500000)
     return () => clearInterval(interval)
   })
   //End rotating tags
@@ -56,7 +56,7 @@ const HomePage = () => {
         </div>
         <button
           onClick={connect}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Connect wallet test
         </button>

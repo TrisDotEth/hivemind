@@ -15,6 +15,7 @@ const Routes = () => {
   return (
     <Router>
       <Route path="/" page={HomePage} name="home" prerender />
+      <Route path="/{name}" page={HomePage} name="home" prerender />
       <Set wrap={ScaffoldLayout} title="Hiveminds" titleTo="hiveminds" buttonLabel="New Hivemind" buttonTo="newHivemind">
         <Route path="/hiveminds/new" page={HivemindNewHivemindPage} name="newHivemind" />
         <Route path="/hiveminds/{id:Int}/edit" page={HivemindEditHivemindPage} name="editHivemind" />
