@@ -55,6 +55,9 @@ const Hivemind = ({ hivemind }: Props) => {
             </tr><tr>
               <th>Profile image url</th>
               <td>{hivemind.profileImageURL}</td>
+            </tr><tr>
+              <th>About information</th>
+              <td>{hivemind.aboutInformation}</td>
             </tr>
           </tbody>
         </table>

@@ -13,10 +13,11 @@ generator client {
 // TODO: Please remove the following example:
 
 model Hivemind {
-  id              Int      @id @default(autoincrement())
-  name            String   @unique
-  profileImageURL String?
-  actions         Action[]
+  id               Int      @id @default(autoincrement())
+  name             String   @unique
+  profileImageURL  String   @default("none")
+  aboutInformation String   @default("")
+  actions          Action[]
 }
 
 model Action {

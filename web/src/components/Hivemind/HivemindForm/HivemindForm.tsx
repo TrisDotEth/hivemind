@@ -74,15 +74,33 @@ const HivemindForm = (props: HivemindFormProps) => {
           defaultValue={props.hivemind?.profileImageURL}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
         />
 
         <FieldError name="profileImageURL" className="rw-field-error" />
+
+        <Label
+          name="aboutInformation"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          About information
+        </Label>
+
+        <TextField
+          name="aboutInformation"
+          defaultValue={props.hivemind?.aboutInformation}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
+
+        <FieldError name="aboutInformation" className="rw-field-error" />
 
         <PickerInline
           apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
           onSuccess={onFileUpload}
         />
-
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save

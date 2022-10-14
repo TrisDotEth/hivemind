@@ -17,7 +17,9 @@ const ActiveHm = () => {
           alt="profile"
         />
       </a>
-      <h1>{'Hivemind is - ' + hivemind.activeHmData.name}</h1>
+      <span>{'Hivemind name is - ' + hivemind.activeHmData.name}</span>
+      <br></br>
+      <span>{'About info is - ' + hivemind.activeHmData.aboutInformation}</span>
     </>
   )
 }

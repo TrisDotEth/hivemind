@@ -13,6 +13,7 @@ export const QUERY = gql`
       id
       name
       profileImageURL
+      aboutInformation
     }
   }
 `
@@ -22,6 +23,7 @@ const UPDATE_HIVEMIND_MUTATION = gql`
       id
       name
       profileImageURL
+      aboutInformation
     }
   }
 `
