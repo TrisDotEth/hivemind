@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import { ethers } from 'ethers'
-
-import { isBrowser } from '@redwoodjs/prerender/browserUtils'
 import { MetaTags } from '@redwoodjs/web'
 
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import ChangeHm from 'src/components/ChangeHm/ChangeHm'
+import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 
 const tagArr = [
   "A DAO's singular voice",
@@ -31,14 +29,6 @@ const HomePage = () => {
   })
   //End rotating tags
 
-  const connect = async () => {
-    if (isBrowser) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum, 'any')
-      await provider.send('eth_requestAccounts', [])
-      console.log(JSON.stringify(provider))
-    }
-  }
-
   return (
     <>
       <MetaTags
@@ -54,15 +44,10 @@ const HomePage = () => {
             </span>
           </h1>
         </div>
-        <button
-          onClick={connect}
-          className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Connect wallet test
-        </button>
         <ActionBox />
         <ActiveHm />
         <ChangeHm />
+        <ConnectWallet />
       </main>
     </>
   )
