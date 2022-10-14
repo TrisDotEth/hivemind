@@ -30,10 +30,10 @@ describe('hiveminds', () => {
 
   scenario('creates a hivemind', async () => {
     const result = await createHivemind({
-      input: { name: 'String7301185' },
+      input: { name: 'String2548867' },
     })
 
-    expect(result.name).toEqual('String7301185')
+    expect(result.name).toEqual('String2548867')
   })
 
   scenario('updates a hivemind', async (scenario: StandardScenario) => {
@@ -42,10 +42,10 @@ describe('hiveminds', () => {
     })) as Hivemind
     const result = await updateHivemind({
       id: original.id,
-      input: { name: 'String71650192' },
+      input: { name: 'String82711932' },
     })
 
-    expect(result.name).toEqual('String71650192')
+    expect(result.name).toEqual('String82711932')
   })
 
   scenario('deletes a hivemind', async (scenario: StandardScenario) => {

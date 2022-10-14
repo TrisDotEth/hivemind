@@ -47,6 +47,7 @@ const HivemindsList = ({ hiveminds }: FindHiveminds) => {
             <th>Id</th>
             <th>Name</th>
             <th>Profile image url</th>
+            <th>About information</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -55,19 +56,8 @@ const HivemindsList = ({ hiveminds }: FindHiveminds) => {
             <tr key={hivemind.id}>
               <td>{truncate(hivemind.id)}</td>
               <td>{truncate(hivemind.name)}</td>
-              <td>
-                <a
-                  href={hivemind.profileImageURL}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src={hivemind.profileImageURL}
-                    style={{ maxWidth: '50px' }}
-                    alt="profile"
-                  />
-                </a>
-              </td>
+              <td>{truncate(hivemind.profileImageURL)}</td>
+              <td>{truncate(hivemind.aboutInformation)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
