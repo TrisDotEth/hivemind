@@ -1,16 +1,21 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 
 //@ts-expect-error rwcellissue
 import ActiveHmCell from '../ActiveHmCell/ActiveHmCell'
+import { AllHivemindsContext } from 'src/providers/context/AllHivemindsContext'
 
 const ChangeHm = () => {
-  // const { activeHmID, setActiveHm } = useContext(HivemindContext)
-  const [toggle, setToggle] = useState(6)
+  const [Increment, setIncrement] = useState(0)
+  const allHms = useContext(AllHivemindsContext).allHmData.map(({id}) => ({ id}))
 
-  //hack for now, will be built out later
   const changeHm = () => {
-    setToggle(toggle == 6 ? 7 : 6)
+    if (allHms.length-2 >= Increment) {
+      setIncrement(Increment+1)
+    } else {
+      setIncrement(0)
+    }
   }
+
   return (
     <>
       <button
@@ -19,7 +24,7 @@ const ChangeHm = () => {
       >
         Change Hivemind
       </button>
-      <ActiveHmCell id={toggle} />
+      <ActiveHmCell id={allHms[Increment].id} />
     </>
   )
 }
