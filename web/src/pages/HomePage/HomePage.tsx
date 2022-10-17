@@ -6,8 +6,11 @@ import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import ChangeHm from 'src/components/ChangeHm/ChangeHm'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
+import AllHmsCell from 'src/components/AllHmsCell'
 
 const tagArr = [
+  "Simple social DAOs",
+  "Tiny simple social DAOs",
   "A DAO's singular voice",
   'Be part of something',
   "This is just some fun, this won't be in the live version",
@@ -35,11 +38,11 @@ const HomePage = () => {
         title="Hivemind"
         description="Hivemind - A DAO's singular voice"
       />
-      <main className="mx-auto mt-16 max-w-7xl px-4 sm:mt-24">
-        <div className="text-center">
+      <main className="mx-auto mt-4 max-w-7xl px-4 sm:mt-8">
+        <div className="text-center mb-10">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
             <span className="block">Hivemind</span>
-            <span className="block text-indigo-600 xl:inline">
+            <span className="block text-2xl text-indigo-600">
               {tagArr[index]}
             </span>
           </h1>
@@ -48,6 +51,8 @@ const HomePage = () => {
         <ActiveHm />
         <ChangeHm />
         <ConnectWallet />
+        <AllHmsCell/>
+
       </main>
     </>
   )

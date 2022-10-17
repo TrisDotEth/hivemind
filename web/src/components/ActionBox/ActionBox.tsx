@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+
 import { CreateActionInput } from 'types/graphql'
 
 import {
@@ -8,6 +10,8 @@ import {
   FormError,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
+
+import { HivemindContext } from 'src/providers/context/HivemindContext'
 
 const CREATE_ACTION = gql`
   mutation CreateActionInput($input: CreateActionInput!) {
@@ -25,6 +29,7 @@ interface FormValues {
 }
 
 const ActionBox = () => {
+  const hivemindName = useContext(HivemindContext).activeHmData.name
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
     onCompleted: () => {
       alert('Success')
@@ -38,12 +43,10 @@ const ActionBox = () => {
     create({ variables: { input: data } })
   }
 
-  const hivemind = 'No hivemind yet'
-
   return (
     <Form onSubmit={onSubmit} style={{ fontSize: '2rem' }}>
       <FormError error={error} wrapperClassName="form-error" />
-      <div className="sm:col-span-6">
+      <div className="sm:col-span-6 mb-2">
         <div className="mt-1">
           <TextAreaField
             id="content"
@@ -51,7 +54,7 @@ const ActionBox = () => {
             rows={5}
             className="block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             defaultValue={''}
-            placeholder={'What do you want to say, ' + hivemind}
+            placeholder={"What's up, " + hivemindName + "?"}
           />
         </div>
 
@@ -61,7 +64,7 @@ const ActionBox = () => {
         disabled={loading}
         className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
-        Tweet
+        Cast
       </Submit>
     </Form>
   )
