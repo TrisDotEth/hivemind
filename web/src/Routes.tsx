@@ -10,7 +10,7 @@
 import { Set, Router, Route } from '@redwoodjs/router'
 
 import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
-// TODO ADD BACK IN PRERENDERING
+// TODO ADD BACK IN PRERENDERING - The reason it was taken out was because of the Swiper package, if it's not needed prerendering might easily work. Otherwise it looks like changing the version of a swiper dependency.
 const Routes = () => {
   return (
     <Router>

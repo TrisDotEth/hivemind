@@ -8,10 +8,12 @@ import ChangeHm from 'src/components/ChangeHm/ChangeHm'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { HivemindContext } from 'src/providers/context/HivemindContext'
+import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
 
 import 'swiper/css';
 
 const tagArr = [
+  "Simple character DAOs",
   "Simple social DAOs",
   "Tiny simple social DAOs",
   "A DAO's singular voice",
@@ -89,6 +91,7 @@ const HomePage = () => {
         <ChangeHm />
 
         <ConnectWallet />
+        <FarcasterCastsCell userName='ttris' />
 
       </main>
     </>
