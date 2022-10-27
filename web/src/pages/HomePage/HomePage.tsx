@@ -91,7 +91,7 @@ const HomePage = () => {
         <ChangeHm />
 
         <ConnectWallet />
-        <FarcasterCastsCell userName='ttris' />
+        <FarcasterCastsCell userName='tris' />
 
       </main>
     </>
