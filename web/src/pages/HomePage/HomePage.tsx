@@ -9,6 +9,7 @@ import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import ChangeHm from 'src/components/ChangeHm/ChangeHm'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
+import { DevModeContext } from 'src/providers/context/DevModeContext'
 import { HivemindContext } from 'src/providers/context/HivemindContext'
 
 import 'swiper/css'
@@ -27,6 +28,7 @@ const tagArr = [
 ]
 
 const HomePage = () => {
+  const devMode = useContext(DevModeContext)
   //For the rotating tags - TODO not for prod
   const [index, setIndex] = useState(0)
 
@@ -48,6 +50,10 @@ const HomePage = () => {
     })
   }
 
+  const setFarcasterName =
+    useContext(HivemindContext).activeHmData.farcasterName
+  const farcasterName = setFarcasterName ? setFarcasterName : 'tris'
+
   return (
     <>
       <MetaTags
@@ -57,12 +63,22 @@ const HomePage = () => {
       <main className="mx-auto mt-4 max-w-7xl px-4 sm:mt-8">
         <div className="mb-4 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            <span className="block">Hivemind</span>
+            <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
+              Hivemind
+            </button>
             <span className="block text-2xl text-indigo-600">
               {tagArr[index]}
             </span>
           </h1>
         </div>
+        <ActionBox />
+        {devMode.devMode && (
+          <div>
+            <ChangeHm />
+            <ConnectWallet />
+          </div>
+        )}
+        <FarcasterCastsCell userName={farcasterName} />
         <Swiper
           spaceBetween={50}
           onSlideChange={() => {
@@ -84,16 +100,6 @@ const HomePage = () => {
             <ActiveHm />
           </SwiperSlide>
         </Swiper>
-
-        <ActionBox />
-        {/* HACK Has to be removed */}
-        <br></br>
-        <ChangeHm />
-
-        <ConnectWallet />
-        <FarcasterCastsCell
-          userName={useContext(HivemindContext).activeHmData.farcasterName}
-        />
       </main>
     </>
   )
