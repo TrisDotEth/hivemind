@@ -4,6 +4,7 @@ export const schema = gql`
     name: String!
     profileImageURL: String!
     aboutInformation: String!
+    farcasterName: String!
     actions: [Action]!
   }
 

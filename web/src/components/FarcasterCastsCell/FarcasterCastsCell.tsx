@@ -37,30 +37,6 @@ export const Success = (farcasterCasts: CellSuccessProps<getCasts>) => {
   return (
     <>
       <ContentFeed farcasterCasts={farcasterCasts} />
-      <img src={farcasterCasts.getCasts.avatar} alt="" />
-      <br />
-      <h1>{farcasterCasts.getCasts.displayName}</h1>
-      <br />
-      <h1>{farcasterCasts.getCasts.userName}</h1>
-      <br />
-      <h1>{farcasterCasts.getCasts.followerCount}</h1>
-      <br />
-      <h1>{farcasterCasts.getCasts.followingCount}</h1>
-      <br />
-      <h1>{farcasterCasts.getCasts.bioText}</h1>
-      <ul>
-        {farcasterCasts.getCasts.casts.map((casts) => (
-          <li key={casts.sequence}>
-            {casts.text}
-            <br />
-            <h1>{casts.replyParentAddress}</h1>
-            <h1>{casts.replyParentUsername}</h1>
-            <br />
-            <h1>{casts.sequence}</h1>
-            <span>--------</span>
-          </li>
-        ))}
-      </ul>
     </>
   )
 }

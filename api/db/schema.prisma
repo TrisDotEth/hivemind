@@ -17,6 +17,7 @@ model Hivemind {
   name             String   @unique
   profileImageURL  String   @default("none")
   aboutInformation String   @default("")
+  farcasterName    String   @default("")
   actions          Action[]
 }
 

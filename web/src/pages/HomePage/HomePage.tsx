@@ -1,21 +1,22 @@
 import { useState, useEffect, useContext } from 'react'
 
+import { Swiper, SwiperSlide } from 'swiper/react'
+
 import { MetaTags } from '@redwoodjs/web'
 
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import ChangeHm from 'src/components/ChangeHm/ChangeHm'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { HivemindContext } from 'src/providers/context/HivemindContext'
 import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
+import { HivemindContext } from 'src/providers/context/HivemindContext'
 
-import 'swiper/css';
+import 'swiper/css'
 
 const tagArr = [
-  "Simple character DAOs",
-  "Simple social DAOs",
-  "Tiny simple social DAOs",
+  'Simple character DAOs',
+  'Simple social DAOs',
+  'Tiny simple social DAOs',
   "A DAO's singular voice",
   'Be part of something',
   "This is just some fun, this won't be in the live version",
@@ -32,28 +33,19 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       tagArr.length - 2 >= index ? setIndex(index + 1) : setIndex(0)
-    }, 500000)
+    }, 5000000)
     return () => clearInterval(interval)
   })
   //End rotating tags
   const f = useContext(HivemindContext).setActiveHmData
   const flap = () => {
     f({
-    __typename
-    :
-    "Hivemind",
-    id
-    :
-    8,
-    name
-    :
-    "Tris",
-    profileImageURL
-    :
-    "https://cdn.filestackcontent.com/4LTarcuERwbrGJeGAJD9",
-    aboutInformation
-    :
-    "This is what h/tris is all about"})
+      __typename: 'Hivemind',
+      id: 8,
+      name: 'Tris',
+      profileImageURL: 'https://cdn.filestackcontent.com/4LTarcuERwbrGJeGAJD9',
+      aboutInformation: 'This is what h/tris is all about',
+    })
   }
 
   return (
@@ -63,7 +55,7 @@ const HomePage = () => {
         description="Hivemind - A DAO's singular voice"
       />
       <main className="mx-auto mt-4 max-w-7xl px-4 sm:mt-8">
-        <div className="text-center mb-4">
+        <div className="mb-4 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
             <span className="block">Hivemind</span>
             <span className="block text-2xl text-indigo-600">
@@ -79,10 +71,18 @@ const HomePage = () => {
           onSwiper={(swiper) => console.log(swiper)}
           loop={true}
         >
-        <SwiperSlide><ActiveHm /></SwiperSlide>
-        <SwiperSlide><ActiveHm /></SwiperSlide>
-        <SwiperSlide><ActiveHm /></SwiperSlide>
-        <SwiperSlide><ActiveHm /></SwiperSlide>
+          <SwiperSlide>
+            <ActiveHm />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ActiveHm />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ActiveHm />
+          </SwiperSlide>
+          <SwiperSlide>
+            <ActiveHm />
+          </SwiperSlide>
         </Swiper>
 
         <ActionBox />
@@ -91,8 +91,9 @@ const HomePage = () => {
         <ChangeHm />
 
         <ConnectWallet />
-        <FarcasterCastsCell userName='tris' />
-
+        <FarcasterCastsCell
+          userName={useContext(HivemindContext).activeHmData.farcasterName}
+        />
       </main>
     </>
   )
