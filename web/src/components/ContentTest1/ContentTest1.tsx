@@ -5,6 +5,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 const ContentTest1 = ({ farcasterCasts }) => {
+  // debugger
   return (
     <div>
       {/* START OF DIV */}
@@ -60,22 +61,27 @@ const ContentTest1 = ({ farcasterCasts }) => {
         <div className="mt-4">
           <h1 className="sr-only">Recent casts</h1>
           <ul className="divide-y divide-gray-200">
-            {farcasterCasts.getCasts.casts.map((casts) => (
-              <li key={casts.sequence} className="bg-white px-4 py-6 sm:p-6">
-                <article aria-labelledby={'question-title-' + casts.sequence}>
+            {farcasterCasts.getActivity.activity.map((casts) => (
+              <li
+                key={casts.body.sequence}
+                className="bg-white px-4 py-6 sm:p-6"
+              >
+                <article
+                  aria-labelledby={'question-title-' + casts.body.sequence}
+                >
                   <div>
                     <div className="flex space-x-3">
                       <div className="flex-shrink-0">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src={farcasterCasts.getCasts.avatar}
+                          src={casts.meta.avatar}
                           alt=""
                         />
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-medium text-gray-900">
                           <a href="-" className="hover:underline">
-                            {farcasterCasts.getCasts.displayName}
+                            {casts.meta.displayName}
                           </a>
                         </p>
                         {/* <p className="text-sm text-gray-500">
@@ -95,9 +101,10 @@ const ContentTest1 = ({ farcasterCasts }) => {
                       {casts.sequence}
                     </h2> */}
                   </div>
+
                   <div
                     className="mt-2 space-y-4 text-sm text-gray-700"
-                    dangerouslySetInnerHTML={{ __html: casts.text }}
+                    dangerouslySetInnerHTML={{ __html: casts.body.data.text }}
                   />
                   <div className="mt-4 flex justify-between space-x-8">
                     <div className="flex space-x-6">
@@ -107,7 +114,9 @@ const ContentTest1 = ({ farcasterCasts }) => {
                           className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
                         >
                           <HeartIcon className="h-5 w-5" aria-hidden="true" />
-                          <span className="font-medium text-gray-900">44</span>
+                          <span className="font-medium text-gray-900">
+                            {casts.meta.reactions.count}
+                          </span>
                           <span className="sr-only">likes</span>
                         </button>
                       </span>
@@ -120,7 +129,9 @@ const ContentTest1 = ({ farcasterCasts }) => {
                             className="h-5 w-5"
                             aria-hidden="true"
                           />
-                          <span className="font-medium text-gray-900">19</span>
+                          <span className="font-medium text-gray-900">
+                            {casts.meta.numReplyChildren}
+                          </span>
                           <span className="sr-only">replies</span>
                         </button>
                       </span>
@@ -134,9 +145,9 @@ const ContentTest1 = ({ farcasterCasts }) => {
                             aria-hidden="true"
                           />
                           <span className="font-medium text-gray-900">
-                            1111
+                            {casts.meta.recasts.count}
                           </span>
-                          <span className="sr-only">views</span>
+                          <span className="sr-only">recasts</span>
                         </button>
                       </span>
                     </div>

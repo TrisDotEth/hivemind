@@ -49,3 +49,18 @@ export const getCasts = async ({ userName }) => {
   }
   return castsVariable
 }
+
+export const getActivity = async ({ userName }) => {
+  const farcaster = new Farcaster(
+    new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
+  )
+  const activityVariable = { activity: [] }
+  for await (const activity of farcaster.getAllActivityForUser(userName, {
+    includeRecasts: false,
+  })) {
+    if (activity) {
+      activityVariable['activity'].push(activity)
+    }
+  }
+  return activityVariable
+}
