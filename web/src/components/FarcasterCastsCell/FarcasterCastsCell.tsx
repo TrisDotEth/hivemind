@@ -1,24 +1,40 @@
-import type { getCasts } from 'types/graphql'
+import type { getActivity } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import ContentFeed from '../ContentFeed/ContentFeed'
 
 export const QUERY = gql`
-  query getCasts($userName: String!) {
-    getCasts(userName: $userName) {
-      avatar
-      displayName
-      username
-      followerCount
-      followingCount
-      bioText
-      casts {
-        text
-        publishedAt
-        replyParentAddress
-        replyParentUsername
-        sequence
+  query getActivity($userName: String!) {
+    getActivity(userName: $userName) {
+      activity {
+        meta {
+          displayName
+          avatar
+          isVerifiedAvatar
+          reactions {
+            count
+            type
+          }
+          recasts {
+            count
+          }
+          numReplyChildren
+          replyParentUsername {
+            username
+            address
+          }
+        }
+        body {
+          type
+          publishedAt
+          sequence
+          address
+          username
+          data {
+            text
+          }
+        }
       }
     }
   }
