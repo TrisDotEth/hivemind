@@ -1,6 +1,8 @@
 import { AlchemyProvider } from '@ethersproject/providers'
+import { EvmChain } from '@moralisweb3/evm-utils'
 import { publishCast } from '@standard-crypto/farcaster-js'
 import { Wallet } from 'ethers'
+import Moralis from 'moralis'
 import type {
   QueryResolvers,
   MutationResolvers,
@@ -43,13 +45,24 @@ export const createAction: MutationResolvers['createAction'] = ({ input }) => {
 const postToFarcaster = async (input: CreateActionInput) => {
   // Pretty sure there is rate limiting happening when posting to farcaster with this library. This needs to be looked into. It keeps failing silently when it doesn't post. But a few messages do seem to get through. TODO
 
-  const provider = new AlchemyProvider('goerli')
-  const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
-  try {
-    await publishCast(wallet, provider, input.content)
-  } catch (e) {
-    logger.debug({ custom: e }, 'Farcaster error')
-  }
+  await Moralis.start({ apiKey: process.env.MORALIS_API_KEY })
+
+  const nftList = await Moralis.EvmApi.nft.getWalletNFTs({
+    chain: EvmChain.ETHEREUM,
+    address: input.walletAddress,
+    tokenAddress: '0x0db9e2f4395a179e4add26b43cfe8e4ea1830b46',
+  })
+
+  logger.debug({ custom: nftList }, 'NFT LIST OBjeCT')
+
+  // const provider = new AlchemyProvider('goerli')
+  // const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
+  // try {
+  //   await publishCast(wallet, provider, input.content)
+  // } catch (e) {
+  //   logger.debug({ custom: e }, 'Farcaster error')
+  // }
+
   return
 }
 

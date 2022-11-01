@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 
 import { CreateActionInput } from 'types/graphql'
+import { useAccount } from 'wagmi'
 
 import {
   Form,
@@ -16,6 +17,7 @@ import { HivemindContext } from 'src/providers/context/HivemindContext'
 const CREATE_ACTION = gql`
   mutation CreateActionInput($input: CreateActionInput!) {
     createAction(input: $input) {
+      walletAddress
       id
     }
   }
@@ -24,11 +26,14 @@ const CREATE_ACTION = gql`
 interface FormValues {
   content: string
   name: string
-  hivemindId: Int
+  hivemindId: number
   networkLocation: string
+  walletAddress: string
+  signedTransaction: string
 }
 
 const ActionBox = () => {
+  const { address, isConnecting, isDisconnected } = useAccount()
   const hivemindContext = useContext(HivemindContext)
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
     onCompleted: () => {
@@ -40,6 +45,8 @@ const ActionBox = () => {
     data.name = 'Test'
     data.hivemindId = 1
     data.networkLocation = 'farcaster'
+    data.walletAddress = address
+    data.signedTransaction = 'TEST'
     create({ variables: { input: data } })
   }
 
