@@ -15,6 +15,8 @@ import { HivemindContext } from 'src/providers/context/HivemindContext'
 import 'swiper/css'
 
 const tagArr = [
+  'DAO Voices',
+  'Consensus content',
   'Simple character DAOs',
   'Simple social DAOs',
   'Tiny simple social DAOs',
@@ -25,6 +27,7 @@ const tagArr = [
   'The easiest way to contribute to a DAO',
   "A DAO's single voice",
   'Be anyone',
+  "DAO Voice's",
 ]
 
 const HomePage = () => {

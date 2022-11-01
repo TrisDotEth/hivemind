@@ -22,11 +22,13 @@ model Hivemind {
 }
 
 model Action {
-  id              Int      @id @default(autoincrement())
-  name            String
-  hivemind        Hivemind @relation(fields: [hivemindId], references: [id])
-  hivemindId      Int
-  content         String
-  createdAt       DateTime @default(now())
-  networkLocation String
+  id                Int      @id @default(autoincrement())
+  name              String
+  hivemind          Hivemind @relation(fields: [hivemindId], references: [id])
+  hivemindId        Int
+  content           String
+  createdAt         DateTime @default(now())
+  networkLocation   String
+  walletAddress     String   @default("")
+  signedTransaction String   @default("")
 }

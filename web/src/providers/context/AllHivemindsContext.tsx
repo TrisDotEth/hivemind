@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { gql, useQuery} from '@apollo/client';
+
+import { gql, useQuery } from '@apollo/client'
 
 //Context applied following this guide - https://community.redwoodjs.com/t/react-context-in-redwoodjs/2572
 const AllHivemindsContext = React.createContext({
@@ -14,7 +15,7 @@ const QUERY = gql`
   }
 `
 const getAllHms = () => {
-  const { loading, error, data } = useQuery(QUERY,{})
+  const { loading, error, data } = useQuery(QUERY, {})
   return data
 }
 
@@ -23,7 +24,7 @@ const AllHivemindsContextProvider = ({ children }) => {
   const allHms = getAllHms()
 
   useEffect(() => {
-    if(allHms){
+    if (allHms) {
       setallHmData(allHms.hiveminds)
     }
   }, [allHms])

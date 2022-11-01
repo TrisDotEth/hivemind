@@ -7,6 +7,8 @@ export const schema = gql`
     content: String!
     createdAt: DateTime!
     networkLocation: String!
+    walletAddress: String!
+    signedTransaction: String!
   }
 
   type Query {
@@ -19,6 +21,8 @@ export const schema = gql`
     hivemindId: Int!
     content: String!
     networkLocation: String!
+    walletAddress: String!
+    signedTransaction: String!
   }
 
   input UpdateActionInput {
