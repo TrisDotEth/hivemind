@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import ContentTest1 from './ContentTest1'
+import TopnavbarLayout from './TopnavbarLayout'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
+//   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('ContentTest1', () => {
+describe('TopnavbarLayout', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<ContentTest1 />)
+      render(<TopnavbarLayout />)
     }).not.toThrow()
   })
 })

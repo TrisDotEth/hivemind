@@ -16,7 +16,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => <span></span>
 
 export const Empty = () => <div>Hivemind not found</div>
 

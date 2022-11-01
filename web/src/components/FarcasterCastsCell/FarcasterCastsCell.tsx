@@ -45,8 +45,8 @@ export const Loading = () => (
     {/* TODO - Sort out a proper loading icon */}
     <img
       className="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24"
-      // src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif"
-      src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"
+      src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/cd514331234507.564a1d2324e4e.gif"
+      // src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif"
       alt=""
     />
   </div>
