@@ -1,35 +1,87 @@
-import { useState, useContext } from 'react'
+import {
+  HeartIcon,
+  ChatBubbleLeftIcon,
+  ArrowPathRoundedSquareIcon,
+} from '@heroicons/react/24/outline'
 
-import { DevModeContext } from 'src/providers/context/DevModeContext'
-
-import ContentTest1 from '../ContentTest1/ContentTest1'
-import ContentTest2 from '../ContentTest2/ContentTest2'
+import Time from '../Time/Time'
 
 const ContentFeed = ({ farcasterCasts }) => {
-  const devMode = useContext(DevModeContext)
-  const [index, setIndex] = useState(0)
-
-  const change = () => {
-    index == 0 ? setIndex(index + 1) : setIndex(0)
-  }
-
   return (
     <div>
-      {devMode.devMode && (
-        <button
-          onClick={change}
-          className="mt-2 flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-        >
-          Change feed style
-        </button>
-      )}
-
-      <div style={index == 0 ? { display: 'none' } : {}}>
-        <ContentTest1 farcasterCasts={farcasterCasts} />
-      </div>
-      <div style={index == 1 ? { display: 'none' } : {}}>
-        <ContentTest2 farcasterCasts={farcasterCasts} />
-      </div>
+      <h3 className="relative top-1 left-9 text-xs font-semibold text-gray">
+        LATEST ACTIONS
+      </h3>
+      <ul className="divide-gray-200 divide-y">
+        {farcasterCasts.getActivity.activity.map((casts) => (
+          <li
+            key={casts.body.sequence}
+            className="border-bottom-2 border-primary-dark py-3"
+          >
+            <div className="flex space-x-3 overflow-hidden">
+              <img
+                className="h-6 w-6 rounded-full"
+                src={casts.meta.avatar}
+                alt=""
+              />
+              <div className="flex-1 space-y-1">
+                <div className="flex items-center ">
+                  <h3 className="text-sm text-white">
+                    {casts.meta.displayName}
+                  </h3>
+                  <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p>
+                  <p className="text-gray-400 pl-1 text-sm text-gray">
+                    • <Time time={casts.body.publishedAt} />
+                  </p>
+                </div>
+                <p className="text-gray-700 text-sm text-white">
+                  {casts.body.data.text}
+                </p>
+                <div className="mt-2 flex justify-between space-x-8 pt-1">
+                  <div className="flex space-x-6">
+                    <span className="inline-flex items-center text-sm text-gray">
+                      <button
+                        type="button"
+                        className="text-gray-400 hover:text-gray-500 inline-flex space-x-2"
+                      >
+                        <HeartIcon className="h-5 w-5 " aria-hidden="true" />
+                        <span>{casts.meta.reactions.count}</span>
+                        <span className="sr-only">likes</span>
+                      </button>
+                    </span>
+                    <span className="inline-flex items-center text-sm text-gray">
+                      <button
+                        type="button"
+                        className="text-gray-400 hover:text-gray-500 inline-flex space-x-2"
+                      >
+                        <ChatBubbleLeftIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                        <span>{casts.meta.numReplyChildren}</span>
+                        <span className="sr-only">replies</span>
+                      </button>
+                    </span>
+                    <span className="inline-flex items-center text-sm text-gray">
+                      <button
+                        type="button"
+                        className="text-gray-400 hover:text-gray-500 inline-flex space-x-2"
+                      >
+                        <ArrowPathRoundedSquareIcon
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        />
+                        <span>{casts.meta.recasts.count}</span>
+                        <span className="sr-only">recasts</span>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

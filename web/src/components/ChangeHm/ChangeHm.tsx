@@ -5,7 +5,7 @@ import { AllHivemindsContext } from 'src/providers/context/AllHivemindsContext'
 
 import ActiveHmCell from '../ActiveHmCell/ActiveHmCell'
 
-const ChangeHm = () => {
+const ChangeHm = ({ children }) => {
   const [Increment, setIncrement] = useState(0)
   const allHms = useContext(AllHivemindsContext).allHmData.map(({ id }) => ({
     id,
@@ -21,12 +21,7 @@ const ChangeHm = () => {
 
   return (
     <>
-      <button
-        onClick={changeHm}
-        className="mt-2 flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
-        Change Hivemind
-      </button>
+      <button onClick={changeHm}>{children}</button>
 
       <ActiveHmCell id={allHms[Increment].id} />
     </>
