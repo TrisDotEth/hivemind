@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import {
   ChevronRightIcon,
@@ -11,12 +11,17 @@ import { HivemindContext } from 'src/providers/context/HivemindContext'
 
 const ActiveHm = () => {
   const hivemind = useContext(HivemindContext)
+  const [isContextVisible, setIsContextVisible] = useState(false)
+  const handleContextPress = () => {
+    setIsContextVisible((isVisible) => !isVisible)
+  }
   return (
     <>
       <div className="mb-4 text-center">
         <div className="flex items-center">
+          {/* //py-12 pl-0 & py-12 pr-0 to make the chevron button bigger */}
           <ChangeHm>
-            <ChevronLeftIcon className="h-5 w-5 text-gray "></ChevronLeftIcon>
+            <ChevronLeftIcon className="h-5 w-5 pl-0 text-gray"></ChevronLeftIcon>
           </ChangeHm>
           <img
             className="mx-auto mb-1 h-20 w-20 rounded-full"
@@ -24,13 +29,13 @@ const ActiveHm = () => {
             alt=""
           />
           <ChangeHm>
-            <ChevronRightIcon className="h-5 w-5 text-gray "></ChevronRightIcon>
+            <ChevronRightIcon className="h-5 w-5 pr-0 text-gray"></ChevronRightIcon>
           </ChangeHm>
         </div>
         <h3 className="mb-2 space-y-1 text-xl font-semibold leading-6 text-white">
           {hivemind.activeHmData.name}
         </h3>
-        <div className="text-left">
+        <div className="text-center">
           <p className="font-regular mb-1 text-sm text-gray">
             {hivemind.activeHmData.aboutInformation}
           </p>
@@ -38,9 +43,17 @@ const ActiveHm = () => {
             <span className="text-white">1</span>
             <span> cast a day / </span>
             <span className="text-white">farcasterUsername</span>
-            <span className="float-right inline-flex ">
-              CONTEXT <ChevronDownIcon className="h-5 w-5 "></ChevronDownIcon>
-            </span>
+            <button className="float-right " onClick={handleContextPress}>
+              <span className="inline-flex">
+                CONTRACT{' '}
+                <ChevronDownIcon className="h-5 w-5 "></ChevronDownIcon>
+              </span>
+            </button>
+            {isContextVisible && (
+              <span className="float-right mr-1">
+                {hivemind.activeHmData.rules[0].text}
+              </span>
+            )}
           </div>
         </div>
       </div>

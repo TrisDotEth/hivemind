@@ -10,6 +10,7 @@ type TopnavbarLayoutProps = {
 }
 
 const tagArr = [
+  'Simple Character DAOs',
   'Character DAOs',
   'DAO Voices',
   'Consensus content',
@@ -52,9 +53,6 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                     Hivemind
                   </button>
                 </h1>
-                <span className="px-1 font-semibold text-primary">
-                  {tagArr[index]}
-                </span>
               </div>
             </div>
             <div className="flex items-center">
@@ -65,7 +63,12 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl bg-black px-4 pt-4">{children}</main>
+      <main className="mx-auto max-w-5xl bg-black px-4 pt-4">
+        <h2 className=" text-center text-4xl font-semibold text-primary">
+          {tagArr[index]}
+        </h2>
+        {children}
+      </main>
     </>
   )
 }

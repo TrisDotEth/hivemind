@@ -18,10 +18,12 @@ const ChangeHm = ({ children }) => {
       setIncrement(0)
     }
   }
-
+  //TODO change hack of hardcoding classname
   return (
     <>
-      <button onClick={changeHm}>{children}</button>
+      <button onClick={changeHm} className="py-12">
+        {children}
+      </button>
 
       <ActiveHmCell id={allHms[Increment].id} />
     </>
