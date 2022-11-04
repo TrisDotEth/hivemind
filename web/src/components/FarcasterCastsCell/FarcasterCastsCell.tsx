@@ -59,7 +59,7 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 //needs TS
-export const Success = (farcasterCasts: CellSuccessProps<getCasts>) => {
+export const Success = (farcasterCasts: CellSuccessProps<getActivity>) => {
   return (
     <>
       <ContentFeed farcasterCasts={farcasterCasts} />

@@ -12,6 +12,12 @@ export const QUERY = gql`
       profileImageURL
       aboutInformation
       farcasterName
+      rules {
+        text
+        active
+      }
+      moderator
+      contractAddress
     }
   }
 `

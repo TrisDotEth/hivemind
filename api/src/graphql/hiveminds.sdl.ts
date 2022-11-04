@@ -6,6 +6,14 @@ export const schema = gql`
     aboutInformation: String!
     farcasterName: String!
     actions: [Action]!
+    rules: [Rule]
+    moderator: String
+    contractAddress: String
+  }
+
+  type Rule {
+    text: String
+    active: Boolean
   }
 
   type Query {
