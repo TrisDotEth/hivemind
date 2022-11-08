@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react'
 
 //@ts-expect-error rwcellissue
+import FarcasterUserCell from 'src/components/FarcasterUserCell'
 import { AllHivemindsContext } from 'src/providers/context/AllHivemindsContext'
 
 import ActiveHmCell from '../ActiveHmCell/ActiveHmCell'
@@ -25,7 +26,8 @@ const ChangeHm = ({ children }) => {
         {children}
       </button>
 
-      <ActiveHmCell id={allHms[Increment].id} />
+      {/* <ActiveHmCell id={allHms[Increment].id} /> */}
+      <FarcasterUserCell profileId={allHms[Increment].id} />
     </>
   )
 }

@@ -8,7 +8,7 @@ const UpdateHmContext = (data) => {
   const setActiveHmData = useContext(HivemindContext).setActiveHmData
   useEffect(() => {
     setActiveHmData(data.data)
-    navigate(routes.home({ name: data.data.name }))
+    navigate(routes.home({ name: data.data.username }))
   }, [data.data, setActiveHmData])
 
   return <></>

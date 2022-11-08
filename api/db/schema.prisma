@@ -13,12 +13,18 @@ generator client {
 // TODO: Please remove the following example:
 
 model Hivemind {
-  id               Int      @id @default(autoincrement())
-  name             String   @unique
-  profileImageURL  String   @default("none")
-  aboutInformation String   @default("")
-  farcasterName    String   @default("")
-  actions          Action[]
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  actions  Action[]
+  profiles Profile[]
+}
+
+model Profile {
+  id           Int      @id @default(autoincrement())
+  profileId    Int
+  hivemind     Hivemind @relation(fields: [profileId], references: [id])
+  profileType  String   @default("")
+  importedData Json
 }
 
 model Action {
