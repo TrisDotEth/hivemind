@@ -11454,9 +11454,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"connectkit@npm:^0.0.2":
-  version: 0.0.2
-  resolution: "connectkit@npm:0.0.2"
+"connectkit@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "connectkit@npm:1.0.0"
   dependencies:
     buffer: ^6.0.3
     detect-browser: ^5.3.0
@@ -11466,11 +11466,11 @@ __metadata:
     react-use-measure: ^2.1.1
     styled-components: ^5.3.5
   peerDependencies:
-    ethers: ^5.6.5
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    ethers: ">=5.5.0 <6"
+    react: 17.x || 18.x
+    react-dom: 17.x || 18.x
     wagmi: ^0.6.0
-  checksum: 21cd9d3b29659eccc099c38de2db18638a03fa3e4d36d2c5b756344da7c957ad2db4b7a275579a782c2000e3b5408f0b48eb823d9fc2e8d814e7942408aec86b
+  checksum: 8bc58df6a96ee3d1ba470b5fbb9fe6e175897035e18810cc8c46b671cb31cdb3542107eb69c96618830febf5eb54b90776452e755fa558898bd4bf5557326e1a
   languageName: node
   linkType: hard
 
@@ -26699,7 +26699,7 @@ __metadata:
     "@standard-crypto/farcaster-js": ^3.0.6
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
-    connectkit: ^0.0.2
+    connectkit: ^1.0.0
     ethers: ^5.7.1
     filestack-react: ^4.0.1
     humanize-string: 2.1.0
