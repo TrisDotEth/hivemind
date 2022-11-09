@@ -14030,9 +14030,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eth-json-rpc-filters@npm:4.2.2":
-  version: 4.2.2
-  resolution: "eth-json-rpc-filters@npm:4.2.2"
+"eth-json-rpc-filters@npm:5.0.0":
+  version: 5.0.0
+  resolution: "eth-json-rpc-filters@npm:5.0.0"
   dependencies:
     "@metamask/safe-event-emitter": ^2.0.0
     async-mutex: ^0.2.6
@@ -14040,7 +14040,7 @@ __metadata:
     eth-query: ^2.1.2
     json-rpc-engine: ^6.1.0
     pify: ^5.0.0
-  checksum: 0fbf41d1f6d74d3efafab361b541724f2c94baf9532e9ee006d1953f2b380ccc6b1f9d11d86fb6f97e7df59739045014d3396886aa4ee34a42b9544511e9caf1
+  checksum: ab1280d27133fa5d8363938807580d1a5b4df2b9e36d8f76b975c16ef10d263e01a78cc2715f3a701d71c161bf45531d87caa3ffe3aa5cbf5de6b5db3cd0a514
   languageName: node
   linkType: hard
 
