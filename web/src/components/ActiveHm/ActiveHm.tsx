@@ -43,7 +43,7 @@ const ActiveHm = () => {
             <span className="text-white">1</span>
             <span> cast a day / </span>
             <span className="text-white">farcasterUsername</span>
-            <button className="float-right " onClick={handleContextPress}>
+            {/* <button className="float-right " onClick={handleContextPress}>
               <span className="inline-flex">
                 CONTRACT{' '}
                 <ChevronDownIcon className="h-5 w-5 "></ChevronDownIcon>
@@ -52,6 +52,12 @@ const ActiveHm = () => {
             {isContextVisible && (
               <span className="float-right mr-1">
                 {hivemind.activeHmData.rules[0].text}
+              </span>
+            )} */}
+
+            {hivemind.activeHmData.username === 'add' && (
+              <span className="float-right mr-1">
+                Time to add the cool stuff!
               </span>
             )}
           </div>

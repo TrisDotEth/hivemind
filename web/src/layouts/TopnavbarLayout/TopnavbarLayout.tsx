@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react'
 import { MetaTags } from '@redwoodjs/web'
 
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
+import Faq from 'src/components/Faq/Faq'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 
 type TopnavbarLayoutProps = {
@@ -11,6 +12,11 @@ type TopnavbarLayoutProps = {
 
 const tagArr = [
   'Simple Character DAOs',
+  'Post as a DAO.',
+  'Post as someone else',
+  'Post as your DAO',
+  'Be the Character',
+  'Be a Character',
   'Character DAOs',
   'DAO Voices',
   'Consensus content',
@@ -53,8 +59,10 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                     Hivemind
                   </button>
                 </h1>
+                <Faq></Faq>
               </div>
             </div>
+            {/* <Faq></Faq> */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <ConnectWallet />

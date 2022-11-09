@@ -50,9 +50,15 @@ const HomePage = () => {
       </Swiper> */}
 
       <ActiveHm />
-      <ActionBox />
+
       <FarcasterUserCell profileId={1} />
-      <FarcasterCastsCell userName={farcasterName} />
+
+      {farcasterName !== 'add' && (
+        <div>
+          <ActionBox />
+          <FarcasterCastsCell userName={farcasterName} />
+        </div>
+      )}
     </>
   )
 }
