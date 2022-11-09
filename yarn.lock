@@ -14063,6 +14063,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ethereumjs-abi@npm:^0.6.8":
+  version: 0.6.8
+  resolution: "ethereumjs-abi@npm:0.6.8"
+  dependencies:
+    bn.js: ^4.11.8
+    ethereumjs-util: ^6.0.0
+  checksum: a7ff1917625e3c812cb3bca6c1231fc0ece282cc7d202d60545a9c31cd379fd751bfed5ff78dae4279cb1ba4d0e8967f9fdd4f135a334a38dbf04e7afd0c4bcf
+  languageName: node
+  linkType: hard
+
 "ethereumjs-util@npm:^5.1.1, ethereumjs-util@npm:^5.1.2":
   version: 5.2.1
   resolution: "ethereumjs-util@npm:5.2.1"
@@ -26700,7 +26710,8 @@ __metadata:
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
     connectkit: ^1.0.0
-    ethers: ^5.7.1
+    ethereumjs-abi: ^0.6.8
+    ethers: ^5.7.2
     filestack-react: ^4.0.1
     humanize-string: 2.1.0
     javascript-time-ago: ^2.5.7
