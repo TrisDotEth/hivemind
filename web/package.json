@@ -20,7 +20,6 @@
     "@standard-crypto/farcaster-js": "^3.0.6",
     "@tailwindcss/forms": "^0.5.3",
     "connectkit": "^1.0.0",
-    "ethereumjs-abi": "^0.6.8",
     "ethers": "^5.7.2",
     "filestack-react": "^4.0.1",
     "humanize-string": "2.1.0",
