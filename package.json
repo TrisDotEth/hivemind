@@ -11,6 +11,9 @@
     "@redwoodjs/core": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.1.13"
   },
+  "resolutions": {
+    "eth-sig-util": "3.0.1"
+  },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
     "root": true

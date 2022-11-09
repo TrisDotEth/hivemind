@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
+// import { Swiper, SwiperSlide } from 'swiper/react'
 
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
