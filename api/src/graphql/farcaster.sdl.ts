@@ -82,8 +82,34 @@ export const schema = gql`
     username: String
   }
 
+  type UserDetails {
+    address: String
+    avatar: Avatar
+    displayName: String
+    followerCount: Int
+    followingCount: Int
+    isFollowingViewer: Boolean
+    isViewerFollowing: Boolean
+    profile: Profile
+    username: String
+  }
+
+  type Avatar {
+    isVerified: Boolean
+    url: String
+  }
+
+  type Profile {
+    bio: Bio
+  }
+
+  type Bio {
+    text: String
+  }
+
   type Query {
     getCasts(userName: String!): Activity! @skipAuth
     getActivity(userName: String!): AllActivity! @skipAuth
+    getUserDetails(userName: String!): UserDetails! @skipAuth
   }
 `

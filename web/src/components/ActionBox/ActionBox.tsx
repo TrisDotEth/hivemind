@@ -1,7 +1,9 @@
 import { useContext } from 'react'
 
+import { verifyMessage } from 'ethers/lib/utils'
 import { CreateActionInput } from 'types/graphql'
 import { useAccount } from 'wagmi'
+import { useSignMessage } from 'wagmi'
 
 import {
   Form,
@@ -32,7 +34,7 @@ interface FormValues {
 }
 
 const ActionBox = () => {
-  const { address, isConnecting, isDisconnected } = useAccount()
+  const { address } = useAccount()
   const hivemindContext = useContext(HivemindContext)
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
     onCompleted: () => {
@@ -40,13 +42,26 @@ const ActionBox = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    data.name = 'Test'
-    data.hivemindId = 1
-    data.networkLocation = 'farcaster'
-    data.walletAddress = address
-    data.signedTransaction = 'TEST'
-    create({ variables: { input: data } })
+  const recoveredAddress = React.useRef<string>()
+  const { signMessageAsync } = useSignMessage({
+    onSuccess(data, variables) {
+      // Verify signature when sign message succeeds
+      const address = verifyMessage(variables.message, data)
+      recoveredAddress.current = address
+    },
+  })
+
+  const onSubmit: SubmitHandler<FormValues> = async (data2) => {
+    const message: string = data2.content
+    const signedTransaction = await signMessageAsync({
+      message,
+    })
+    data2.name = 'Test'
+    data2.hivemindId = 1
+    data2.networkLocation = 'farcaster'
+    data2.walletAddress = address
+    data2.signedTransaction = signedTransaction
+    create({ variables: { input: data2 } })
   }
 
   return (
@@ -74,7 +89,9 @@ const ActionBox = () => {
               placeholder:text-gray
               focus:ring-0
               "
-            placeholder={'Cast as @' + hivemindContext.activeHmData.name}
+            placeholder={
+              'Become @' + hivemindContext.activeHmData.username + '...'
+            }
             defaultValue={''}
           />
           {/* Spacer element to match the height of the toolbar */}
@@ -86,9 +103,9 @@ const ActionBox = () => {
           </div>
 
           <div className="absolute inset-x-0 bottom-0 flex justify-end py-2 pl-3 text-right">
-            <span className="flex pr-2 pt-1 text-sm text-gray">
+            {/* <span className="flex pr-2 pt-1 text-sm text-gray">
               0 farcasterUsernames
-            </span>
+            </span> */}
             <Submit
               disabled={loading}
               className="focus:ring-indigo-500 inline-flex items-center rounded-xl border border-transparent bg-primary px-4 py-1 text-sm font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"

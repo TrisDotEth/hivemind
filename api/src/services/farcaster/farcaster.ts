@@ -1,5 +1,5 @@
 import { AlchemyProvider } from '@ethersproject/providers'
-import { Farcaster } from '@standard-crypto/farcaster-js'
+// import { Farcaster } from '@standard-crypto/farcaster-js'
 import { UserRegistry } from '@standard-crypto/farcaster-js'
 
 // export const getCasts = async ({ userName }) => {
@@ -50,17 +50,36 @@ import { UserRegistry } from '@standard-crypto/farcaster-js'
 //   return castsVariable
 // }
 
-export const getActivity = async ({ userName }) => {
-  const farcaster = new Farcaster(
+// export const getActivity = async ({ userName }) => {
+//   const farcaster = new Farcaster(
+//     new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
+//   )
+//   const activityVariable = { activity: [] }
+//   for await (const activity of farcaster.getAllActivityForUser(userName, {
+//     includeRecasts: false,
+//   })) {
+//     if (activity) {
+//       activityVariable['activity'].push(activity)
+//     }
+//   }
+//   return activityVariable
+// }
+
+export const getUserDetails = async ({ userName }) => {
+  const userRegistry = new UserRegistry(
     new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
   )
-  const activityVariable = { activity: [] }
-  for await (const activity of farcaster.getAllActivityForUser(userName, {
-    includeRecasts: false,
-  })) {
-    if (activity) {
-      activityVariable['activity'].push(activity)
-    }
-  }
-  return activityVariable
+
+  const userDetails = await userRegistry.lookupByUsername(userName)
+  console.log(userDetails)
+
+  // const activityVariable = { activity: [] }
+  // for await (const activity of farcaster.getAllActivityForUser(userName, {
+  //   includeRecasts: false,
+  // })) {
+  //   if (activity) {
+  //     activityVariable['activity'].push(activity)
+  //   }
+  // }
+  return userDetails
 }

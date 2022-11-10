@@ -4,9 +4,18 @@ import React, { useState } from 'react'
 const HivemindContext = React.createContext({
   activeHmData: {
     name: 'Design',
-    farcasterName: 'tris',
+    username: 'tris',
     profileImageURL: '',
     aboutInformation: '',
+    displayName: '',
+    avatar: {
+      url: '',
+    },
+    profile: {
+      bio: {
+        text: '',
+      },
+    },
   },
   //@ts-expect-error big rabbithole I went down here, this really seems inelegant. TS thinks Dispatch is not detected on the React object, which is true when you use a debugger, it registers as undefined on the object which can't be good,..
   setActiveHmData: React.Dispatch<React.SetStateAction<string>>,
@@ -15,9 +24,18 @@ const HivemindContext = React.createContext({
 const HivemindContextProvider = ({ children }) => {
   const [activeHmData, setActiveHmData] = useState({
     name: 'Design',
-    farcasterName: 'tris',
+    username: 'tris',
     profileImageURL: '',
     aboutInformation: '',
+    displayName: '',
+    avatar: {
+      url: '',
+    },
+    profile: {
+      bio: {
+        text: '',
+      },
+    },
   })
   return (
     <HivemindContext.Provider

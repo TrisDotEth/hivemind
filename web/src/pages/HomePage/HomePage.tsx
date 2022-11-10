@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
+import FarcasterUserCell from 'src/components/FarcasterUserCell'
 import { HivemindContext } from 'src/providers/context/HivemindContext'
 
 import 'swiper/css'
@@ -21,8 +22,7 @@ const HomePage = () => {
   //   })
   // }
 
-  const setFarcasterName =
-    useContext(HivemindContext).activeHmData.farcasterName
+  const setFarcasterName = useContext(HivemindContext).activeHmData.username
   const farcasterName = setFarcasterName ? setFarcasterName : 'tris'
 
   return (
@@ -50,9 +50,15 @@ const HomePage = () => {
       </Swiper> */}
 
       <ActiveHm />
-      <ActionBox />
-      <span>hi</span>
-      <FarcasterCastsCell userName={farcasterName} />
+
+      <FarcasterUserCell profileId={1} />
+
+      {farcasterName !== 'add' && (
+        <div>
+          <ActionBox />
+          <FarcasterCastsCell userName={farcasterName} />
+        </div>
+      )}
     </>
   )
 }

@@ -25,7 +25,7 @@ const ActiveHm = () => {
           </ChangeHm>
           <img
             className="mx-auto mb-1 h-20 w-20 rounded-full"
-            src={hivemind.activeHmData.profileImageURL}
+            src={hivemind.activeHmData.avatar.url}
             alt=""
           />
           <ChangeHm>
@@ -33,17 +33,17 @@ const ActiveHm = () => {
           </ChangeHm>
         </div>
         <h3 className="mb-2 space-y-1 text-xl font-semibold leading-6 text-white">
-          {hivemind.activeHmData.name}
+          {hivemind.activeHmData.displayName}
         </h3>
         <div className="text-center">
           <p className="font-regular mb-1 text-sm text-gray">
-            {hivemind.activeHmData.aboutInformation}
+            {hivemind.activeHmData.profile.bio.text}
           </p>
           <div className="font-regular text-sm text-gray">
             <span className="text-white">1</span>
             <span> cast a day / </span>
             <span className="text-white">farcasterUsername</span>
-            <button className="float-right " onClick={handleContextPress}>
+            {/* <button className="float-right " onClick={handleContextPress}>
               <span className="inline-flex">
                 CONTRACT{' '}
                 <ChevronDownIcon className="h-5 w-5 "></ChevronDownIcon>
@@ -52,6 +52,12 @@ const ActiveHm = () => {
             {isContextVisible && (
               <span className="float-right mr-1">
                 {hivemind.activeHmData.rules[0].text}
+              </span>
+            )} */}
+
+            {hivemind.activeHmData.username === 'add' && (
+              <span className="float-right mr-1">
+                Time to add the cool stuff!
               </span>
             )}
           </div>

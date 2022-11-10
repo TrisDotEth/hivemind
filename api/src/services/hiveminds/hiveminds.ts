@@ -12,6 +12,7 @@ export const hiveminds: QueryResolvers['hiveminds'] = () => {
 }
 
 export const hivemind: QueryResolvers['hivemind'] = async ({ id }) => {
+  //The commented code reads from the smart contract
   const ABI = [
     {
       inputs: [
@@ -146,34 +147,37 @@ export const hivemind: QueryResolvers['hivemind'] = async ({ id }) => {
     },
   ]
   // Add ABI of 0xcda3c4fe63bae50a8e60db3cec594d8a0bea32a1
-  const dbData = await db.hivemind.findUnique({
+  // const dbData = await db.hivemind.findUnique({
+  //   where: { id },
+  // })
+  // const contractDetails = {}
+  // const provider5 = ethers.getDefaultProvider('goerli', {
+  //   etherscan: process.env.ETHERSCAN_API_KEY,
+  //   alchemy: process.env.ALCHEMY_API_KEY,
+  // })
+  // const contractAddress = '0xcdA3C4FE63BAE50A8E60db3ceC594d8a0BEa32a1'
+  // const connect = async () => {
+  //   const contract = new ethers.Contract(contractAddress, ABI, provider5)
+  //   const moderator = await contract.getModerator()
+  //   contractDetails.moderator = moderator
+  //   const allRules = await contract.rules(0)
+  //   contractDetails.rules = [{ text: allRules.text, active: allRules.active }]
+  //   contractDetails.contractAddress = contractAddress
+  //   const hivemindData = {
+  //     ...dbData,
+  //     ...contractDetails,
+  //   }
+
+  //   return hivemindData
+  // }
+
+  // const t = await connect()
+  // console.log(t)
+
+  // return t
+  return db.hivemind.findUnique({
     where: { id },
   })
-  const contractDetails = {}
-  const provider5 = ethers.getDefaultProvider('goerli', {
-    etherscan: process.env.ETHERSCAN_API_KEY,
-    alchemy: process.env.ALCHEMY_API_KEY,
-  })
-  const contractAddress = '0xcdA3C4FE63BAE50A8E60db3ceC594d8a0BEa32a1'
-  const connect = async () => {
-    const contract = new ethers.Contract(contractAddress, ABI, provider5)
-    const moderator = await contract.getModerator()
-    contractDetails.moderator = moderator
-    const allRules = await contract.rules(0)
-    contractDetails.rules = [{ text: allRules.text, active: allRules.active }]
-    contractDetails.contractAddress = contractAddress
-    const hivemindData = {
-      ...dbData,
-      ...contractDetails,
-    }
-
-    return hivemindData
-  }
-
-  const t = await connect()
-  console.log(t)
-
-  return t
 }
 
 export const createHivemind: MutationResolvers['createHivemind'] = ({
