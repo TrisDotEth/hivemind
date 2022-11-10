@@ -24,7 +24,7 @@ export const QUERY = gql`
 
 export const Loading = () => <span></span>
 
-export const Empty = () => <div>Hivemind not found</div>
+export const Empty = () => <div>Hivemind not found.</div>
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>

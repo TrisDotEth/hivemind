@@ -47,7 +47,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
   return (
     <>
-      <MetaTags title="Hivemind" description={'Hivemind - ' + tagArr[index]} />
+      <MetaTags title="BeanyOne" description={'Hivemind - ' + tagArr[index]} />
       <header className="border-b-2 border-primary bg-black">
         {/* test */}
         <div className="mx-auto max-w-5xl px-2">
@@ -56,7 +56,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
               <div className="flex flex-shrink-0 items-center">
                 <h1 className="block w-auto font-semibold text-white">
                   <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
-                    Hivemind
+                    Be Anyone
                   </button>
                 </h1>
                 <Faq></Faq>
