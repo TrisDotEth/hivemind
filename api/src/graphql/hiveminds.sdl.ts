@@ -17,8 +17,8 @@ export const schema = gql`
   }
 
   type Query {
-    hiveminds: [Hivemind!]! @requireAuth
-    hivemind(id: Int!): Hivemind @requireAuth
+    hiveminds: [Hivemind!]! @skipAuth
+    hivemind(id: Int!): Hivemind @skipAuth
   }
 
   input CreateHivemindInput {

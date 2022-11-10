@@ -15,9 +15,11 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.12",
+    "@redwoodjs/auth": "3.1.1",
     "@redwoodjs/forms": "^3.1.1",
     "@redwoodjs/router": "^3.1.1",
     "@redwoodjs/web": "^3.1.1",
+    "@simplewebauthn/browser": "^6.2.2",
     "@standard-crypto/farcaster-js": "^3.0.6",
     "@tailwindcss/forms": "^0.5.3",
     "connectkit": "^1.0.0",

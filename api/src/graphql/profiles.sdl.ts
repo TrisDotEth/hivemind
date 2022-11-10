@@ -8,9 +8,9 @@ export const schema = gql`
   }
 
   type Query {
-    profiles: [Profile!]! @requireAuth
-    hivemindProfiles(profileId: Int!): [Profile!]! @requireAuth
-    profile(id: Int!): Profile @requireAuth
+    profiles: [Profile!]! @skipAuth
+    hivemindProfiles(profileId: Int!): [Profile!]! @skipAuth
+    profile(id: Int!): Profile @skipAuth
   }
 
   input CreateProfileInput {
