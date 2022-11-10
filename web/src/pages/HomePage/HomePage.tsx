@@ -51,6 +51,7 @@ const HomePage = () => {
 
       <ActiveHm />
       <ActionBox />
+      <span>hi</span>
       <FarcasterCastsCell userName={farcasterName} />
     </>
   )
