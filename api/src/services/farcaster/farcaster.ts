@@ -1,5 +1,5 @@
 import { AlchemyProvider } from '@ethersproject/providers'
-import { Farcaster } from '@standard-crypto/farcaster-js'
+// import { Farcaster } from '@standard-crypto/farcaster-js'
 import { UserRegistry } from '@standard-crypto/farcaster-js'
 
 // export const getCasts = async ({ userName }) => {
