@@ -1,10 +1,13 @@
 import { useState, useEffect, useContext } from 'react'
 
+import { Bars3Icon } from '@heroicons/react/24/outline'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
+import SignInWithTwitterButton from 'src/components/SignInWithTwitterButton'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 
 type TopnavbarLayoutProps = {
@@ -30,7 +33,7 @@ const tagArr = [
 
 const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const [index, setIndex] = useState(0)
-  const { isAuthenticated, currentUser, logOut } = useAuth()
+  const { isAuthenticated, currentUser, logOut, loading } = useAuth()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -60,13 +63,12 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
             <div className="flex items-center">
               {isAuthenticated ? (
                 <div>
-                  <span>Logged in as {currentUser.twitterName}</span>{' '}
                   <button type="button" onClick={logOut}>
-                    Logout
+                    <Bars3Icon className="h-5 w-5 pr-0 text-white"></Bars3Icon>
                   </button>
                 </div>
               ) : (
-                <Link to={routes.login()}>Login</Link>
+                <SignInWithTwitterButton />
               )}
               {/* <div className="flex-shrink-0">
                 <ConnectWallet />

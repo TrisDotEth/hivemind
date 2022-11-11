@@ -4,6 +4,9 @@ export const schema = gql`
     profileId: Int!
     hivemind: Hivemind!
     profileType: String!
+    twitterRefreshToken: String
+    twitterAccessToken: String
+    twitterUserName: String
     importedData: JSON
   }
 

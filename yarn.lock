@@ -8967,6 +8967,7 @@ __metadata:
     axios: ^1.1.3
     ethers: ^5.7.2
     moralis: ^2.7.0
+    twitter-api-v2: ^1.12.9
   languageName: unknown
   linkType: soft
 
@@ -22719,6 +22720,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-twitter-embed@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "react-twitter-embed@npm:4.0.4"
+  dependencies:
+    scriptjs: ^2.5.9
+  peerDependencies:
+    react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
+  checksum: 5c5395a8421fd67752f4eae993b682175a3757e73c338f1d0ec56cf413206ae01c9197d39dfee41d0726f4740703a9a9fdce4ac66d1529dbecf0967f7953be39
+  languageName: node
+  linkType: hard
+
 "react-use-measure@npm:^2.1.1":
   version: 2.1.1
   resolution: "react-use-measure@npm:2.1.1"
@@ -23714,6 +23727,13 @@ __metadata:
     ajv-formats: ^2.1.1
     ajv-keywords: ^5.0.0
   checksum: d76f1b0724fb74fa9da19d4f98ebe89c2703d8d28df9dc44d66ab9a9cbca869b434181a36a2bc00ec53980f27e8fabe143759bdc8754692bbf7ef614fc6e9da4
+  languageName: node
+  linkType: hard
+
+"scriptjs@npm:^2.5.9":
+  version: 2.5.9
+  resolution: "scriptjs@npm:2.5.9"
+  checksum: 7b81adefb3ce7761a9b13f4cc22c6c77418a3f6a828bf400c9184ea3801c3fc2c352c4966382cece4a60cc843e0d1a1087bcf96b9a81a1bb6de7ddc60fd80811
   languageName: node
   linkType: hard
 
@@ -25837,6 +25857,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"twitter-api-v2@npm:^1.12.9":
+  version: 1.12.9
+  resolution: "twitter-api-v2@npm:1.12.9"
+  checksum: 4fe92de7f8dea6cac13d07be6b79e1a3a3453f55bfa846cfa1fe59941f82859a583e01a1c5099f99ef022df01629ab15109ed5c460b32d78036f41b790fe9e52
+  languageName: node
+  linkType: hard
+
 "type-check@npm:^0.4.0, type-check@npm:~0.4.0":
   version: 0.4.0
   resolution: "type-check@npm:0.4.0"
@@ -26843,6 +26870,7 @@ __metadata:
     prop-types: 15.8.1
     react: 17.0.2
     react-dom: 17.0.2
+    react-twitter-embed: ^4.0.4
     swiper: ^8.4.4
     tailwindcss: ^3.1.8
     wagmi: ^0.7.14

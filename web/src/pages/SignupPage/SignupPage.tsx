@@ -1,6 +1,8 @@
 import { useRef } from 'react'
 import { useEffect } from 'react'
 
+import type { CreateHivemindInput } from 'types/graphql'
+
 import { useAuth } from '@redwoodjs/auth'
 import {
   Form,
@@ -12,14 +14,23 @@ import {
 } from '@redwoodjs/forms'
 import { Link, navigate, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import { useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+
+const CONNECT_TWITTER_USER = gql`
+  mutation connectTwitterUserMutation {
+    connectTwitterUser {
+      tweetURL
+    }
+  }
+`
 
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth()
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      // navigate(routes.home())
     }
   }, [isAuthenticated])
 
@@ -30,17 +41,38 @@ const SignupPage = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
-    const response = await signUp({ ...data })
     debugger
+    const response = await signUp({ ...data })
 
     if (response.message) {
-      toast(response.message)
+      // toast(response.message)
+      toast('Tris rocks! First response')
     } else if (response.error) {
       toast.error(response.error)
     } else {
       // user is signed in automatically
-      toast.success('Welcome!')
+      console.log('Tris rocks! 2nd response')
+      console.log(response)
     }
+  }
+
+  const [connectTwitterUser, { loading, error, data }] = useMutation(
+    CONNECT_TWITTER_USER,
+    {
+      onCompleted: () => {
+        // toast.success(data.connectTwitterUser.tweetURL)
+        // debugger
+        console.log(data)
+        window.location.assign(data.connectTwitterUser.tweetURL)
+      },
+      onError: (error) => {
+        toast.error(error.message)
+      },
+    }
+  )
+
+  const connectTwitter = () => {
+    connectTwitterUser()
   }
 
   return (
@@ -56,6 +88,7 @@ const SignupPage = () => {
             </header>
 
             <div className="rw-segment-main">
+              <button onClick={connectTwitter}>Connect Twitter</button>
               <div className="rw-form-wrapper">
                 <Form onSubmit={onSubmit} className="rw-form-wrapper">
                   <Label
@@ -97,7 +130,30 @@ const SignupPage = () => {
                       },
                     }}
                   />
-                  <FieldError name="email" className="rw-field-error" />
+                  <FieldError name="twitterName" className="rw-field-error" />
+
+                  <Label
+                    name="twitterAuthState"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                  >
+                    twitterAuthState
+                  </Label>
+                  <TextField
+                    name="twitterAuthState"
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{
+                      required: {
+                        value: true,
+                        message: 'twitterAuthState is required',
+                      },
+                    }}
+                  />
+                  <FieldError
+                    name="twitterAuthState"
+                    className="rw-field-error"
+                  />
 
                   <Label
                     name="email"

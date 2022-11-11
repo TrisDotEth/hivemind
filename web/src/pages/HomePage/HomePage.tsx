@@ -2,6 +2,8 @@ import { useContext } from 'react'
 
 // import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { TwitterTimelineEmbed } from 'react-twitter-embed'
+
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
@@ -59,6 +61,42 @@ const HomePage = () => {
           <FarcasterCastsCell userName={farcasterName} />
         </div>
       )}
+      <TwitterTimelineEmbed
+        sourceType="profile"
+        screenName="tristangrace"
+        theme="dark"
+        noHeader="true"
+        noFooter="true"
+        noBorders="true"
+        tweetLimit="20"
+        transparent="true"
+        options={
+          {
+            // autoHeight: true,
+            // noHeader: true,
+            // noFooter: true,
+            // noBorders: true,
+          }
+        }
+      />
+      <TwitterTimelineEmbed
+        sourceType="likes"
+        screenName="tristangrace"
+        theme="dark"
+        noHeader="true"
+        noFooter="true"
+        noBorders="true"
+        tweetLimit="20"
+        transparent="true"
+        options={
+          {
+            // autoHeight: true,
+            // noHeader: true,
+            // noFooter: true,
+            // noBorders: true,
+          }
+        }
+      />
     </>
   )
 }

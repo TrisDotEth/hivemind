@@ -20,11 +20,14 @@ model Hivemind {
 }
 
 model Profile {
-  id           Int      @id @default(autoincrement())
-  profileId    Int
-  hivemind     Hivemind @relation(fields: [profileId], references: [id])
-  profileType  String   @default("")
-  importedData Json
+  id                  Int      @id @default(autoincrement())
+  profileId           Int
+  hivemind            Hivemind @relation(fields: [profileId], references: [id])
+  profileType         String   @default("")
+  twitterRefreshToken String?
+  twitterAccessToken  String?
+  twitterUserName     String?
+  importedData        Json
 }
 
 model Action {
@@ -41,7 +44,7 @@ model Action {
 
 model User {
   id                  Int              @id @default(autoincrement())
-  twitterName         String           @unique
+  twitterName         String
   email               String           @unique
   hashedPassword      String
   salt                String
@@ -49,6 +52,13 @@ model User {
   resetTokenExpiresAt DateTime?
   webAuthnChallenge   String?          @unique
   credentials         UserCredential[]
+  twitterURLRedirect  String?
+  twitterCodeVerifier String?
+  twitterState        String?
+  twitterAuthCode     String?
+  twitterAuthState    String?
+  twitterRefreshToken String?
+  twitterAccessToken  String?
 }
 
 model UserCredential {
@@ -58,4 +68,11 @@ model UserCredential {
   publicKey  Bytes
   transports String?
   counter    BigInt
+}
+
+model SessionStorage {
+  id                  Int    @id @default(autoincrement())
+  twitterState        String @default("")
+  twitterCodeVerifier String @default("")
+  twitterURLRedirect  String @default("")
 }

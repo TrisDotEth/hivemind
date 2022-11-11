@@ -144,7 +144,7 @@ export const handler = async (
     // something like `id` or `userId` or even `email`)
     authFields: {
       id: 'id',
-      username: 'twitterName',
+      username: 'email',
       hashedPassword: 'hashedPassword',
       salt: 'salt',
       resetToken: 'resetToken',
