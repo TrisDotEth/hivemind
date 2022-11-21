@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 
 import { verifyMessage } from 'ethers/lib/utils'
-import { CreateActionInput } from 'types/graphql'
 import { useAccount } from 'wagmi'
 import { useSignMessage } from 'wagmi'
 
@@ -72,7 +71,7 @@ const ActionBox = () => {
 
           <div className="border-gray-300 focus-within:border-indigo-500 focus-within:ring-indigo-500 overflow-hidden rounded-lg border shadow-sm focus-within:ring-1 "></div>
           <TextAreaField
-            rows={4}
+            rows={2}
             id="content"
             name="content"
             className="
@@ -90,7 +89,7 @@ const ActionBox = () => {
               focus:ring-0
               "
             placeholder={
-              'Become @' + hivemindContext.activeHmData.username + '...'
+              'Cast as @' + hivemindContext.activeHmData.username + '...'
             }
             defaultValue={''}
           />
@@ -108,9 +107,9 @@ const ActionBox = () => {
             </span> */}
             <Submit
               disabled={loading}
-              className="focus:ring-indigo-500 inline-flex items-center rounded-xl border border-transparent bg-primary px-4 py-1 text-sm font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
+              className="focus:ring-indigo-500 mb-1 inline-flex items-center rounded-lg border border-transparent bg-primary-dark px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
             >
-              Cast
+              CAST
             </Submit>
           </div>
         </Form>

@@ -11,9 +11,16 @@ module.exports = {
         dark: '#442D72',
       },
       black: '#000000',
-      gray: '#9ca3af',
+      gray: {
+        DEFAULT: '#9ca3af',
+        dark: '#474C53',
+      },
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }

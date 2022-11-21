@@ -2,6 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 
 const Faq = () => {
+  //TODO Remove or refactor
   return (
     <div className="">
       <Disclosure>
