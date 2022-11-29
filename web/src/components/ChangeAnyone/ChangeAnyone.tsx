@@ -4,7 +4,7 @@ import SelectAnyone from './SelectAnyone/SelectAnyone'
 
 const ChangeAnyone = () => {
   return (
-    <div className="mx-auto mt-2 max-w-5xl px-2 text-white">
+    <div className="fixed bottom-10 mx-auto mt-2 w-full max-w-5xl bg-black px-2 text-white">
       <div className="flex h-16 justify-between">
         <div className="flex flex-1">
           <AddAnyone />

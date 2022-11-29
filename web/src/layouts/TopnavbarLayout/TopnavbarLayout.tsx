@@ -57,7 +57,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
     <>
       <MetaTags title="BeanyOne" description={'Be Anyone'} />
       {chooseAnyoneOpen && <ChangeAnyone />}
-      <header className=" bg-black">
+      <header className=" fixed bottom-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
