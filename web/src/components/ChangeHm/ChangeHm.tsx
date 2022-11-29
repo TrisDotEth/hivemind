@@ -1,19 +1,14 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 
-//@ts-expect-error rwcellissue
 import FarcasterUserCell from 'src/components/FarcasterUserCell'
-import { AllHivemindsContext } from 'src/providers/context/AllHivemindsContext'
-
-import ActiveHmCell from '../ActiveHmCell/ActiveHmCell'
+import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 
 const ChangeHm = ({ children }) => {
   const [Increment, setIncrement] = useState(0)
-  const allHms = useContext(AllHivemindsContext).allHmData.map(({ id }) => ({
-    id,
-  }))
 
+  const anyones = useAllAnyonesStore((state) => state.anyones)
   const changeHm = () => {
-    if (allHms.length - 2 >= Increment) {
+    if (anyones.anyones.length - 2 >= Increment) {
       setIncrement(Increment + 1)
     } else {
       setIncrement(0)
@@ -25,9 +20,7 @@ const ChangeHm = ({ children }) => {
       <button onClick={changeHm} className="py-12">
         {children}
       </button>
-
-      {/* <ActiveHmCell id={allHms[Increment].id} /> */}
-      <FarcasterUserCell profileId={allHms[Increment].id} />
+      <FarcasterUserCell profileId={anyones.anyones[Increment].id} />
     </>
   )
 }
