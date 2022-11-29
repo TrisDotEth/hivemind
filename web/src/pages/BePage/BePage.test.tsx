@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import UpdateHmContext from './UpdateHmContext'
+import BePage from './BePage'
 
 //   Improve this test with help from the Redwood Testing Doc:
-//    https://redwoodjs.com/docs/testing#testing-components
+//   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('UpdateHmContext', () => {
+describe('BePage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UpdateHmContext />)
+      render(<BePage />)
     }).not.toThrow()
   })
 })

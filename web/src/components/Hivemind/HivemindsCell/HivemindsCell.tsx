@@ -22,10 +22,7 @@ export const Empty = () => {
   return (
     <div className="rw-text-center">
       {'No hiveminds yet. '}
-      <Link
-        to={routes.newHivemind()}
-        className="rw-link"
-      >
+      <Link to={routes.newHivemind()} className="rw-link">
         {'Create one?'}
       </Link>
     </div>

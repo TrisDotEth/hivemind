@@ -26741,6 +26741,7 @@ __metadata:
     swiper: ^8.4.4
     tailwindcss: ^3.1.8
     wagmi: ^0.7.14
+    zustand: ^4.1.4
   languageName: unknown
   linkType: soft
 
@@ -27732,6 +27733,23 @@ __metadata:
     react:
       optional: true
   checksum: a005a9d59b7ab53eb5b40aba4785bd680c2c46299205d5d94ec543bf12053741ce4e336b8d83975c29b06c329cceb7792ec10c867613d50d8c8334eb1260399b
+  languageName: node
+  linkType: hard
+
+"zustand@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "zustand@npm:4.1.4"
+  dependencies:
+    use-sync-external-store: 1.2.0
+  peerDependencies:
+    immer: ">=9.0"
+    react: ">=16.8"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    react:
+      optional: true
+  checksum: 8d7938a9eebf520577f25d2d5a0300658e5e4e850732d6af7a9c66e85a15eed5acdaf99560ec77912fc88b94ca7d3885485a71ad08cb96fd5aaac653b6d40a32
   languageName: node
   linkType: hard
 

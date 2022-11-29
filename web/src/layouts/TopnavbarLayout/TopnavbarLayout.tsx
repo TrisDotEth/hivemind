@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 import { SquaresPlusIcon } from '@heroicons/react/24/outline'
 
 import { MetaTags } from '@redwoodjs/web'
 
+import ChangeAnyone from 'src/components/ChangeAnyone/ChangeAnyone'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 
@@ -46,26 +47,36 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const devMode = useContext(DevModeContext)
   // Based on https://tailwindui.com/components/application-ui/navigation/navbars#component-d833265bea66e95da3b499411d4d49b3
 
+  //START
+  const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(false)
+  const openChoose = () => {
+    setChooseAnyoneOpen(!chooseAnyoneOpen)
+  }
+
   return (
     <>
       <MetaTags title="BeanyOne" description={'Be Anyone'} />
+      {chooseAnyoneOpen && <ChangeAnyone />}
       <header className=" bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
               <div className="flex flex-shrink-0 items-center">
-                <SquaresPlusIcon className="h-6 w-6 text-white" />
+                <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
+                  <SquaresPlusIcon className="h-6 w-6 text-black" />
+                </button>
               </div>
             </div>
             <div className="flex">
               <div className="flex flex-shrink-0 items-center">
-                <h1 className="block w-auto pt-2 text-xl font-medium text-white">
-                  <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
-                    Be Anyone
+                <h1 className="block w-auto pt-2 text-base font-medium text-white">
+                  <button onClick={openChoose}>
+                    be: Anyone {chooseAnyoneOpen}
                   </button>
                 </h1>
               </div>
             </div>
+
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
                 <ConnectWallet />

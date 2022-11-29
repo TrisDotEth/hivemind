@@ -4,8 +4,8 @@
 // ```tsx
 // import type { ComponentStory } from '@storybook/react'
 //
-// export const generated: ComponentStory<typeof UpdateHmContext> = (args) => {
-//   return <UpdateHmContext {...args} />
+// export const generated: ComponentStory<typeof AddAnyone> = (args) => {
+//   return <AddAnyone {...args} />
 // }
 // ```
 //
@@ -13,13 +13,13 @@
 
 import type { ComponentMeta } from '@storybook/react'
 
-import UpdateHmContext from './UpdateHmContext'
+import AddAnyone from './AddAnyone'
 
 export const generated = () => {
-  return <UpdateHmContext />
+  return <AddAnyone />
 }
 
 export default {
-  title: 'Components/UpdateHmContext',
-  component: UpdateHmContext,
-} as ComponentMeta<typeof UpdateHmContext>
+  title: 'Components/AddAnyone',
+  component: AddAnyone,
+} as ComponentMeta<typeof AddAnyone>

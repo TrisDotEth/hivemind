@@ -1,29 +1,16 @@
-import { useContext } from 'react'
-
 // import { Swiper, SwiperSlide } from 'swiper/react'
 
 import ActionBox from 'src/components/ActionBox/ActionBox'
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
 import FarcasterCastsCell from 'src/components/FarcasterCastsCell'
 import FarcasterUserCell from 'src/components/FarcasterUserCell'
-import { HivemindContext } from 'src/providers/context/HivemindContext'
+import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 import 'swiper/css'
 
 const HomePage = () => {
-  // const f = useContext(HivemindContext).setActiveHmData
-  // const flap = () => {
-  //   f({
-  //     __typename: 'Hivemind',
-  //     id: 8,
-  //     name: 'Tris',
-  //     profileImageURL: 'https://cdn.filestackcontent.com/4LTarcuERwbrGJeGAJD9',
-  //     aboutInformation: 'This is what h/tris is all about',
-  //   })
-  // }
-
-  const setFarcasterName = useContext(HivemindContext).activeHmData.username
-  const farcasterName = setFarcasterName ? setFarcasterName : 'tris'
+  const anyone = useAnyoneStore((state) => state.anyone)
+  const farcasterName = anyone.username ? anyone.username : 'tris'
 
   return (
     <>
@@ -51,7 +38,7 @@ const HomePage = () => {
 
       <ActiveHm />
 
-      <FarcasterUserCell profileId={1} />
+      {/* <FarcasterUserCell profileId={1} /> */}
 
       {farcasterName !== 'add' && (
         <div>

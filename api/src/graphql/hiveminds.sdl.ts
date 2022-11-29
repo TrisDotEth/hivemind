@@ -2,13 +2,8 @@ export const schema = gql`
   type Hivemind {
     id: Int!
     name: String!
-    profileImageURL: String!
-    aboutInformation: String!
-    farcasterName: String!
-    actions: [Action]!
-    rules: [Rule]
-    moderator: String
-    contractAddress: String
+    actions: [Action]
+    profiles: [Profile]
   }
 
   type Rule {

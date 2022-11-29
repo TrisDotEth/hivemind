@@ -8,9 +8,11 @@ const AllContextProviders = ({ children }) => {
   return (
     <DevModeContextProvider>
       <WalletContextProvider>
-        <AllHivemindsContextProvider>
-          <HivemindContextProvider>{children}</HivemindContextProvider>
-        </AllHivemindsContextProvider>
+        {/* <AllHivemindsContextProvider> */}
+        {/* <HivemindContextProvider> */}
+        {children}
+        {/* </HivemindContextProvider> */}
+        {/* </AllHivemindsContextProvider> */}
       </WalletContextProvider>
     </DevModeContextProvider>
   )

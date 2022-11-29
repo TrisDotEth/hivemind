@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
-import { Loading, Empty, Failure, Success } from './ActiveHmCell'
-import { standard } from './ActiveHmCell.mock'
+import { Loading, Empty, Failure, Success } from './AllAnyonesCell'
+import { standard } from './AllAnyonesCell.mock'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -8,7 +8,7 @@ import { standard } from './ActiveHmCell.mock'
 //        https://redwoodjs.com/docs/testing#testing-cells
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('ActiveHmCell', () => {
+describe('AllAnyonesCell', () => {
   it('renders Loading successfully', () => {
     expect(() => {
       render(<Loading />)
@@ -35,7 +35,7 @@ describe('ActiveHmCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success activeHm={standard().activeHm} />)
+      render(<Success allAnyones={standard().allAnyones} />)
     }).not.toThrow()
   })
 })

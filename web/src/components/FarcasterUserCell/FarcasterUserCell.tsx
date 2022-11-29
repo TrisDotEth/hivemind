@@ -1,32 +1,8 @@
-// import type { getUserDetails } from 'types/graphql'
-import type { profile } from 'types/graphql'
+import type { gethivemindProfiles } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import UpdateHmContext from '../UpdateHmContext/UpdateHmContext'
-
-// export const QUERY = gql`
-//   query getUserDetails($userName: String!) {
-//     getUserDetails(userName: $userName) {
-//       address
-//       avatar {
-//         isVerified
-//         url
-//       }
-//       displayName
-//       followerCount
-//       followingCount
-//       isFollowingViewer
-//       isViewerFollowing
-//       profile {
-//         bio {
-//           text
-//         }
-//       }
-//       username
-//     }
-//   }
-// `
+import UpdateCurrentAnyone from '../UpdateCurrentAnyone/UpdateCurrentAnyone'
 
 export const QUERY = gql`
   query gethivemindProfiles($profileId: Int!) {
@@ -38,19 +14,24 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div></div>
+export const Loading = () => <div className="text-white">Loading</div>
 
-export const Empty = () => <div></div>
+export const Empty = () => <div className="text-white">empty</div>
 
 export const Failure = ({ error }: CellFailureProps) => {
-  return <div style={{ color: 'red' }}>Error: {error?.message}</div>
+  return (
+    <div className="text-white" style={{ color: 'red' }}>
+      Error: {error?.message}
+    </div>
+  )
 }
 
-export const Success = (farcasterUserDetails: CellSuccessProps<profile>) => {
+export const Success = (
+  farcasterUserDetails: CellSuccessProps<gethivemindProfiles>
+) => {
   return (
-    <UpdateHmContext
+    <UpdateCurrentAnyone
       data={farcasterUserDetails.hivemindProfiles[0].importedData}
     />
   )
-  // return <div>{JSON.stringify(farcasterUserDetails.getUserDetails)}</div>
 }
