@@ -4058,6 +4058,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@n8tb1t/use-scroll-position@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@n8tb1t/use-scroll-position@npm:2.0.3"
+  peerDependencies:
+    "@types/react": "*"
+    react: "*"
+  checksum: 06101ac48e4e001ce257722590d56cd0a809c075a3b69499c9ec7bf05c26b4c2c0c6c6eb7911614b6e3636b0c2751dcf75e83c9c818eb0ac56b7f4a9f51112c9
+  languageName: node
+  linkType: hard
+
 "@nicolo-ribaudo/chokidar-2@npm:2.1.8-no-fsevents.3":
   version: 2.1.8-no-fsevents.3
   resolution: "@nicolo-ribaudo/chokidar-2@npm:2.1.8-no-fsevents.3"
@@ -11178,7 +11188,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^1.1.0":
+"clsx@npm:^1.1.0, clsx@npm:^1.2.1":
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
@@ -26722,12 +26732,14 @@ __metadata:
   dependencies:
     "@headlessui/react": ^1.7.4
     "@heroicons/react": ^2.0.12
+    "@n8tb1t/use-scroll-position": ^2.0.3
     "@redwoodjs/forms": ^3.1.1
     "@redwoodjs/router": ^3.1.1
     "@redwoodjs/web": ^3.1.1
     "@standard-crypto/farcaster-js": ^3.0.6
     "@tailwindcss/forms": ^0.5.3
     autoprefixer: ^10.4.12
+    clsx: ^1.2.1
     connectkit: ^1.0.0
     ethers: ^5.7.2
     filestack-react: ^4.0.1

@@ -6,6 +6,7 @@
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
 
 [web]
+  host = '0.0.0.0'
   title = "Be Anyone"
   port = 8910
   apiUrl = "/.netlify/functions"

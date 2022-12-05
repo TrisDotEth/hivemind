@@ -14,35 +14,12 @@ const HomePage = () => {
 
   return (
     <>
-      {/* <Swiper
-        spaceBetween={50}
-        onSlideChange={() => {
-          flap()
-        }}
-        onSwiper={(swiper) => console.log(swiper)}
-        loop={true}
-      >
-        <SwiperSlide>
-          <ActiveHm />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ActiveHm />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ActiveHm />
-        </SwiperSlide>
-        <SwiperSlide>
-          <ActiveHm />
-        </SwiperSlide>
-      </Swiper> */}
-
       <ActiveHm />
-
       {/* <FarcasterUserCell profileId={1} /> */}
 
       {farcasterName !== 'add' && (
         <div>
-          <ActionBox />
+          <FarcasterUserCell profileId={8} />
           <FarcasterCastsCell userName={farcasterName} />
         </div>
       )}

@@ -15,11 +15,13 @@
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.12",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@redwoodjs/forms": "^3.1.1",
     "@redwoodjs/router": "^3.1.1",
     "@redwoodjs/web": "^3.1.1",
     "@standard-crypto/farcaster-js": "^3.0.6",
     "@tailwindcss/forms": "^0.5.3",
+    "clsx": "^1.2.1",
     "connectkit": "^1.0.0",
     "ethers": "^5.7.2",
     "filestack-react": "^4.0.1",

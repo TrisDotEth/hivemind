@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 
 import { HeartIcon, ChatBubbleLeftIcon } from '@heroicons/react/24/outline'
 
-import { HivemindContext } from 'src/providers/context/HivemindContext'
+import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
+import ActionBox from '../ActionBox/ActionBox'
 import Time from '../Time/Time'
 
 function classNames(...classes) {
@@ -19,11 +20,11 @@ const ContentFeed = ({ farcasterCasts }) => {
     setFeed('foryou')
   }
 
-  const hivemind = useContext(HivemindContext)
+  const anyone = useAnyoneStore((state) => state.anyone)
   return (
     <div>
       <div className="flex justify-center">
-        <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+        <nav className="-mb-px flex space-x-3" aria-label="Tabs">
           <button
             onClick={foryouActive}
             className={classNames(
@@ -31,11 +32,11 @@ const ContentFeed = ({ farcasterCasts }) => {
               'flex whitespace-nowrap px-1 pt-1 pb-2 font-medium'
             )}
           >
-            {hivemind.activeHmData.displayName}&apos;s Feed
+            For {anyone.displayName}
             <span
               className={classNames(
                 feed === 'foryou' ? 'text-indigo-600 bg-primary' : 'text-gray',
-                'ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium text-white md:inline-block'
+                'ml-1 hidden rounded-full py-0.5 px-2.5 text-xs font-medium text-white md:inline-block'
               )}
             ></span>
           </button>
@@ -50,14 +51,16 @@ const ContentFeed = ({ farcasterCasts }) => {
             <span
               className={classNames(
                 feed === 'latest' ? 'text-indigo-600 bg-primary' : 'text-gray',
-                'ml-3 hidden rounded-full py-0.5 px-2.5 text-xs font-medium text-white md:inline-block'
+                'ml-1 hidden rounded-full py-0.5 px-2.5 text-xs font-medium text-white md:inline-block'
               )}
             ></span>
           </button>
         </nav>
       </div>
 
-      <ul className="divide-gray-200 divide-y">
+      <ActionBox />
+
+      <ul className="divide-gray-200 mt-[-10px]">
         {farcasterCasts.getActivity.activity.map((casts) => (
           <li key={casts.body.sequence} className="py-3">
             <div className="flex space-x-3 overflow-hidden">
