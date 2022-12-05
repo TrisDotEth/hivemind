@@ -13,7 +13,7 @@ const UpdateAllAnyones = (anyones) => {
 
   return (
     <>
-      <span>Done</span>
+      <span></span>
     </>
   )
 }

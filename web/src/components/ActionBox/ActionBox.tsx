@@ -69,7 +69,8 @@ const ActionBox = () => {
         <Form onSubmit={onSubmit} className="relative">
           <FormError error={error} wrapperClassName="form-error" />
 
-          <div className="border-gray-300 focus-within:border-indigo-500 focus-within:ring-indigo-500 overflow-hidden rounded-lg border shadow-sm focus-within:ring-1 "></div>
+          {/* Not sure what this is, I think it can be removed  */}
+          {/* <div className="border-gray-300 focus-within:border-indigo-500 focus-within:ring-indigo-500 overflow-hidden rounded-lg border shadow-sm focus-within:ring-1 "></div> */}
           <TextAreaField
             rows={2}
             id="content"

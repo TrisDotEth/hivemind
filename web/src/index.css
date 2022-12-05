@@ -15,7 +15,11 @@
   font-weight: 100 1000;
   /* https://web.dev/variable-fonts/, and the Inter font family download from google fonts has a readme with more info*/
 }
-
+/* //Hack to show the current anyone out of overflow hidden */
+.swiper {
+  overflow-x: clip !important;
+  overflow: initial;
+}
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */

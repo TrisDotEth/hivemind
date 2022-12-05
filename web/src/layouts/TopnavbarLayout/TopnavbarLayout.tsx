@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react'
 
 import { SquaresPlusIcon } from '@heroicons/react/24/outline'
+import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 import { MetaTags } from '@redwoodjs/web'
 
 import ChangeAnyone from 'src/components/ChangeAnyone/ChangeAnyone'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
+import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 type TopnavbarLayoutProps = {
   children?: React.ReactNode
@@ -48,15 +50,27 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   // Based on https://tailwindui.com/components/application-ui/navigation/navbars#component-d833265bea66e95da3b499411d4d49b3
 
   //START
-  const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(false)
+  const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(true)
+  const [hideOnScroll, setHideOnScroll] = useState(true)
+  const [logoAnyone, setLogoAnyone] = useState(true)
   const openChoose = () => {
     setChooseAnyoneOpen(!chooseAnyoneOpen)
   }
+  const anyone = useAnyoneStore((state) => state.anyone)
+
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      const isShow = currPos.y > prevPos.y
+      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+      if (isShow !== hideOnScroll) setLogoAnyone(false)
+    },
+    [hideOnScroll]
+  )
 
   return (
     <>
       <MetaTags title="BeanyOne" description={'Be Anyone'} />
-      {chooseAnyoneOpen && <ChangeAnyone />}
+      {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone />}
       <header className=" fixed bottom-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">
@@ -71,7 +85,18 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
               <div className="flex flex-shrink-0 items-center">
                 <h1 className="block w-auto pt-2 text-base font-medium text-white">
                   <button onClick={openChoose}>
-                    be: Anyone {chooseAnyoneOpen}
+                    <span>be:</span>
+                    {logoAnyone && <span>Anyone</span>}
+                    {!logoAnyone && (
+                      <span>
+                        <img
+                          className=" mx-1 inline-block h-6 w-6 rounded-full"
+                          alt="Profile"
+                          src={anyone.avatar.url}
+                        ></img>
+                        {anyone.username}
+                      </span>
+                    )}
                   </button>
                 </h1>
               </div>

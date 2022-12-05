@@ -14,7 +14,7 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div className="text-white">Loading</div>
+export const Loading = () => <div className="text-white"></div>
 
 export const Empty = () => <div className="text-white">empty</div>
 

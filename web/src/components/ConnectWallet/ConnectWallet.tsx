@@ -7,7 +7,7 @@ const ConnectWallet = () => {
         return (
           <button
             onClick={show}
-            className="rounded-full border border-white bg-black py-px  px-2 text-sm font-semibold text-white"
+            className="rounded-full border border-white bg-black py-px  px-2 text-sm font-semibold text-black "
           >
             {isConnected ? ensName ?? truncatedAddress : 'Connect'}
           </button>
