@@ -7,7 +7,7 @@
 
 [web]
   host = '0.0.0.0'
-  title = "Be Anyone"
+  title = "be:Anyone"
   port = 8910
   apiUrl = "/.netlify/functions"
   includeEnvironmentVariables = [] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web

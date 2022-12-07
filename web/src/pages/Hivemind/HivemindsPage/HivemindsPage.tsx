@@ -1,7 +1,7 @@
-import HivemindsCell from 'src/components/Hivemind/HivemindsCell'
+// import HivemindsCell from 'src/components/Hivemind/HivemindsCell'
 
-const HivemindsPage = () => {
-  return <HivemindsCell />
-}
+// const HivemindsPage = () => {
+//   return <HivemindsCell />
+// }
 
-export default HivemindsPage
+// export default HivemindsPage

@@ -99,9 +99,9 @@ export const schema = gql`
     url: String
   }
 
-  type Profile {
-    bio: Bio
-  }
+  # type Profile {
+  #   bio: Bio
+  # }
 
   type Bio {
     text: String
@@ -111,5 +111,9 @@ export const schema = gql`
     getCasts(userName: String!): Activity! @skipAuth
     getActivity(userName: String!): AllActivity! @skipAuth
     getUserDetails(userName: String!): UserDetails! @skipAuth
+  }
+
+  type Mutation {
+    updateFarcasterProfiles(input: String): [Anyone] @skipAuth
   }
 `

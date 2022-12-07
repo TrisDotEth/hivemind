@@ -2,7 +2,7 @@ import type { getActivity } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import ContentFeed from '../ContentFeed/ContentFeed'
+import ContentFeed from '../../ContentFeed/ContentFeed'
 
 export const QUERY = gql`
   query getActivity($userName: String!) {

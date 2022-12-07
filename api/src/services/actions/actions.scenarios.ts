@@ -5,18 +5,34 @@ export const standard = defineScenario<Prisma.ActionCreateArgs>({
   action: {
     one: {
       data: {
-        name: 'String4592351',
+        anyoneDisplayName: 'String',
         content: 'String',
+        contentType: 'String',
         networkLocation: 'String',
-        hivemind: { create: { name: 'String4008773' } },
+        succeeded: true,
+        anyone: {
+          create: {
+            officialName: 'String9432874',
+            displayName: 'String',
+            shortName: 'String',
+          },
+        },
       },
     },
     two: {
       data: {
-        name: 'String4319661',
+        anyoneDisplayName: 'String',
         content: 'String',
+        contentType: 'String',
         networkLocation: 'String',
-        hivemind: { create: { name: 'String2166602' } },
+        succeeded: true,
+        anyone: {
+          create: {
+            officialName: 'String7094300',
+            displayName: 'String',
+            shortName: 'String',
+          },
+        },
       },
     },
   },

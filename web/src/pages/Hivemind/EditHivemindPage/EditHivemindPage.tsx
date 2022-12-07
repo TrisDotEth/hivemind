@@ -1,11 +1,11 @@
-import EditHivemindCell from 'src/components/Hivemind/EditHivemindCell'
+// import EditHivemindCell from 'src/components/Hivemind/EditHivemindCell'
 
-type HivemindPageProps = {
-  id: number
-}
+// type HivemindPageProps = {
+//   id: number
+// }
 
-const EditHivemindPage = ({ id }: HivemindPageProps) => {
-  return <EditHivemindCell id={id} />
-}
+// const EditHivemindPage = ({ id }: HivemindPageProps) => {
+//   return <EditHivemindCell id={id} />
+// }
 
-export default EditHivemindPage
+// export default EditHivemindPage

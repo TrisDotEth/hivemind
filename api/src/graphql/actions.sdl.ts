@@ -1,14 +1,16 @@
 export const schema = gql`
   type Action {
     id: Int!
-    name: String!
-    hivemind: Hivemind!
-    hivemindId: Int!
+    anyone: Anyone!
+    anyoneDisplayName: String!
+    anyoneId: Int!
     content: String!
+    contentType: String!
     createdAt: DateTime!
     networkLocation: String!
     walletAddress: String!
     signedTransaction: String!
+    succeeded: Boolean!
   }
 
   type Query {
@@ -17,19 +19,25 @@ export const schema = gql`
   }
 
   input CreateActionInput {
-    name: String!
-    hivemindId: Int!
+    anyoneDisplayName: String!
+    anyoneId: Int!
     content: String!
+    contentType: String!
     networkLocation: String!
     walletAddress: String!
     signedTransaction: String!
+    succeeded: Boolean!
   }
 
   input UpdateActionInput {
-    name: String
-    hivemindId: Int
+    anyoneDisplayName: String
+    anyoneId: Int
     content: String
+    contentType: String
     networkLocation: String
+    walletAddress: String
+    signedTransaction: String
+    succeeded: Boolean
   }
 
   type Mutation {

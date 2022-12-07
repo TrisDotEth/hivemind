@@ -2,17 +2,17 @@ import type { gethivemindProfiles } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import UpdateCurrentAnyone from '../UpdateCurrentAnyone/UpdateCurrentAnyone'
+import UpdateCurrentAnyone from '../../UpdateCurrentAnyone/UpdateCurrentAnyone'
 
-export const QUERY = gql`
-  query gethivemindProfiles($profileId: Int!) {
-    hivemindProfiles(profileId: $profileId) {
-      profileId
-      profileType
-      importedData
-    }
-  }
-`
+// export const QUERY = gql`
+//   query getAllAnyones($profileId: Int!) {
+//     hivemindProfiles(profileId: $profileId) {
+//       profileId
+//       profileType
+//       importedData
+//     }
+//   }
+// `
 
 export const Loading = () => <div className="text-white"></div>
 

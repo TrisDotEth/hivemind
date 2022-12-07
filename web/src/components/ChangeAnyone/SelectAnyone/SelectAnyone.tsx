@@ -3,7 +3,6 @@ import 'swiper/css'
 // import { HashNavigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import FarcasterUserCell from 'src/components/FarcasterUserCell'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
@@ -11,10 +10,8 @@ const SelectAnyone = () => {
   const anyones = useAllAnyonesStore((state) => state.anyones)
   const setAnyoneStore = useAnyoneStore((state) => state.addAnyone)
   const changeAnyone = async (activeId) => {
-    const newAnyone = await anyones.find(
-      (anyone) => anyone.hivemind.id === activeId
-    )
-    setAnyoneStore(newAnyone.importedData)
+    const newAnyone = await anyones.find((anyone) => anyone.id === activeId)
+    setAnyoneStore(newAnyone)
   }
 
   return (
@@ -30,6 +27,7 @@ const SelectAnyone = () => {
         onSlideChange={(swiper) => {
           const index = swiper.realIndex
           // const activeSlide = swiper.slides[index].dataset.hash
+          // @ts-expect-error Should be an HTML type thing?
           const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
           changeAnyone(activeId)
         }}
@@ -37,8 +35,8 @@ const SelectAnyone = () => {
         {anyones.map((anyone) => (
           <SwiperSlide
             key={anyone.id}
-            data-hash={anyone.importedData.displayName}
-            data-anyoneid={anyone.hivemind.id}
+            data-hash={anyone.displayName}
+            data-anyoneid={anyone.id}
             className=" text-center"
           >
             {({ isActive }) => (
@@ -61,7 +59,8 @@ const SelectAnyone = () => {
                     'h-10 w-10': !isActive,
                   })}
                   alt="Profile"
-                  src={anyone.importedData.avatar.url}
+                  // @ts-expect-error Hardcoded for now, should move to own DB? TODO
+                  src={anyone.profiles[0].importedData.avatar.url}
                 ></img>
                 <div>
                   <span
@@ -77,7 +76,7 @@ const SelectAnyone = () => {
                       }
                     )}
                   >
-                    {anyone.importedData.displayName}
+                    {anyone.displayName}
                   </span>
                 </div>
               </div>

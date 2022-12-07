@@ -1,52 +1,68 @@
+import type { Anyone } from 'types/graphql'
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
 
-interface Anyone {
-  anyone: {
-    name: 'Design'
-    username: string
-    profileImageURL: ''
-    aboutInformation: ''
-    displayName: ''
-    avatar: {
-      url: string
-    }
-    profile: {
-      bio: {
-        text: ''
-      }
-    }
-  }
+interface AddAnyone {
+  anyone: Anyone
   addAnyone: (e) => void
 }
 
-interface Anyones {
-  anyones: [
-    {
-      id: number
-      name: string
-    }
-  ]
+interface AddAnyones {
+  anyones: Anyone[]
   addAnyones: (e) => void
 }
 
-export const useAnyoneStore = create<Anyone>()(
+export const useAnyoneStore = create<AddAnyone>()(
   persist(
     (set) => ({
       anyone: {
-        name: 'Design',
-        username: 'tris',
-        profileImageURL: '',
-        aboutInformation: '',
-        displayName: '',
-        avatar: {
-          url: 'ff',
-        },
-        profile: {
-          bio: {
-            text: '',
+        __typename: 'Anyone',
+        id: 1,
+        shortName: 'Tris',
+        displayName: 'Tristan Grace',
+        officialName: 'Tris',
+        profiles: [
+          {
+            __typename: 'Profile',
+            id: 1,
+            anyoneId: 1,
+            // @ts-expect-error not sure about recursive TS
+            anyone: {
+              id: 1,
+              shortName: 'Tris',
+              displayName: 'Tristan Grace',
+              officialName: 'Tris',
+            },
+            importedData: {
+              avatar: {
+                url: 'https://i.seadn.io/gae/sSk6isYBBGhGxfXUCH08GVoxbfMhwAHrsXuO5Cb-YNSjPoCkSoz5oms0knBls4BavaaBgbFur_UKJ6rzB9zoERlx0xDEyuJUfwIetg?w=500&auto=format',
+                isVerified: true,
+              },
+              address: '0xDC34F1Cf1927bbc69a6507fa1C0e0F7F0c8eBCCC',
+              profile: {
+                bio: {
+                  text: 'Encouraging new forms of DAOs.',
+                  mentions: [],
+                },
+                directMessageTargets: {
+                  telegram: '',
+                },
+              },
+              username: 'tris',
+              displayName: 'tris.eth',
+              farcasterId: {
+                hex: '0x0d97',
+                type: 'BigNumber',
+              },
+              followerCount: 51,
+              followingCount: 108,
+              isFollowingViewer: false,
+              isViewerFollowing: false,
+              viewerCanSendDirectCasts: false,
+            },
+            profileType: 'farcaster',
           },
-        },
+        ],
       },
       addAnyone: (e) => set({ anyone: e }),
     }),
@@ -57,13 +73,58 @@ export const useAnyoneStore = create<Anyone>()(
   )
 )
 
-export const useAllAnyonesStore = create<Anyones>()(
+export const useAllAnyonesStore = create<AddAnyones>()(
   persist(
     (set) => ({
       anyones: [
         {
+          __typename: 'Anyone',
           id: 1,
-          name: 'design',
+          shortName: 'Tris',
+          displayName: 'Tristan Grace',
+          officialName: 'Tris',
+          profiles: [
+            {
+              __typename: 'Profile',
+              id: 1,
+              anyoneId: 1,
+              // @ts-expect-error not sure about recursive TS
+              anyone: {
+                id: 1,
+                shortName: 'Tris',
+                displayName: 'Tristan Grace',
+                officialName: 'Tris',
+              },
+              importedData: {
+                avatar: {
+                  url: 'https://i.seadn.io/gae/sSk6isYBBGhGxfXUCH08GVoxbfMhwAHrsXuO5Cb-YNSjPoCkSoz5oms0knBls4BavaaBgbFur_UKJ6rzB9zoERlx0xDEyuJUfwIetg?w=500&auto=format',
+                  isVerified: true,
+                },
+                address: '0xDC34F1Cf1927bbc69a6507fa1C0e0F7F0c8eBCCC',
+                profile: {
+                  bio: {
+                    text: 'Encouraging new forms of DAOs.',
+                    mentions: [],
+                  },
+                  directMessageTargets: {
+                    telegram: '',
+                  },
+                },
+                username: 'tris',
+                displayName: 'tris.eth',
+                farcasterId: {
+                  hex: '0x0d97',
+                  type: 'BigNumber',
+                },
+                followerCount: 51,
+                followingCount: 108,
+                isFollowingViewer: false,
+                isViewerFollowing: false,
+                viewerCanSendDirectCasts: false,
+              },
+              profileType: 'farcaster',
+            },
+          ],
         },
       ],
       addAnyones: (e) => set({ anyones: e }),

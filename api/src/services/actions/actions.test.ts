@@ -31,27 +31,31 @@ describe('actions', () => {
   scenario('creates a action', async (scenario: StandardScenario) => {
     const result = await createAction({
       input: {
-        name: 'String5745975',
-        hivemindId: scenario.action.two.hivemindId,
+        anyoneDisplayName: 'String',
+        anyoneId: scenario.action.two.anyoneId,
         content: 'String',
+        contentType: 'String',
         networkLocation: 'String',
+        succeeded: true,
       },
     })
 
-    expect(result.name).toEqual('String5745975')
-    expect(result.hivemindId).toEqual(scenario.action.two.hivemindId)
+    expect(result.anyoneDisplayName).toEqual('String')
+    expect(result.anyoneId).toEqual(scenario.action.two.anyoneId)
     expect(result.content).toEqual('String')
+    expect(result.contentType).toEqual('String')
     expect(result.networkLocation).toEqual('String')
+    expect(result.succeeded).toEqual(true)
   })
 
   scenario('updates a action', async (scenario: StandardScenario) => {
     const original = (await action({ id: scenario.action.one.id })) as Action
     const result = await updateAction({
       id: original.id,
-      input: { name: 'String12349832' },
+      input: { anyoneDisplayName: 'String2' },
     })
 
-    expect(result.name).toEqual('String12349832')
+    expect(result.anyoneDisplayName).toEqual('String2')
   })
 
   scenario('deletes a action', async (scenario: StandardScenario) => {

@@ -31,12 +31,12 @@ describe('profiles', () => {
   scenario('creates a profile', async (scenario: StandardScenario) => {
     const result = await createProfile({
       input: {
-        profileId: scenario.profile.two.profileId,
+        anyoneId: scenario.profile.two.anyoneId,
         importedData: { foo: 'bar' },
       },
     })
 
-    expect(result.profileId).toEqual(scenario.profile.two.profileId)
+    expect(result.anyoneId).toEqual(scenario.profile.two.anyoneId)
     expect(result.importedData).toEqual({ foo: 'bar' })
   })
 

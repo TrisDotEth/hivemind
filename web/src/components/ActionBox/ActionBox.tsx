@@ -14,6 +14,7 @@ import {
 import { useMutation } from '@redwoodjs/web'
 
 import { HivemindContext } from 'src/providers/context/HivemindContext'
+import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 const CREATE_ACTION = gql`
   mutation CreateActionInput($input: CreateActionInput!) {
@@ -62,6 +63,7 @@ const ActionBox = () => {
     data2.signedTransaction = signedTransaction
     create({ variables: { input: data2 } })
   }
+  const anyone = useAnyoneStore((state) => state.anyone)
 
   return (
     <div className="flex">
@@ -77,21 +79,23 @@ const ActionBox = () => {
             name="content"
             className="
               placeholder:font-regular
+              border-1
               block
               w-full
               resize-none
               rounded-lg
-              border-0
-              bg-primary-dark
+              border-gray
+              bg-black
               py-2
-              text-sm
+              text-base
               text-white
               placeholder:text-gray
+              hover:border-primary
+              focus:border-primary
+
               focus:ring-0
               "
-            placeholder={
-              'Cast as @' + hivemindContext.activeHmData.username + '...'
-            }
+            placeholder={'Cast as @' + anyone.officialName + '...'}
             defaultValue={''}
           />
           {/* Spacer element to match the height of the toolbar */}

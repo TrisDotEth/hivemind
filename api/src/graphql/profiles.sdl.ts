@@ -1,26 +1,27 @@
 export const schema = gql`
   type Profile {
     id: Int!
-    profileId: Int!
-    hivemind: Hivemind!
+    anyoneId: Int!
+    anyone: Anyone!
     profileType: String!
-    importedData: JSON
+    importedData: JSON!
+    createdAt: DateTime!
+    farcasterUsername: String
   }
 
   type Query {
     profiles: [Profile!]! @requireAuth
-    hivemindProfiles(profileId: Int!): [Profile!]! @requireAuth
     profile(id: Int!): Profile @requireAuth
   }
 
   input CreateProfileInput {
-    profileId: Int!
+    anyoneId: Int!
     profileType: String!
     importedData: JSON!
   }
 
   input UpdateProfileInput {
-    profileId: Int
+    anyoneId: Int
     profileType: String
     importedData: JSON
   }

@@ -1,0 +1,65 @@
+// model Anyone {
+//   id           Int       @id @default(autoincrement())
+//   officialName String    @unique
+//   displayName  String
+//   shortName    String
+//   actions      Action[]
+//   profiles     Profile[]
+//   createdAt    DateTime  @default(now())
+// }
+
+// model Profile {
+//   id           Int      @id @default(autoincrement())
+//   anyoneId     Int
+//   anyone       Anyone   @relation(fields: [anyoneId], references: [id])
+//   profileType  String   @default("")
+//   importedData Json
+//   createdAt    DateTime @default(now())
+// }
+
+// model Action {
+//   id                Int      @id @default(autoincrement())
+//   anyone            Anyone   @relation(fields: [anyoneId], references: [id])
+//   anyoneDisplayName String
+//   anyoneId          Int
+//   content           String
+//   contentType       String
+//   createdAt         DateTime @default(now())
+//   networkLocation   String
+//   walletAddress     String   @default("")
+//   signedTransaction String   @default("")
+//   succeeded         Boolean
+// }
+
+// model Anyonex {
+//   id           Int        @id @default(autoincrement())
+//   officialName String     @unique
+//   displayName  String
+//   shortName    String
+//   actionsx     Actionx[]
+//   profilesx    Profilex[]
+//   createdAt    DateTime   @default(now())
+// }
+
+// model Profilex {
+//   id           Int      @id @default(autoincrement())
+//   anyoneId     Int
+//   anyonex      Anyonex  @relation(fields: [anyoneId], references: [id])
+//   profileType  String   @default("")
+//   importedData Json
+//   createdAt    DateTime @default(now())
+// }
+
+// model Actionx {
+//   id                Int      @id @default(autoincrement())
+//   anyonex           Anyonex  @relation(fields: [anyoneId], references: [id])
+//   anyoneDisplayName String
+//   anyoneId          Int
+//   content           String
+//   contentType       String
+//   createdAt         DateTime @default(now())
+//   networkLocation   String
+//   walletAddress     String   @default("")
+//   signedTransaction String   @default("")
+//   succeeded         Boolean
+// }

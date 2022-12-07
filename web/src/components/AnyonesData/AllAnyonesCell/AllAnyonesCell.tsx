@@ -1,18 +1,20 @@
-import type { Profiles } from 'types/graphql'
+import type { getAllAnyones } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import UpdateAllAnyones from '../UpdateAllAnyones/UpdateAllAnyones'
 
-//TODO Update with Anyones not Profiles
 export const QUERY = gql`
-  query Profiles {
-    profiles {
+  query getAllAnyones {
+    anyones {
       id
-      importedData
-      hivemind {
+      shortName
+      displayName
+      officialName
+      profiles {
         id
-        name
+        importedData
+        profileType
       }
     }
   }
@@ -26,6 +28,6 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ profiles }: CellSuccessProps<Profiles>) => {
-  return <UpdateAllAnyones anyones={profiles} />
+export const Success = ({ anyones }: CellSuccessProps<getAllAnyones>) => {
+  return <UpdateAllAnyones anyones={anyones} />
 }

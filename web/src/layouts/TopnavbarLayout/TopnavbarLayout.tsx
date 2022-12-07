@@ -5,8 +5,11 @@ import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
 import { MetaTags } from '@redwoodjs/web'
 
+import AllAnyonesCell from 'src/components/AnyonesData/AllAnyonesCell'
 import ChangeAnyone from 'src/components/ChangeAnyone/ChangeAnyone'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
+import UpdateFarcasterProfiles from 'src/components/Farcaster/UpdateFarcasterProfiles/UpdateFarcasterProfiles'
+import UpdateFarcasterProfilesCell from 'src/components/Farcaster/UpdateFarcasterProfilesCell'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
@@ -54,7 +57,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const [hideOnScroll, setHideOnScroll] = useState(true)
   const [logoAnyone, setLogoAnyone] = useState(true)
   const openChoose = () => {
-    setChooseAnyoneOpen(!chooseAnyoneOpen)
+    setChooseAnyoneOpen(true)
   }
   const anyone = useAnyoneStore((state) => state.anyone)
 
@@ -69,7 +72,10 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
   return (
     <>
-      <MetaTags title="BeanyOne" description={'Be Anyone'} />
+      <MetaTags title="be:Anyone" description={'be:Anyone'} />
+      <UpdateFarcasterProfiles />
+      <AllAnyonesCell />
+      {/* <UpdateFarcasterProfilesCell input="g"></UpdateFarcasterProfilesCell> */}
       {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone />}
       <header className=" fixed bottom-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
@@ -92,9 +98,10 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                         <img
                           className=" mx-1 inline-block h-6 w-6 rounded-full"
                           alt="Profile"
-                          src={anyone.avatar.url}
+                          // @ts-expect-error Hardcoded for now, should move to own DB? TODO
+                          src={anyone.profiles[0].importedData.avatar.url}
                         ></img>
-                        {anyone.username}
+                        {anyone.shortName}
                       </span>
                     )}
                   </button>

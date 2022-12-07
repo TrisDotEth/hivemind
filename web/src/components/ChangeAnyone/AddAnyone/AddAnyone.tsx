@@ -10,7 +10,8 @@ const AddAnyone = () => {
         <img
           className="h-10 w-10 rounded-full brightness-[.3] grayscale"
           alt="Profile"
-          src={anyones[0].importedData.avatar.url}
+          // @ts-expect-error Hardcoded for now TODO
+          src={anyones[0].profiles[0].importedData.avatar.url}
         ></img>
         <PlusIcon className="absolute top-[11px] right-[17px] h-5 w-5" />
       </div>

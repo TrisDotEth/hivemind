@@ -7,6 +7,7 @@ import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 
 const UpdateAllAnyones = (anyones) => {
   const addAnyones = useAllAnyonesStore((state) => state.addAnyones)
+
   useEffect(() => {
     addAnyones(anyones.anyones)
   }, [addAnyones])

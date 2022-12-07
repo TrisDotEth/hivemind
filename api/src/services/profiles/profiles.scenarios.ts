@@ -6,13 +6,25 @@ export const standard = defineScenario<Prisma.ProfileCreateArgs>({
     one: {
       data: {
         importedData: { foo: 'bar' },
-        hivemind: { create: { name: 'String1626285' } },
+        anyone: {
+          create: {
+            officialName: 'String8281933',
+            displayName: 'String',
+            shortName: 'String',
+          },
+        },
       },
     },
     two: {
       data: {
         importedData: { foo: 'bar' },
-        hivemind: { create: { name: 'String6471167' } },
+        anyone: {
+          create: {
+            officialName: 'String1732252',
+            displayName: 'String',
+            shortName: 'String',
+          },
+        },
       },
     },
   },
