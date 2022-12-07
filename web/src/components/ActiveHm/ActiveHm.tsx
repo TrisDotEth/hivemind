@@ -1,9 +1,16 @@
+import { useState } from 'react'
+
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 import PassDetails from '../PassDetails/PassDetails'
 
 const ActiveHm = () => {
   const anyone = useAnyoneStore((state) => state.anyone)
+  const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(false)
+
+  const openChoose = () => {
+    setChooseAnyoneOpen(!chooseAnyoneOpen)
+  }
   return (
     <>
       <div className="mb-6 text-center">
@@ -27,12 +34,27 @@ const ActiveHm = () => {
             <span className="mr-3 inline-block text-xs text-gray">
               <span className="text-sm text-white">50</span> Members
             </span>
-            <PassDetails />
+            <button onClick={openChoose}>
+              <PassDetails />
+            </button>
+            {chooseAnyoneOpen && (
+              <span className="mr-3 inline-block text-xs text-gray">
+                <span className="text-sm text-gray">
+                  DAO address - 0x0db9...0b46{' '}
+                </span>
+              </span>
+            )}
           </div>
 
-          <button className="focus:ring-indigo-500 mb-1 mt-2 inline-flex items-center rounded-lg border border-transparent bg-primary px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2">
+          {anyone.officialName == 'ttris' && (
+            <button className="focus:ring-indigo-500 mb-1 mt-2 inline-flex items-center rounded-lg border border-transparent bg-primary px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2">
+              CLAIM PASS
+            </button>
+          )}
+
+          {/* <button className="focus:ring-indigo-500 mb-1 mt-2 inline-flex items-center rounded-lg border border-transparent bg-primary px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2">
             CLAIM PASS
-          </button>
+          </button> */}
         </div>
       </div>
     </>

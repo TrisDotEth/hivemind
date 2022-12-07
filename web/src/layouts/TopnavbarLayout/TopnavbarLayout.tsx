@@ -64,7 +64,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y > prevPos.y
-      if (isShow !== hideOnScroll) setHideOnScroll(isShow)
+      if (isShow !== hideOnScroll) setChooseAnyoneOpen(isShow)
       if (isShow !== hideOnScroll) setLogoAnyone(false)
     },
     [hideOnScroll]
