@@ -2,6 +2,8 @@ import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 import PassDetails from '../PassDetails/PassDetails'
 
+import PassDetails from '../PassDetails/PassDetails'
+
 const ActiveHm = () => {
   const anyone = useAnyoneStore((state) => state.anyone)
   return (
@@ -14,6 +16,7 @@ const ActiveHm = () => {
             alt=""
           />
         </div>
+        <h3 className="mt-2 text-lg font-semibold leading-4 text-white">
         <h3 className="mt-2 text-lg font-semibold leading-4 text-white">
           {anyone.displayName}
         </h3>
