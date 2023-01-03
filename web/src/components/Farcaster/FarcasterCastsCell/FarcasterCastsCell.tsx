@@ -4,37 +4,65 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import ContentFeed from '../../ContentFeed/ContentFeed'
 
+// export const QUERY = gql`
+//   query getActivity($userName: String!) {
+//     getActivity(userName: $userName) {
+//       activity {
+//         meta {
+//           displayName
+//           avatar
+//           isVerifiedAvatar
+// reactions {
+//   count
+//   type
+// }
+// recasts {
+//   count
+// }
+//           numReplyChildren
+//           replyParentUsername {
+//             username
+//             address
+//           }
+//         }
+//         body {
+//           type
+//           publishedAt
+//           sequence
+//           address
+//           username
+//           data {
+//             text
+//           }
+//         }
+//       }
+//     }
+//   }
+// `
+
 export const QUERY = gql`
   query getActivity($userName: String!) {
     getActivity(userName: $userName) {
       activity {
-        meta {
-          displayName
-          avatar
-          isVerifiedAvatar
-          reactions {
-            count
-            type
-          }
-          recasts {
-            count
-          }
-          numReplyChildren
-          replyParentUsername {
-            username
-            address
-          }
-        }
-        body {
-          type
-          publishedAt
-          sequence
-          address
+        author {
           username
-          data {
-            text
+          displayName
+          pfp {
+            url
+            verified
           }
         }
+        reactions {
+          count
+        }
+        recasts {
+          count
+        }
+        replies {
+          count
+        }
+        text
+        timestamp
       }
     }
   }

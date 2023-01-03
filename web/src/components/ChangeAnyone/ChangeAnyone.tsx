@@ -6,15 +6,15 @@ const ChangeAnyone = () => {
   return (
     <div className="fixed bottom-10 z-10 mx-auto w-full max-w-5xl bg-black px-2 pt-1 text-white">
       <div className="flex h-16">
-        <div className="flex-none">
+        {/* <div className="flex-none">
           <AddAnyone />
-        </div>
+        </div> */}
         <div className="w-1/6 flex-1">
           <SelectAnyone />
         </div>
-        <div className="flex-none justify-end">
+        {/* <div className="flex-none justify-end">
           <SearchAnyone />
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -3,6 +3,8 @@ import 'swiper/css'
 // import { HashNavigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import AddAnyone from 'src/components/ChangeAnyone/AddAnyone/AddAnyone'
+import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
@@ -19,7 +21,7 @@ const SelectAnyone = () => {
       <Swiper
         centeredSlides={true}
         spaceBetween={0}
-        slidesPerView={3}
+        slidesPerView={5}
         slideToClickedSlide={true}
         hashNavigation={true}
         className="overflow-x-clip"
@@ -32,6 +34,12 @@ const SelectAnyone = () => {
           changeAnyone(activeId)
         }}
       >
+        <SwiperSlide key={'testkey'} className=" text-center">
+          <SearchAnyone />
+        </SwiperSlide>
+        <SwiperSlide key={'testkey'} className=" text-center">
+          <AddAnyone />
+        </SwiperSlide>
         {anyones.map((anyone) => (
           <SwiperSlide
             key={anyone.id}
@@ -60,7 +68,7 @@ const SelectAnyone = () => {
                   })}
                   alt="Profile"
                   // @ts-expect-error Hardcoded for now, should move to own DB? TODO
-                  src={anyone.profiles[0].importedData.avatar.url}
+                  src={anyone.profiles[0].importedData.pfp.url}
                 ></img>
                 <div>
                   <span

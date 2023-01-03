@@ -17,7 +17,7 @@ const ActiveHm = () => {
         <div className="flex items-center">
           <img
             className="mx-auto mb-1 h-16 w-16 rounded-full"
-            src={anyone.profiles[0].importedData.avatar.url}
+            src={anyone.profiles[0].importedData.pfp.url}
             alt=""
           />
         </div>

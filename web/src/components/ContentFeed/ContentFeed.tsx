@@ -62,26 +62,24 @@ const ContentFeed = ({ farcasterCasts }) => {
 
       <ul className="divide-gray-200 mt-[-10px]">
         {farcasterCasts.getActivity.activity.map((casts) => (
-          <li key={casts.body.sequence} className="py-3">
+          <li key={casts.timestamp} className="py-3">
             <div className="flex space-x-3 overflow-hidden">
               <img
                 className="h-6 w-6 rounded-full"
-                src={casts.meta.avatar}
+                src={casts.author.pfp.url}
                 alt=""
               />
               <div className="flex-1 space-y-1">
                 <div className="flex items-center ">
                   <h3 className="text-sm text-white">
-                    {casts.meta.displayName}
+                    {casts.author.displayName}
                   </h3>
                   {/* <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p> */}
                   <p className="text-gray-400 pl-1 text-sm text-gray">
-                    • <Time time={casts.body.publishedAt} />
+                    • <Time time={casts.timestamp} />
                   </p>
                 </div>
-                <p className="text-gray-700 text-sm text-white">
-                  {casts.body.data.text}
-                </p>
+                <p className="text-gray-700 text-sm text-white">{casts.text}</p>
                 <div className=" mt-2 flex justify-between space-x-8 border-b border-gray-dark pt-1 pb-2">
                   <div className="flex space-x-6">
                     <span className="inline-flex items-center text-sm text-gray">
@@ -90,7 +88,7 @@ const ContentFeed = ({ farcasterCasts }) => {
                         className="text-gray-400 hover:text-gray-500 inline-flex space-x-2"
                       >
                         <HeartIcon className="h-5 w-5 " aria-hidden="true" />
-                        <span>{casts.meta.reactions.count}</span>
+                        <span>{casts.reactions.count}</span>
                         <span className="sr-only">likes</span>
                       </button>
                     </span>
@@ -103,7 +101,7 @@ const ContentFeed = ({ farcasterCasts }) => {
                           className="h-5 w-5"
                           aria-hidden="true"
                         />
-                        <span>{casts.meta.numReplyChildren}</span>
+                        <span>{casts.replies.count}</span>
                         <span className="sr-only">replies</span>
                       </button>
                     </span>

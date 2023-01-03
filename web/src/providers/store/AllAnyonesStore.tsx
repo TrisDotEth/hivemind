@@ -34,7 +34,7 @@ export const useAnyoneStore = create<AddAnyone>()(
               officialName: 'Tris',
             },
             importedData: {
-              avatar: {
+              pfp: {
                 url: 'https://i.seadn.io/gae/sSk6isYBBGhGxfXUCH08GVoxbfMhwAHrsXuO5Cb-YNSjPoCkSoz5oms0knBls4BavaaBgbFur_UKJ6rzB9zoERlx0xDEyuJUfwIetg?w=500&auto=format',
                 isVerified: true,
               },
@@ -96,7 +96,7 @@ export const useAllAnyonesStore = create<AddAnyones>()(
                 officialName: 'Tris',
               },
               importedData: {
-                avatar: {
+                pfp: {
                   url: 'https://i.seadn.io/gae/sSk6isYBBGhGxfXUCH08GVoxbfMhwAHrsXuO5Cb-YNSjPoCkSoz5oms0knBls4BavaaBgbFur_UKJ6rzB9zoERlx0xDEyuJUfwIetg?w=500&auto=format',
                   isVerified: true,
                 },

@@ -1,7 +1,6 @@
 import { AlchemyProvider } from '@ethersproject/providers'
-// import { Farcaster } from '@standard-crypto/farcaster-js'
-import { UserRegistry } from '@standard-crypto/farcaster-js'
-import { Farcaster } from '@standard-crypto/farcaster-js'
+import { MerkleAPIClient } from '@standard-crypto/farcaster-js'
+import { Wallet } from 'ethers'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
@@ -73,12 +72,17 @@ import { logger } from 'src/lib/logger'
 export const getUserDetails: QueryResolvers['getUserDetails'] = async ({
   userName,
 }) => {
-  const userRegistry = new UserRegistry(
-    new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-  )
+  const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
+  const apiClient = new MerkleAPIClient(wallet)
 
-  const userDetails = await userRegistry.lookupByUsername(userName)
-  console.log(userDetails)
+  const userDetails = await apiClient.lookupUserByUsername(userName)
+
+  // const userRegistry = new UserRegistry(
+  //   new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
+  // )
+
+  // const userDetails = await userRegistry.lookupByUsername(userName)
+  // console.log(userDetails)
 
   // const activityVariable = { activity: [] }
   // for await (const activity of farcaster.getAllActivityForUser(userName, {
@@ -96,18 +100,36 @@ export const getUserDetails: QueryResolvers['getUserDetails'] = async ({
 export const getActivity: QueryResolvers['getActivity'] = async ({
   userName,
 }) => {
-  const farcaster = new Farcaster(
-    new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-  )
+  const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
+  const apiClient = new MerkleAPIClient(wallet)
   const activityVariable = { activity: [] }
-  for await (const activity of farcaster.getAllActivityForUser(userName, {
-    includeRecasts: false,
-  })) {
-    if (activity) {
-      activityVariable['activity'].push(activity)
+
+  // fetch handle to a user
+  const user = await apiClient.lookupUserByUsername(userName)
+  if (user === undefined) throw new Error('no such user')
+
+  // fetch user's casts
+  for await (const cast of apiClient.fetchCastsForUser(user)) {
+    // console.log(JSON.stringify(cast))
+    if (cast) {
+      activityVariable['activity'].push(cast)
     }
   }
+
   return activityVariable
+
+  // const farcaster = new Farcaster(
+  //   new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
+  // )
+  // const activityVariable = { activity: [] }
+  // for await (const activity of farcaster.getAllActivityForUser(userName, {
+  //   includeRecasts: false,
+  // })) {
+  //   if (activity) {
+  //     activityVariable['activity'].push(activity)
+  //   }
+  // }
+  // return activityVariable
 }
 
 export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles'] =

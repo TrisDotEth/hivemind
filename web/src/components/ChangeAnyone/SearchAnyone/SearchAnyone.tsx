@@ -11,7 +11,7 @@ const SearchAnyone = () => {
           className="ml-2 h-10 w-10 rounded-full brightness-[.3] grayscale"
           alt="Profile"
           // @ts-expect-error Hardcoded for now TODO
-          src={anyones[0].profiles[0].importedData.avatar.url}
+          src={anyones[0].profiles[0].importedData.pfp.url}
         ></img>
         <MagnifyingGlassIcon className="absolute top-[11px] right-[8px] h-5 w-5" />
       </div>

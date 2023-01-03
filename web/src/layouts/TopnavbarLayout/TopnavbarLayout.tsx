@@ -99,7 +99,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                           className=" mx-1 inline-block h-6 w-6 rounded-full"
                           alt="Profile"
                           // @ts-expect-error Hardcoded for now, should move to own DB? TODO
-                          src={anyone.profiles[0].importedData.avatar.url}
+                          src={anyone.profiles[0].importedData.pfp.url}
                         ></img>
                         {anyone.shortName}
                       </span>
