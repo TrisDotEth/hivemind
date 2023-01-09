@@ -12,8 +12,16 @@ const HomePage = () => {
 
   return (
     <>
-      <ActiveHm />
+      {/* <ActiveHm /> */}
       {/* <FarcasterUserCell profileId={8} /> */}
+      <div className="mb-2 flex w-full justify-center">
+        <img
+          className="mr-1 mt-1 h-5 w-5 rounded-full"
+          src={anyone.profiles[0].importedData.pfp.url}
+          alt=""
+        />
+        <h1 className="text-lg text-white">{anyone.displayName}'s Home</h1>
+      </div>
       <FarcasterCastsCell userName={anyone.profiles[0].importedData.username} />
     </>
   )

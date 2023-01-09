@@ -6,7 +6,7 @@ const SearchAnyone = () => {
   const anyones = useAllAnyonesStore((state) => state.anyones)
   return (
     <div className="w-12">
-      <div className="relative border-l border-gray-dark">
+      <div className="relative">
         <img
           className="ml-2 h-10 w-10 rounded-full brightness-[.3] grayscale"
           alt="Profile"

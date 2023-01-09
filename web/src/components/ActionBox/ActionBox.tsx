@@ -79,11 +79,11 @@ const ActionBox = () => {
             name="content"
             className="
               placeholder:font-regular
-              border-1
               block
               w-full
               resize-none
               rounded-lg
+              border-0
               border-gray
               bg-black
               py-2

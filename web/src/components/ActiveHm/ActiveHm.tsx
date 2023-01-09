@@ -16,7 +16,7 @@ const ActiveHm = () => {
       <div className="mb-6 text-center">
         <div className="flex items-center">
           <img
-            className="mx-auto mb-1 h-16 w-16 rounded-full"
+            className="mx-auto mb-1 h-20 w-20 rounded-full"
             src={anyone.profiles[0].importedData.pfp.url}
             alt=""
           />
@@ -31,9 +31,9 @@ const ActiveHm = () => {
             {anyone.profiles[0].importedData.profile.bio.text}
           </p>
           <div className="mt-[-7px]">
-            <span className="mr-3 inline-block text-xs text-gray">
+            {/* <span className="mr-3 inline-block text-xs text-gray">
               <span className="text-sm text-white">50</span> Members
-            </span>
+            </span> */}
             <button onClick={openChoose}>
               <PassDetails />
             </button>

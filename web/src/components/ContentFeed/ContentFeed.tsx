@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 import { HeartIcon, ChatBubbleLeftIcon } from '@heroicons/react/24/outline'
 
+import { Link, routes } from '@redwoodjs/router'
+
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 import ActionBox from '../ActionBox/ActionBox'
@@ -19,11 +21,10 @@ const ContentFeed = ({ farcasterCasts }) => {
   const foryouActive = () => {
     setFeed('foryou')
   }
-
   const anyone = useAnyoneStore((state) => state.anyone)
   return (
     <div>
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <nav className="-mb-px flex space-x-3" aria-label="Tabs">
           <button
             onClick={foryouActive}
@@ -56,7 +57,7 @@ const ContentFeed = ({ farcasterCasts }) => {
             ></span>
           </button>
         </nav>
-      </div>
+      </div> */}
 
       <ActionBox />
 
@@ -64,11 +65,13 @@ const ContentFeed = ({ farcasterCasts }) => {
         {farcasterCasts.getActivity.activity.map((casts) => (
           <li key={casts.timestamp} className="py-3">
             <div className="flex space-x-3 overflow-hidden">
-              <img
-                className="h-6 w-6 rounded-full"
-                src={casts.author.pfp.url}
-                alt=""
-              />
+              <Link to={routes.be({ name: casts.author.username })}>
+                <img
+                  className="h-6 w-6 rounded-full"
+                  src={casts.author.pfp.url}
+                  alt=""
+                />
+              </Link>
               <div className="flex-1 space-y-1">
                 <div className="flex items-center ">
                   <h3 className="text-sm text-white">

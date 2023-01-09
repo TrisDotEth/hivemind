@@ -1,8 +1,12 @@
 import { useContext, useState } from 'react'
 
 import { SquaresPlusIcon } from '@heroicons/react/24/outline'
+import { ArrowSmallLeftIcon } from '@heroicons/react/24/outline'
+import { WalletIcon } from '@heroicons/react/24/solid'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
+import { useLocation } from '@redwoodjs/router'
+import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 
 import AllAnyonesCell from 'src/components/AnyonesData/AllAnyonesCell'
@@ -60,6 +64,9 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
     setChooseAnyoneOpen(true)
   }
   const anyone = useAnyoneStore((state) => state.anyone)
+  //Check if a profile page
+  const { pathname } = useLocation()
+  const profile = pathname.substring(0, 3).toLowerCase() == '/be'
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -82,9 +89,15 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
               <div className="flex flex-shrink-0 items-center">
-                <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
-                  <SquaresPlusIcon className="h-6 w-6 text-black" />
-                </button>
+                {/* <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
+                  <SquaresPlusIcon className="h-6 w-6 text-white" />
+                </button> */}
+                {/* Check to see if it's on a profile page or the home page */}
+                {profile && (
+                  <Link to={routes.home()}>
+                    <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
+                  </Link>
+                )}
               </div>
             </div>
             <div className="flex">
@@ -111,7 +124,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
-                <ConnectWallet />
+                {/* <ConnectWallet /> */}
+                <WalletIcon className="h-6 w-6 text-white" />
               </div>
             </div>
           </div>

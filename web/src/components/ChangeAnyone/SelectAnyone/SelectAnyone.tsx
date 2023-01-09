@@ -3,6 +3,8 @@ import 'swiper/css'
 // import { HashNavigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Link, routes } from '@redwoodjs/router'
+
 import AddAnyone from 'src/components/ChangeAnyone/AddAnyone/AddAnyone'
 import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
@@ -24,20 +26,24 @@ const SelectAnyone = () => {
         slidesPerView={5}
         slideToClickedSlide={true}
         hashNavigation={true}
+        initialSlide={3}
         className="overflow-x-clip"
         // modules={[HashNavigation]}
         onSlideChange={(swiper) => {
           const index = swiper.realIndex
+          //Skip over addAnyone slide
+          if (index == 1) return true
+          // debugger
           // const activeSlide = swiper.slides[index].dataset.hash
           // @ts-expect-error Should be an HTML type thing?
           const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
           changeAnyone(activeId)
         }}
       >
-        <SwiperSlide key={'testkey'} className=" text-center">
+        <SwiperSlide key={'SearchAnyone'} className=" text-center">
           <SearchAnyone />
         </SwiperSlide>
-        <SwiperSlide key={'testkey'} className=" text-center">
+        <SwiperSlide key={'AddAnyone'} className=" text-center">
           <AddAnyone />
         </SwiperSlide>
         {anyones.map((anyone) => (
