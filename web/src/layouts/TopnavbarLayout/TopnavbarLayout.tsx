@@ -66,7 +66,11 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const anyone = useAnyoneStore((state) => state.anyone)
   //Check if a profile page
   const { pathname } = useLocation()
-  const profile = pathname.substring(0, 3).toLowerCase() == '/be'
+  const profilePage = pathname.includes('/be')
+  const addPage = pathname.includes('/add')
+
+  // const pageNeedsLeftBackArrow = pathname.substring(0, 3).toLowerCase() == ('/be' || '/ad')
+  const pageNeedsLeftBackArrow = profilePage || addPage
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -93,7 +97,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                   <SquaresPlusIcon className="h-6 w-6 text-white" />
                 </button> */}
                 {/* Check to see if it's on a profile page or the home page */}
-                {profile && (
+                {pageNeedsLeftBackArrow && (
                   <Link to={routes.home()}>
                     <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
                   </Link>

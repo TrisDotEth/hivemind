@@ -197,6 +197,7 @@ export const schema = gql`
     getCasts(userName: String!): Activity! @skipAuth
     getActivity(userName: String!): AllActivity! @skipAuth
     getUserDetails(userName: String!): UserDetails! @skipAuth
+    getRecentCasts(userName: String!): Bio @skipAuth
   }
 
   type Mutation {
