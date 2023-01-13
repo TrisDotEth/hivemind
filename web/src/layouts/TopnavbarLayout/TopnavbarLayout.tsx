@@ -68,9 +68,10 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const { pathname } = useLocation()
   const profilePage = pathname.includes('/be')
   const addPage = pathname.includes('/add')
+  const threadPage = pathname.includes('/thread')
 
   // const pageNeedsLeftBackArrow = pathname.substring(0, 3).toLowerCase() == ('/be' || '/ad')
-  const pageNeedsLeftBackArrow = profilePage || addPage
+  const pageNeedsLeftBackArrow = profilePage || addPage || threadPage
 
   useScrollPosition(
     ({ prevPos, currPos }) => {

@@ -1,48 +1,12 @@
-import type { getActivity } from 'types/graphql'
+import type { getRecentCasts } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import ContentFeed from '../../ContentFeed/ContentFeed'
 
-// export const QUERY = gql`
-//   query getActivity($userName: String!) {
-//     getActivity(userName: $userName) {
-//       activity {
-//         meta {
-//           displayName
-//           avatar
-//           isVerifiedAvatar
-// reactions {
-//   count
-//   type
-// }
-// recasts {
-//   count
-// }
-//           numReplyChildren
-//           replyParentUsername {
-//             username
-//             address
-//           }
-//         }
-//         body {
-//           type
-//           publishedAt
-//           sequence
-//           address
-//           username
-//           data {
-//             text
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
-
 export const QUERY = gql`
-  query getActivity($userName: String!) {
-    getActivity(userName: $userName) {
+  query getRecentCasts($userName: String!) {
+    getRecentCasts(userName: $userName) {
       activity {
         author {
           username
@@ -87,11 +51,10 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-//needs TS
-export const Success = (farcasterCasts: CellSuccessProps<getActivity>) => {
+export const Success = (farcasterCasts: CellSuccessProps<getRecentCasts>) => {
   return (
     <>
-      <ContentFeed farcasterCasts={farcasterCasts.getActivity} />
+      <ContentFeed farcasterCasts={farcasterCasts.getRecentCasts} />
     </>
   )
 }

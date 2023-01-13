@@ -1,5 +1,6 @@
 import ActiveHm from 'src/components/ActiveHm/ActiveHm'
-import FarcasterCastsCell from 'src/components/Farcaster/FarcasterCastsCell'
+// import FarcasterCastsCell from 'src/components/Farcaster/FarcasterCastsCell'
+import FarcasterHomeCell from 'src/components/Farcaster/FarcasterHomeCell'
 // import FarcasterUserCell from 'src/components/FarcasterUserCell'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
@@ -22,7 +23,7 @@ const HomePage = () => {
         />
         <h1 className="text-lg text-white">{anyone.displayName}'s Home</h1>
       </div>
-      <FarcasterCastsCell userName={anyone.profiles[0].importedData.username} />
+      <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} />
     </>
   )
 }

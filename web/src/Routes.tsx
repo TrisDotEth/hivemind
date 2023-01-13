@@ -10,6 +10,7 @@
 import { Set, Router, Route } from '@redwoodjs/router'
 
 import TopnavbarLayout from './layouts/TopnavbarLayout/TopnavbarLayout'
+import ThreadPage from './pages/ThreadPage/ThreadPage'
 
 // TODO ADD BACK IN PRERENDERING - The reason it was taken out was because of the Swiper package, if it's not needed prerendering might easily work. Otherwise it looks like changing the version of a swiper dependency.
 const Routes = () => {
@@ -23,6 +24,7 @@ const Routes = () => {
         <Route path="/hiveminds/{id:Int}/edit" page={HivemindEditHivemindPage} name="editHivemind" />
         <Route path="/hiveminds/{id:Int}" page={HivemindHivemindPage} name="hivemind" />
         <Route path="/hiveminds" page={HivemindHivemindsPage} name="hiveminds" />
+        <Route path="/thread:{threadHash}" page={ThreadPage} name="thread" />
 
         <Route notfound page={NotFoundPage} />
       </Set>

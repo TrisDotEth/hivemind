@@ -14,6 +14,7 @@ function classNames(...classes) {
 }
 
 const ContentFeed = ({ farcasterCasts }) => {
+  // debugger
   const [feed, setFeed] = useState('foryou')
   const latestActive = () => {
     setFeed('latest')
@@ -22,6 +23,7 @@ const ContentFeed = ({ farcasterCasts }) => {
     setFeed('foryou')
   }
   const anyone = useAnyoneStore((state) => state.anyone)
+  // debugger
   return (
     <div>
       {/* <div className="flex justify-center">
@@ -62,10 +64,14 @@ const ContentFeed = ({ farcasterCasts }) => {
       <ActionBox />
 
       <ul className="divide-gray-200 mt-[-10px]">
-        {farcasterCasts.getActivity.activity.map((casts) => (
+        {/* TODO MAKE THIS WORK WITH BOTH CALLS! */}
+        {farcasterCasts.activity.map((casts) => (
           <li key={casts.timestamp} className="py-3">
             <div className="flex space-x-3 overflow-hidden">
-              <Link to={routes.be({ name: casts.author.username })}>
+              <Link
+                to={routes.be({ name: casts.author.username })}
+                className="contents"
+              >
                 <img
                   className="h-6 w-6 rounded-full"
                   src={casts.author.pfp.url}
@@ -73,16 +79,20 @@ const ContentFeed = ({ farcasterCasts }) => {
                 />
               </Link>
               <div className="flex-1 space-y-1">
-                <div className="flex items-center ">
-                  <h3 className="text-sm text-white">
-                    {casts.author.displayName}
-                  </h3>
-                  {/* <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p> */}
-                  <p className="text-gray-400 pl-1 text-sm text-gray">
-                    • <Time time={casts.timestamp} />
+                <Link to={routes.thread({ threadHash: casts.threadHash })}>
+                  <div className="flex items-center ">
+                    <h3 className="text-sm text-white">
+                      {casts.author.displayName}
+                    </h3>
+                    {/* <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p> */}
+                    <p className="text-gray-400 pl-1 text-sm text-gray">
+                      • <Time time={casts.timestamp} />
+                    </p>
+                  </div>
+                  <p className="text-gray-700 text-sm text-white">
+                    {casts.text}
                   </p>
-                </div>
-                <p className="text-gray-700 text-sm text-white">{casts.text}</p>
+                </Link>
                 <div className=" mt-2 flex justify-between space-x-8 border-b border-gray-dark pt-1 pb-2">
                   <div className="flex space-x-6">
                     <span className="inline-flex items-center text-sm text-gray">

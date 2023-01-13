@@ -4,82 +4,14 @@ import { Wallet } from 'ethers'
 import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { logger } from 'src/lib/logger'
-
-// export const getCasts = async ({ userName }) => {
-//   const farcaster = new Farcaster(
-//     new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-//   )
-//   const userRegistry = new UserRegistry(
-//     new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-//   )
-//   let castsVariable = { casts: [] }
-//   const userDetails = await userRegistry.lookupByUsername(userName)
-//   for await (const activity of farcaster.getAllActivityForUser(userName, {
-//     includeRecasts: false,
-//   })) {
-//     if (activity.body.data) {
-//       let combine = activity.body.data
-//       //See if it's a reply - if so add in the data
-//       const replyParentAddress = activity.meta?.replyParentUsername?.address
-//         ? activity.meta.replyParentUsername.address
-//         : ''
-//       const replyParentUsername = activity.meta?.replyParentUsername?.username
-//         ? activity.meta.replyParentUsername.username
-//         : ''
-
-//       //Combine the reply data with the content data
-//       combine = {
-//         ...combine,
-//         replyParentUsername: replyParentUsername,
-//         replyParentAddress: replyParentAddress,
-//         publishedAt: activity.body.publishedAt,
-//         sequence: activity.body.sequence,
-//       }
-//       castsVariable['casts'].push(combine)
-//     }
-//   }
-//   if (userDetails) {
-//     //Could be optimised - This gets the user details for each cast, but only uses the last casts user details
-//     castsVariable = {
-//       ...castsVariable,
-//       avatar: userDetails.avatar.url,
-//       displayName: userDetails.displayName,
-//       username: userDetails.username,
-//       followerCount: userDetails.followerCount,
-//       followingCount: userDetails.followingCount,
-//       bioText: userDetails.profile.bio.text,
-//     }
-//   }
-//   return castsVariable
-// }
-
-// export const getActivity = async ({ userName }) => {
-//   const farcaster = new Farcaster(
-//     new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-//   )
-//   const activityVariable = { activity: [] }
-//   for await (const activity of farcaster.getAllActivityForUser(userName, {
-//     includeRecasts: false,
-//   })) {
-//     if (activity) {
-//       activityVariable['activity'].push(activity)
-//     }
-//   }
-//   return activityVariable
-// }
 
 export const getRecentCasts = async ({ userName }) => {
-  const text = { text: userName }
-
   const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
   const apiClient = new MerkleAPIClient(wallet)
   const activityVariable = { activity: [] }
   const followingArray = []
   const allFollowedCasts = []
   let orderedCasts = []
-
-  const t0 = performance.now()
 
   const userDetails = await apiClient.lookupUserByUsername(userName)
 
@@ -95,137 +27,60 @@ export const getRecentCasts = async ({ userName }) => {
     }
   }
 
-  for (const followingFID of followingArray) {
-    const t3 = performance.now()
-    //   const res = await axios
-    //   .get('https://api.farcaster.xyz/v2/casts?fid='+followingFID+'&limit=25', {
-    //     headers: {
-    //       accept: 'application/json',
-    //       authorization:
-    //         'Bearer MK-cmAoLspHzA4SN4KASPutf7m6x25Lkia1BwbVAl+0l1cP6/+4cw1bhh48GVAy1WYiKhWSIpBHFIJfKZp+GZlrMA==',
-    //     },
-    //   })
-    //   .catch(function (error) {
-    //     if (error.response) {
-    //       // The request was made and the server responded with a status code
-    //       // that falls out of the range of 2xx
-    //       console.log(error.response.data)
-    //       console.log(error.response.status)
-    //       console.log(error.response.headers)
-    //     } else if (error.request) {
-    //       // The request was made but no response was received
-    //       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-    //       // http.ClientRequest in node.js
-    //       console.log(error.request)
-    //     } else {
-    //       // Something happened in setting up the request that triggered an Error
-    //       console.log('Error', error.message)
-    //     }
-    //     console.log(error.config)
-    //   })
-
-    // const allcasts = res.data
-    // console.log(allcasts)
-    //   const t4 = performance.now()
-    //   console.log(`Call to doSomething took ${t3 - t4} milliseconds.`)
-    // }
-
-    // axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
-    //   (data) => console.log(data),
-    // );
-
-    // axios.all(promises.map((promise) => axios.get(promise))).then(
-    //   axios.spread((user, repos, followers, following) => {
-    //     console.log({ user, repos, followers, following });
-    //   })
-    // );
-
-    // axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
-    //   axios.spread(({data: user}, {data:repos}, {data:followers}, {data:following}) => {
-    //     console.log({ user, repos, followers, following });
-    //   })
-    // );
-
-    await Promise.all(
-      followingArray.map((endpoint) =>
-        axios
-          .get(endpoint, {
-            headers: {
-              accept: 'application/json',
-              authorization:
-                'Bearer MK-cmAoLspHzA4SN4KASPutf7m6x25Lkia1BwbVAl+0l1cP6/+4cw1bhh48GVAy1WYiKhWSIpBHFIJfKZp+GZlrMA==',
-            },
-          })
-          .catch(function (error) {
-            if (error.response) {
-              // The request was made and the server responded with a status code
-              // that falls out of the range of 2xx
-              console.log(error.response.data)
-              console.log(error.response.status)
-              console.log(error.response.headers)
-            } else if (error.request) {
-              // The request was made but no response was received
-              // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-              // http.ClientRequest in node.js
-              console.log(error.request)
-            } else {
-              // Something happened in setting up the request that triggered an Error
-              console.log('Error', error.message)
-            }
-            console.log(error.config)
-          })
-      )
-    ).then(
-      // ([{ data: result }]) => {
-      //   console.log({ result }) //
-      //   allFollowedCasts.push(result.result.casts)
-      //   console.log(allFollowedCasts)
-      // }
-      // axios.spread((...allData) => {
-      //   console.log({ allData })
-      // })
-      axios.spread((...allData) => {
-        console.log({ allData })
-        // for (const casts in allData) {
-        //   console.log(casts)
-        // }
-        allData.forEach((element) => {
-          element.data.result.casts.forEach((casts) => {
-            // debugger
-            allFollowedCasts.push(casts)
-          })
+  await Promise.all(
+    followingArray.map((endpoint) =>
+      axios
+        .get(endpoint, {
+          headers: {
+            accept: 'application/json',
+            authorization: 'Bearer ' + process.env.FARCASTER_BEARER_TOKEN,
+          },
         })
-        console.log('Unordered')
-        console.log(allFollowedCasts)
-        console.log('Unordered')
-        //Hark to convert an array to a json array
-        const worthashot1 = JSON.stringify(allFollowedCasts)
-        orderedCasts = JSON.parse(worthashot1)
-        orderedCasts.sort((a, b) => a.timestamp - b.timestamp)
-      })
+        .catch(function (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+            // http.ClientRequest in node.js
+            console.log(error.request)
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error', error.message)
+          }
+          console.log(error.config)
+        })
     )
+  ).then(([...allData]) => {
+    allData.forEach((element) => {
+      element.data.result.casts.forEach((casts) => {
+        // Check cast is not a reply
+        if (casts.parentHash) return false
+        // Check cast is not a recast
+        if (casts.recast) return false
+        // Check cast is not deleted TODO
+        // if (casts.deleted??) return false
 
-    console.log(followingArray)
-    console.log(activityVariable)
+        //Put all the followed casts into their own array
+        allFollowedCasts.push(casts)
+      })
+    })
 
-    const t1 = performance.now()
-    console.log(`Call to doSomething took ${t1 - t0} milliseconds.`)
+    //Hack to convert an array to a json array?? TODO do it properly
+    const weirdHack = JSON.stringify(allFollowedCasts)
+    orderedCasts = JSON.parse(weirdHack)
+    //Sort by Timestamp
+    orderedCasts.sort((a, b) => b.timestamp - a.timestamp)
+  })
 
-    // const EXPIRY_DURATION_MS = 31536000000 // 1 yea
-    // const bearerToken = await apiClient.createAuthToken(EXPIRY_DURATION_MS)
-    // console.log('Bearer token = ' + bearerToken)
-    // console.log(bearerToken)
+  //Add to the same variable used for generic getActivity. Prob needs to be updated at some point.
+  orderedCasts.forEach((e) => activityVariable['activity'].push(e))
 
-    //----------------------------------------------------------
-
-    //-----------------------------------------------------------
-    console.log('Ordered')
-    console.log(orderedCasts)
-    console.log('Ordered')
-
-    //IT WORKS!!!
-    return text
-  }
+  return activityVariable
 }
 
 export const getUserDetails: QueryResolvers['getUserDetails'] = async ({
@@ -235,23 +90,6 @@ export const getUserDetails: QueryResolvers['getUserDetails'] = async ({
   const apiClient = new MerkleAPIClient(wallet)
 
   const userDetails = await apiClient.lookupUserByUsername(userName)
-  console.log(userDetails)
-
-  // const userRegistry = new UserRegistry(
-  //   new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-  // )
-
-  // const userDetails = await userRegistry.lookupByUsername(userName)
-  // console.log(userDetails)
-
-  // const activityVariable = { activity: [] }
-  // for await (const activity of farcaster.getAllActivityForUser(userName, {
-  //   includeRecasts: false,
-  // })) {
-  //   if (activity) {
-  //     activityVariable['activity'].push(activity)
-  //   }
-  // }
   return userDetails
 }
 
@@ -263,36 +101,50 @@ export const getActivity: QueryResolvers['getActivity'] = async ({
   const wallet = Wallet.fromMnemonic(process.env.FARCASTER_MNEMONIC)
   const apiClient = new MerkleAPIClient(wallet)
   const activityVariable = { activity: [] }
+  const userDetails = await apiClient.lookupUserByUsername(userName)
 
-  // fetch handle to a user
-  const user = await apiClient.lookupUserByUsername(userName)
-  if (user === undefined) throw new Error('no such user')
+  const endpoint =
+    'https://api.farcaster.xyz/v2/casts?fid=' + userDetails.fid + '&limit=50'
+  await axios
+    .get(endpoint, {
+      headers: {
+        accept: 'application/json',
+        authorization: 'Bearer ' + process.env.FARCASTER_BEARER_TOKEN,
+      },
+    })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request)
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message)
+      }
+      console.log(error.config)
+    })
+    .then((response) => {
+      response.data.result.casts.forEach((cast) => {
+        // Check cast is not a reply
+        if (cast.parentHash) return false
+        // Check cast is not a recast
+        if (cast.recast) return false
+        // Check cast is not deleted TODO
+        // if (casts.deleted??) return false
 
-  // fetch user's casts
-  const t0 = performance.now()
-  for await (const cast of apiClient.fetchCastsForUser(user)) {
-    // console.log(JSON.stringify(cast))
-    if (cast) {
-      activityVariable['activity'].push(cast)
-    }
-  }
-  const t1 = performance.now()
-  console.log(`Call to getActivity took ${t1 - t0} milliseconds.`)
-
+        //Put all the followed casts into their own array
+        activityVariable['activity'].push(cast)
+      })
+    })
+  debugger
   return activityVariable
-
-  // const farcaster = new Farcaster(
-  //   new AlchemyProvider('goerli', process.env.ALCHEMY_API_KEY)
-  // )
-  // const activityVariable = { activity: [] }
-  // for await (const activity of farcaster.getAllActivityForUser(userName, {
-  //   includeRecasts: false,
-  // })) {
-  //   if (activity) {
-  //     activityVariable['activity'].push(activity)
-  //   }
-  // }
-  // return activityVariable
 }
 
 export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles'] =
@@ -370,3 +222,51 @@ export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles
 
     return db.anyone.findMany()
   }
+
+export const getThreadCasts = async ({ threadHash }) => {
+  const activityVariable = { activity: [] }
+
+  const endpoint =
+    'https://api.farcaster.xyz/v2/all-casts-in-thread?threadHash=' + threadHash
+  await axios
+    .get(endpoint, {
+      headers: {
+        accept: 'application/json',
+        authorization: 'Bearer ' + process.env.FARCASTER_BEARER_TOKEN,
+      },
+    })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request)
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message)
+      }
+      console.log(error.config)
+    })
+    .then((response) => {
+      debugger
+      response.data.result.casts.forEach((cast) => {
+        // Check cast is not a reply
+        // if (cast.parentHash) return false
+        // Check cast is not a recast
+        if (cast.recast) return false
+        // Check cast is not deleted TODO
+        // if (casts.deleted??) return false
+
+        //Put all the followed casts into their own array
+        activityVariable['activity'].push(cast)
+      })
+    })
+
+  return activityVariable
+}
