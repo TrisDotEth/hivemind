@@ -12,7 +12,9 @@ import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
-const SelectAnyone = () => {
+import LSAProfile from './LSAProfile/LSAProfile'
+
+const LargeSelectAnyone = () => {
   const anyones = useAllAnyonesStore((state) => state.anyones)
   const anyone = useAnyoneStore((state) => state.anyone)
   const setAnyoneStore = useAnyoneStore((state) => state.addAnyone)
@@ -33,6 +35,7 @@ const SelectAnyone = () => {
 
   return (
     <div className="w-full text-white">
+      {/* <span className="text-white ">LARGE LAGEADGSFGSDF</span> */}
       <Swiper
         centeredSlides={true}
         spaceBetween={0}
@@ -116,24 +119,18 @@ const SelectAnyone = () => {
                   'items-center',
                   'text-gray',
                   {
-                    'relative top-[10px] h-12 w-12': isActive,
+                    'relative top-[0px] h-20 w-20': isActive,
                     'inline-block w-12': !isActive,
                   }
                 )}
               >
-                {/* <ConditionalWrapper
-                  condition={isActive}
-                  wrapper={(children) => (
-                    <Link to={routes.home()}>{children}</Link>
-                  )}
-                > */}
                 <ConditionalWrapper
                   condition={isActive}
                   wrapper={(children) => <div>{children}</div>}
                 >
                   <img
                     className={clsx('mx-auto', 'rounded-full', {
-                      'h-15 w-15': isActive,
+                      'h-20 w-20': isActive,
                       'h-10 w-10': !isActive,
                     })}
                     alt="Profile"
@@ -141,21 +138,25 @@ const SelectAnyone = () => {
                     src={anyone.profiles[0].importedData.pfp.url}
                   ></img>
                   <div>
-                    <span
-                      className={clsx(
-                        'mx-auto',
-                        'flex',
-                        'w-fit',
-                        'text-center',
-                        'text-[10px]',
-                        'leading-[12px]',
-                        {
-                          'text-white': isActive,
-                        }
-                      )}
-                    >
-                      {anyone.displayName}
-                    </span>
+                    {isActive ? (
+                      <LSAProfile />
+                    ) : (
+                      <span
+                        className={clsx(
+                          'mx-auto',
+                          'flex',
+                          'w-fit',
+                          'text-center',
+                          'text-[10px]',
+                          'leading-[12px]',
+                          {
+                            'text-white': isActive,
+                          }
+                        )}
+                      >
+                        {anyone.displayName}
+                      </span>
+                    )}
                   </div>
                 </ConditionalWrapper>
               </div>
@@ -167,4 +168,4 @@ const SelectAnyone = () => {
   )
 }
 
-export default SelectAnyone
+export default LargeSelectAnyone

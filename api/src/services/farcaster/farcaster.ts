@@ -254,7 +254,6 @@ export const getThreadCasts = async ({ threadHash }) => {
       console.log(error.config)
     })
     .then((response) => {
-      debugger
       response.data.result.casts.forEach((cast) => {
         // Check cast is not a reply
         // if (cast.parentHash) return false

@@ -71,7 +71,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const threadPage = pathname.includes('/thread')
 
   // const pageNeedsLeftBackArrow = pathname.substring(0, 3).toLowerCase() == ('/be' || '/ad')
-  const pageNeedsLeftBackArrow = profilePage || addPage || threadPage
+  const notHomePage = profilePage || addPage || threadPage
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
@@ -88,8 +88,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
       <UpdateFarcasterProfiles />
       <AllAnyonesCell />
       {/* <UpdateFarcasterProfilesCell input="g"></UpdateFarcasterProfilesCell> */}
-      {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone />}
-      <header className=" fixed bottom-0 w-full bg-black">
+      {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone large={notHomePage} />}
+      <header className=" fixed top-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
@@ -98,7 +98,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                   <SquaresPlusIcon className="h-6 w-6 text-white" />
                 </button> */}
                 {/* Check to see if it's on a profile page or the home page */}
-                {pageNeedsLeftBackArrow && (
+                {notHomePage && (
                   <Link to={routes.home()}>
                     <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
                   </Link>
@@ -136,7 +136,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl bg-black px-4 pt-4">
+      <main className="mx-auto max-w-5xl bg-black px-4 pt-20">
         {/* <h2 className=" text-center text-4xl font-medium text-primary">
           {tagArr[index]}
         </h2> */}
