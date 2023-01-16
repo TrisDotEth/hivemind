@@ -2,7 +2,9 @@ import { useState } from 'react'
 
 import clsx from 'clsx'
 import 'swiper/css'
+import 'swiper/css/pagination'
 // import { HashNavigation } from 'swiper'
+import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -31,16 +33,26 @@ const SelectAnyone = () => {
     console.log('isActive = ' + isActive)
   }
 
+  const pagination = {
+    clickable: true,
+    dynamicBullets: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + (index + 1) + '</span>'
+    },
+  }
+
   return (
     <div className="w-full text-white">
       <Swiper
         centeredSlides={true}
+        pagination={pagination}
+        modules={[Pagination]}
         spaceBetween={0}
         slidesPerView={5}
         slideToClickedSlide={true}
         hashNavigation={true}
         initialSlide={3}
-        className="overflow-x-clip"
+        className="mySwiper overflow-x-clip"
         // modules={[HashNavigation]}
         onBeforeSlideChangeStart={(swiper) => {
           // console.log('2active index is ' + swiper.realIndex)
