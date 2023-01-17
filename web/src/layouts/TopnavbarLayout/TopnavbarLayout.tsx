@@ -136,7 +136,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl bg-black px-4 pt-20">
+      <main className="mx-auto max-w-5xl bg-black px-4 pt-16">
         {/* <h2 className=" text-center text-4xl font-medium text-primary">
           {tagArr[index]}
         </h2> */}

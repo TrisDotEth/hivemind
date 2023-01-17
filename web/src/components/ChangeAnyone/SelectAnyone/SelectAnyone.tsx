@@ -33,26 +33,16 @@ const SelectAnyone = () => {
     console.log('isActive = ' + isActive)
   }
 
-  const pagination = {
-    clickable: true,
-    dynamicBullets: true,
-    renderBullet: function (index, className) {
-      return '<span class="' + className + '">' + (index + 1) + '</span>'
-    },
-  }
-
   return (
     <div className="w-full text-white">
       <Swiper
         centeredSlides={true}
-        pagination={pagination}
-        modules={[Pagination]}
         spaceBetween={0}
         slidesPerView={5}
         slideToClickedSlide={true}
         hashNavigation={true}
         initialSlide={3}
-        className="mySwiper overflow-x-clip"
+        className="overflow-x-clip"
         // modules={[HashNavigation]}
         onBeforeSlideChangeStart={(swiper) => {
           // console.log('2active index is ' + swiper.realIndex)
@@ -128,7 +118,7 @@ const SelectAnyone = () => {
                   'items-center',
                   'text-gray',
                   {
-                    'relative top-[10px] h-12 w-12': isActive,
+                    'relative h-12 w-12': isActive,
                     'inline-block w-12': !isActive,
                   }
                 )}
@@ -145,7 +135,7 @@ const SelectAnyone = () => {
                 >
                   <img
                     className={clsx('mx-auto', 'rounded-full', {
-                      'h-15 w-15': isActive,
+                      'h-12 w-12': isActive,
                       'h-10 w-10': !isActive,
                     })}
                     alt="Profile"
