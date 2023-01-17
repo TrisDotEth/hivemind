@@ -87,7 +87,7 @@ const LargeSelectAnyone = () => {
             firstSwiper.slideTo(swiper.realIndex)
           }
           // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
-          // changeAnyoneWithoutContent(activeId)
+          changeAnyoneWithoutContent(activeId)
         }}
         onClick={(swiper) => {
           if (lastActiveSlideBeforeClick != swiper.previousIndex) {
@@ -207,7 +207,7 @@ const LargeSelectAnyone = () => {
             // firstSwiper.slideTo(swiper.realIndex)
 
             //Wait for the transition to end before fetching content so it's not downloading it 1000 times
-            // changeAnyone(activeId)
+            changeAnyone(activeId)
           }
         }}
       >
