@@ -62,7 +62,7 @@ const LargeSelectAnyone = () => {
         // freeMode={true}
         centeredSlides={true}
         slideToClickedSlide={true}
-        watchSlidesProgress={true}
+        // watchSlidesProgress={true}
         modules={[Controller]}
         hashNavigation={true}
         initialSlide={3}

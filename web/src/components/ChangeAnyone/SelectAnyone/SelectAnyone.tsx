@@ -42,6 +42,7 @@ const SelectAnyone = () => {
         slideToClickedSlide={true}
         hashNavigation={true}
         initialSlide={3}
+        // watchSlidesProgress={true}
         className="overflow-x-clip"
         // modules={[HashNavigation]}
         onBeforeSlideChangeStart={(swiper) => {
