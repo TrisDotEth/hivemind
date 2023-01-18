@@ -9,7 +9,7 @@ import { useAnyoneStoreWithoutContent } from 'src/providers/store/AllAnyonesStor
 
 // import PassDetails from '../PassDetails/PassDetails'
 
-const LsaProfile = () => {
+const LsaProfile = (isActive) => {
   const anyone = useAnyoneStore((state) => state.anyone)
   const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(false)
 
@@ -19,6 +19,7 @@ const LsaProfile = () => {
   const anyoneNoContent = useAnyoneStoreWithoutContent(
     (state) => state.anyoneNoContent
   )
+  // debugger
   return (
     <div className="test mb-6 mt-1 text-center">
       {/* <h2 className="mx-auto flex w-fit text-center text-2xl font-semibold leading-[22px] text-white">
@@ -89,7 +90,12 @@ const LsaProfile = () => {
           </span>
         </h3>
       </div>
-      <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} />
+      {isActive && (
+        <FarcasterHomeCell
+          userName={anyone.profiles[0].importedData.username}
+        />
+      )}
+      {/* <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} /> */}
     </div>
   )
 }

@@ -25,6 +25,7 @@ import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStoreWithoutContent } from 'src/providers/store/AllAnyonesStore'
+import { useSwiperStore } from 'src/providers/store/SwiperStore'
 
 import LSAProfile from './LSAProfile/LSAProfile'
 
@@ -38,34 +39,34 @@ const LargeSelectAnyone = () => {
   //Annoying that it seemes to have to be done this way. No easy way of checking to see if you are clicking on the active slide with many bugs.
   const [lastActiveSlideBeforeClick, setlastActiveSlideBeforeClick] =
     useState(0)
-  const changeAnyone = async (activeId) => {
-    const newAnyone = await anyones.find((anyone) => anyone.id === activeId)
-    // setAnyoneStoreWithoutContent(newAnyone)
+  const changeAnyone = (activeId) => {
+    console.time('a')
+    const newAnyone = anyones.find((anyone) => anyone.id === activeId)
+    console.timeEnd('a')
+    console.time('setAnyone')
     setAnyoneStore(newAnyone)
+    console.timeEnd('setAnyone')
   }
 
-  const changeAnyoneWithoutContent = async (activeId) => {
-    const newAnyone = await anyones.find((anyone) => anyone.id === activeId)
+  const changeAnyoneWithoutContent = (activeId) => {
+    const newAnyone = anyones.find((anyone) => anyone.id === activeId)
     setAnyoneStoreWithoutContent(newAnyone)
-    // setAnyoneStore(newAnyone)
   }
 
   const ConditionalWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children
 
-  const Foo = (isActive) => {
-    console.log('isActive = ' + isActive)
-  }
-  const [firstSwiper, setFirstSwiper] = useState(null)
-  const [secondSwiper, setSecondSwiper] = useState(null)
+  const addSecondSwiper = useSwiperStore((state) => state.addSecondSwiper)
+  const firstSwiper = useSwiperStore((state) => state.firstSwiper)
 
   return (
     <div className="w-full text-white">
       {/* <span className="text-white ">LARGE LAGEADGSFGSDF</span> */}
       <Swiper
-        onSwiper={setSecondSwiper}
+        onSwiper={addSecondSwiper}
         spaceBetween={0}
         slidesPerView={5}
+        speed={100}
         // freeMode={true}
         centeredSlides={true}
         slideToClickedSlide={true}
@@ -90,11 +91,24 @@ const LargeSelectAnyone = () => {
           if (index == 1) return true
           // @ts-expect-error Should be an HTML type thing?
           const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-          if (firstSwiper) {
+          // debugger
+          if (!firstSwiper == null) {
             firstSwiper.slideTo(swiper.realIndex)
           }
           // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
-          changeAnyoneWithoutContent(activeId)
+          // changeAnyoneWithoutContent(activeId)
+          changeAnyone(activeId)
+        }}
+        onTransitionEnd={(swiper) => {
+          // console.log('Slider has stopped moving TRANSITION END')
+
+          // debugger
+          const index = swiper.realIndex
+          const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
+          // firstSwiper.slideTo(swiper.realIndex)
+
+          //Wait for the transition to end before fetching content so it's not downloading it 1000 times
+          // changeAnyone(activeId)
         }}
         onClick={(swiper) => {
           if (lastActiveSlideBeforeClick != swiper.previousIndex) {

@@ -4,6 +4,13 @@ import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import ContentFeed from '../../ContentFeed/ContentFeed'
 
+export const beforeQuery = (props) => {
+  return {
+    variables: props,
+    fetchPolicy: 'cache-first',
+  }
+}
+
 export const QUERY = gql`
   query getRecentCasts($userName: String!) {
     getRecentCasts(userName: $userName) {

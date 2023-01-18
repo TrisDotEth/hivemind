@@ -69,7 +69,11 @@ export const useAnyoneStore = create<AddAnyone>()(
           },
         ],
       },
-      addAnyone: (e) => set({ anyone: e }),
+      addAnyone: (e) => {
+        console.time('set')
+        set({ anyone: e })
+        console.timeEnd('set')
+      },
     }),
     {
       name: 'anyone-storage', // unique name

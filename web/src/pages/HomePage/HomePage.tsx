@@ -29,6 +29,7 @@ import FarcasterHomeCell from 'src/components/Farcaster/FarcasterHomeCell'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStoreWithoutContent } from 'src/providers/store/AllAnyonesStore'
+import { useSwiperStore } from 'src/providers/store/SwiperStore'
 
 import 'swiper/css'
 
@@ -43,8 +44,9 @@ const HomePage = () => {
   )
   const setAnyoneStore = useAnyoneStore((state) => state.addAnyone)
 
-  const [firstSwiper, setFirstSwiper] = useState(null)
-  const [secondSwiper, setSecondSwiper] = useState(null)
+  const addFirstSwiper = useSwiperStore((state) => state.addFirstSwiper)
+  const secondSwiper = useSwiperStore((state) => state.secondSwiper)
+  const firstSwiper = useSwiperStore((state) => state.firstSwiper)
 
   const changeAnyone = async (activeId) => {
     const newAnyone = await anyones.find((anyone) => anyone.id === activeId)
@@ -75,6 +77,7 @@ const HomePage = () => {
           }}
           slidesPerView={1}
           initialSlide={3}
+          spaceBetween={200}
           // navigation={true}
           // thumbs={{ swiper: thumbsSwiper }}
           // slideToClickedSlide={true}
@@ -82,7 +85,7 @@ const HomePage = () => {
           // scrollbar={true}
           // mousewheel={true}
           modules={[Controller]}
-          onSwiper={setFirstSwiper}
+          onSwiper={addFirstSwiper}
           controller={{ control: secondSwiper }}
           className="mySwiper2"
           // onSlideChange={(swiper) => {
@@ -100,19 +103,30 @@ const HomePage = () => {
           //   // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
           //   // changeAnyoneWithoutContent(activeId)
           // }}
-          onTransitionEnd={(swiper) => {
-            console.log('Slider has stopped moving TRANSITION END')
+          // onTransitionEnd={(swiper) => {
+          //   console.log('Slider has stopped moving TRANSITION END')
 
-            if (firstSwiper) {
-              // debugger
-              const index = swiper.realIndex
-              const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-              // firstSwiper.slideTo(swiper.realIndex)
+          //   if (firstSwiper) {
+          //     // debugger
+          //     const index = swiper.realIndex
+          //     const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
+          //     // firstSwiper.slideTo(swiper.realIndex)
 
-              //Wait for the transition to end before fetching content so it's not downloading it 1000 times
-              changeAnyone(activeId)
-            }
-          }}
+          //     //Wait for the transition to end before fetching content so it's not downloading it 1000 times
+          //     changeAnyone(activeId)
+          //   }
+          // }}
+          // onSlideChange={(swiper) => {
+          //   if (firstSwiper) {
+          //     // debugger
+          //     const index = swiper.realIndex
+          //     const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
+          //     // firstSwiper.slideTo(swiper.realIndex)
+
+          //     //Wait for the transition to end before fetching content so it's not downloading it 1000 times
+          //     changeAnyone(activeId)
+          //   }
+          // }}
         >
           <SwiperSlide key={'SearchAnyone'} className=" text-center">
             <SearchAnyone />
@@ -127,7 +141,8 @@ const HomePage = () => {
               data-anyoneid={anyone.id}
               className="h-[3000px] text-center"
             >
-              <LSAProfile />
+              {/* <LSAProfile /> */}
+              {({ isActive }) => <LSAProfile isActive={isActive} />}
             </SwiperSlide>
           ))}
         </Swiper>

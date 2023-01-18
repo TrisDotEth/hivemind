@@ -13,6 +13,12 @@ const ChangeAnyone = ({ large }: SizeOfChangeAnyone) => {
   const anyoneNoContent = useAnyoneStoreWithoutContent(
     (state) => state.anyoneNoContent
   )
+  let backgroundImage = 'https://avatars.githubusercontent.com/u/25322?v=4'
+
+  if (anyoneNoContent) {
+    backgroundImage = anyoneNoContent.profiles[0].importedData.pfp.url
+  }
+
   return (
     <div className="fixed top-10 z-10 mx-auto w-full max-w-5xl bg-black px-2 pt-1 text-white">
       <div
@@ -23,8 +29,7 @@ const ChangeAnyone = ({ large }: SizeOfChangeAnyone) => {
           top: '-70px',
           height: '370px',
           opacity: '0.15',
-          backgroundImage:
-            'url(' + anyoneNoContent.profiles[0].importedData.pfp.url + ')',
+          backgroundImage: 'url(' + backgroundImage + ')',
         }}
       ></div>
       <div className="flex h-16">
