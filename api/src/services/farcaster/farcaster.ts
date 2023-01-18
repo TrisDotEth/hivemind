@@ -75,6 +75,8 @@ export const getRecentCasts = async ({ userName }) => {
     orderedCasts = JSON.parse(weirdHack)
     //Sort by Timestamp
     orderedCasts.sort((a, b) => b.timestamp - a.timestamp)
+    //Reducing size of array to help performance
+    orderedCasts.length = 50
   })
 
   //Add to the same variable used for generic getActivity. Prob needs to be updated at some point.

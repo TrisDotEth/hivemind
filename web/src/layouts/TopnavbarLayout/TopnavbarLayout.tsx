@@ -88,7 +88,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
       <UpdateFarcasterProfiles />
       <AllAnyonesCell />
       {/* <UpdateFarcasterProfilesCell input="g"></UpdateFarcasterProfilesCell> */}
-      {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone large={notHomePage} />}
+      {/* {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone large={notHomePage} />} */}
+      <ChangeAnyone large={notHomePage} />
       <header className=" fixed top-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">

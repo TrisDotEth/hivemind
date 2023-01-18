@@ -23,12 +23,14 @@ const HomePage = () => {
           src={anyoneNoContent.profiles[0].importedData.pfp.url}
           alt=""
         /> */}
-        <h3 className=" text-white">
-          {anyoneNoContent.shortName}'s Home{' '}
-          <span className=" text-gray">{anyoneNoContent.shortName}'s Mind</span>
-        </h3>
+        {/* <h3 className=" text-white">
+          {anyoneNoContent.shortName}'s Home
+          <span className="inline-block pl-3 text-gray">
+            {anyoneNoContent.shortName}'s DAO
+          </span>
+        </h3> */}
       </div>
-      <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} />
+      {/* <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} /> */}
     </>
   )
 }

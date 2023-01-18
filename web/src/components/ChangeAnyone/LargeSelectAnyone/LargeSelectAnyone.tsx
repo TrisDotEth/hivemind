@@ -8,7 +8,14 @@ import 'swiper/css/navigation'
 import 'swiper/css/free-mode'
 // import { HashNavigation } from 'swiper'
 import TimeAgo from 'javascript-time-ago'
-import { FreeMode, Navigation, Thumbs, Controller } from 'swiper'
+import {
+  FreeMode,
+  Scrollbar,
+  Mousewheel,
+  Navigation,
+  Thumbs,
+  Controller,
+} from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { navigate, routes } from '@redwoodjs/router'
@@ -155,7 +162,7 @@ const LargeSelectAnyone = () => {
                     // @ts-expect-error Hardcoded for now, should move to own DB? TODO
                     src={anyone.profiles[0].importedData.pfp.url}
                   ></img>
-                  <div className="mt-1 flex justify-center">
+                  <div className="mt-2 flex justify-center">
                     <span
                       className={clsx(
                         'mx-auto',
@@ -170,6 +177,7 @@ const LargeSelectAnyone = () => {
                           'text-[10px]': !isActive,
                           'leading-[12px]': !isActive,
                           'leading-[22px]': isActive,
+                          // hidden: isActive,
                         }
                       )}
                     >
@@ -191,12 +199,29 @@ const LargeSelectAnyone = () => {
         initialSlide={3}
         // navigation={true}
         // thumbs={{ swiper: thumbsSwiper }}
-        slideToClickedSlide={true}
-        centeredSlides={true}
+        // slideToClickedSlide={true}
+        // centeredSlides={true}
+        // scrollbar={true}
+        // mousewheel={true}
         modules={[Controller]}
         onSwiper={setFirstSwiper}
         controller={{ control: secondSwiper }}
-        className="mySwiper2 overflow-x-clip"
+        className="mySwiper2"
+        // onSlideChange={(swiper) => {
+        //   // if (swiper.clickedIndex != swiper.realIndex) {
+        //   //   setlastActiveSlideBeforeClick(swiper.previousIndex)
+        //   // }
+        //   const index = swiper.realIndex
+        //   //Skip over addAnyone slide
+        //   if (index == 1) return true
+        //   // @ts-expect-error Should be an HTML type thing?
+        //   // const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
+        //   if (secondSwiper) {
+        //     secondSwiper.slideTo(swiper.realIndex)
+        //   }
+        //   // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
+        //   // changeAnyoneWithoutContent(activeId)
+        // }}
         onTransitionEnd={(swiper) => {
           console.log('Slider has stopped moving TRANSITION END')
 
@@ -222,29 +247,9 @@ const LargeSelectAnyone = () => {
             key={anyone.id}
             data-hash={anyone.displayName}
             data-anyoneid={anyone.id}
-            className="h-[300px] text-center"
+            className="h-[3000px] text-center"
           >
-            {({ isActive }) => (
-              // <div
-              //   className={clsx(
-              //     // 'mx-2',
-              //     'inline-block',
-              //     'items-center',
-              //     'text-gray',
-              //     {
-              //       'relative h-12 w-12': isActive,
-              //       'inline-block w-12': !isActive,
-              //     }
-              //   )}
-              // >
-              <ConditionalWrapper
-                condition={isActive}
-                wrapper={(children) => <div>{children}</div>}
-              >
-                <LSAProfile />
-              </ConditionalWrapper>
-              // </div>
-            )}
+            <LSAProfile />
           </SwiperSlide>
         ))}
       </Swiper>
