@@ -7,6 +7,8 @@ import FarcasterHomeCell from 'src/components/Farcaster/FarcasterHomeCell'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStoreWithoutContent } from 'src/providers/store/AllAnyonesStore'
 
+import LSAProfileChrome from './LSAProfileChrome/LSAProfileChrome'
+
 // import PassDetails from '../PassDetails/PassDetails'
 
 const LsaProfile = (isActive) => {
@@ -16,24 +18,25 @@ const LsaProfile = (isActive) => {
   const openChoose = () => {
     setChooseAnyoneOpen(!chooseAnyoneOpen)
   }
-  const anyoneNoContent = useAnyoneStoreWithoutContent(
-    (state) => state.anyoneNoContent
-  )
+  // const anyoneNoContent = useAnyoneStoreWithoutContent(
+  //   (state) => state.anyoneNoContent
+  // )
   // debugger
   return (
     <div className="test mb-6 mt-1 text-center">
       {/* <h2 className="mx-auto flex w-fit text-center text-2xl font-semibold leading-[22px] text-white">
         {anyoneNoContent.displayName}
       </h2> */}
+      <LSAProfileChrome />
       <button className="focus:ring-indigo-500 absolute left-0 right-0 bottom-[10.5rem] m-auto mb-1 mt-2 inline-flex w-fit items-center rounded-lg border border-transparent bg-primary px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2">
         <span className="mr-1">be: </span>
-        <img
+        {/* <img
           className="mx-auto h-5 w-5 rounded-full"
           alt="Profile"
           // @ts-expect-error Hardcoded for now, should move to own DB? TODO
           src={anyoneNoContent.profiles[0].importedData.pfp.url}
-        ></img>
-        <span className="ml-1"> {anyoneNoContent.shortName}</span>
+        ></img> */}
+        {/* <span className="ml-1"> {anyoneNoContent.shortName}</span> */}
       </button>
       {/* <span
         className="
@@ -50,14 +53,14 @@ const LsaProfile = (isActive) => {
         {anyoneNoContent.displayName}
       </h3> */}
       <p className="mt-[-2px] text-xs text-gray">
-        <span className="pr-1"> be:{anyoneNoContent.officialName}</span>
-        <LinkIcon className="mt-[-2px] inline h-3 w-3" />
+        {/* <span className="pr-1"> be:{anyoneNoContent.officialName}</span> */}
+        {/* <LinkIcon className="mt-[-2px] inline h-3 w-3" /> */}
       </p>
 
       <div className="mt-1 text-center">
-        <p className="text-sm text-white">
+        {/* <p className="text-sm text-white">
           {anyoneNoContent.profiles[0].importedData.profile.bio.text}
-        </p>
+        </p> */}
         {/* <div className="mt-[-7px]">
           <span className="mr-3 inline-block text-xs text-gray">
               <span className="text-sm text-white">50</span> Members
@@ -82,14 +85,14 @@ const LsaProfile = (isActive) => {
             CLAIM PASS
           </button> */}
       </div>
-      <div className="mb-2 flex w-full justify-center pt-60">
+      {/* <div className="mb-2 flex w-full justify-center pt-60">
         <h3 className=" text-white">
           {anyoneNoContent.shortName}'s Home
           <span className="inline-block pl-3 text-gray">
             {anyoneNoContent.shortName}'s DAO
           </span>
         </h3>
-      </div>
+      </div> */}
       {isActive && (
         <FarcasterHomeCell
           userName={anyone.profiles[0].importedData.username}

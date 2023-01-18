@@ -34,25 +34,10 @@ import { useSwiperStore } from 'src/providers/store/SwiperStore'
 import 'swiper/css'
 
 const HomePage = () => {
-  const anyone = useAnyoneStore((state) => state.anyone)
-  const anyoneNoContent = useAnyoneStoreWithoutContent(
-    (state) => state.anyoneNoContent
-  )
   const anyones = useAllAnyonesStore((state) => state.anyones)
-  const setAnyoneStoreWithoutContent = useAnyoneStoreWithoutContent(
-    (state) => state.addAnyoneWithoutContent
-  )
-  const setAnyoneStore = useAnyoneStore((state) => state.addAnyone)
 
   const addFirstSwiper = useSwiperStore((state) => state.addFirstSwiper)
   const secondSwiper = useSwiperStore((state) => state.secondSwiper)
-  const firstSwiper = useSwiperStore((state) => state.firstSwiper)
-
-  const changeAnyone = async (activeId) => {
-    const newAnyone = await anyones.find((anyone) => anyone.id === activeId)
-    // setAnyoneStoreWithoutContent(newAnyone)
-    setAnyoneStore(newAnyone)
-  }
 
   return (
     <>
