@@ -50,7 +50,9 @@ const LargeSelectAnyone = () => {
 
   const changeAnyoneWithoutContent = (activeId) => {
     const newAnyone = anyones.find((anyone) => anyone.id === activeId)
+    console.time('setAnyoneNoContent')
     setAnyoneStoreWithoutContent(newAnyone)
+    console.timeEnd('setAnyoneNoContent')
   }
 
   const ConditionalWrapper = ({ condition, wrapper, children }) =>
@@ -96,8 +98,8 @@ const LargeSelectAnyone = () => {
             firstSwiper.slideTo(swiper.realIndex)
           }
           // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
-          // changeAnyoneWithoutContent(activeId)
-          changeAnyone(activeId)
+          changeAnyoneWithoutContent(activeId)
+          // changeAnyone(activeId)
         }}
         onTransitionEnd={(swiper) => {
           // console.log('Slider has stopped moving TRANSITION END')
@@ -109,6 +111,7 @@ const LargeSelectAnyone = () => {
 
           //Wait for the transition to end before fetching content so it's not downloading it 1000 times
           // changeAnyone(activeId)
+          // changeAnyoneWithoutContent(activeId)
         }}
         onClick={(swiper) => {
           if (lastActiveSlideBeforeClick != swiper.previousIndex) {
