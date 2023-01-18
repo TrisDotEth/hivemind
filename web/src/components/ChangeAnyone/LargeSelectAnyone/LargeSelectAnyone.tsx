@@ -190,7 +190,7 @@ const LargeSelectAnyone = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <Swiper
+      {/* <Swiper
         style={{
           '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
@@ -252,7 +252,7 @@ const LargeSelectAnyone = () => {
             <LSAProfile />
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> */}
     </div>
   )
 }
