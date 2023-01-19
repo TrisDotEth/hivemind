@@ -12,11 +12,7 @@ const UpdateAllAnyones = (anyones) => {
     addAnyones(anyones.anyones)
   }, [addAnyones])
 
-  return (
-    <>
-      <span></span>
-    </>
-  )
+  return null
 }
 
 export default UpdateAllAnyones

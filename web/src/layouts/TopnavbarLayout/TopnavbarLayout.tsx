@@ -87,10 +87,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
       <MetaTags title="be:Anyone" description={'be:Anyone'} />
       <UpdateFarcasterProfiles />
       <AllAnyonesCell />
-      {/* <UpdateFarcasterProfilesCell input="g"></UpdateFarcasterProfilesCell> */}
-      {/* {chooseAnyoneOpen && hideOnScroll && <ChangeAnyone large={notHomePage} />} */}
-      <ChangeAnyone large={notHomePage} />
-      <header className=" fixed top-0 w-full bg-black">
+
+      <header className="sticky top-0 w-full bg-black">
         <div className="mx-auto max-w-5xl px-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
@@ -137,12 +135,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <main className="mx-auto max-w-5xl bg-black px-4 pt-16">
-        {/* <h2 className=" text-center text-4xl font-medium text-primary">
-          {tagArr[index]}
-        </h2> */}
-        {children}
-      </main>
+      <ChangeAnyone large={notHomePage} />
+      <main className="mx-auto max-w-5xl bg-black ">{children}</main>
     </>
   )
 }

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
 import { useMutation } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const TWEET_AUTH = gql`
   mutation UpdateFarcasterProfilesMutation($input: String) {
@@ -12,10 +11,9 @@ const TWEET_AUTH = gql`
 `
 
 const UpdateFarcasterProfiles = () => {
-  const [create, { loading, error }] = useMutation(TWEET_AUTH, {
+  const [create] = useMutation(TWEET_AUTH, {
     onCompleted: () => {
-      console.log('Complete fired')
-      toast.success('Account Authed')
+      console.log('Farcaster profiles for all anyones updated')
     },
     onError: (error) => {
       console.log('Error fired')
@@ -25,18 +23,15 @@ const UpdateFarcasterProfiles = () => {
   })
 
   const auth = async () => {
-    console.log('auth ran')
     create()
   }
 
   useEffect(() => {
-    // 👇️ only runs once
-    console.log('useEffect ran')
     auth()
     // 👇️ only runs once because the dependency array is empty
   }, [])
 
-  return <div></div>
+  return null
 }
 
 export default UpdateFarcasterProfiles

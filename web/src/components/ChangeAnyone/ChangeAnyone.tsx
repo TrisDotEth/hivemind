@@ -20,7 +20,7 @@ const ChangeAnyone = ({ large }: SizeOfChangeAnyone) => {
   }
 
   return (
-    <div className="fixed top-10 z-10 mx-auto w-full max-w-5xl bg-black px-2 pt-1 text-white">
+    <div className="relative mx-auto w-full max-w-5xl bg-black px-2 pt-1 text-white">
       <div
         style={{
           position: 'absolute',
@@ -30,9 +30,10 @@ const ChangeAnyone = ({ large }: SizeOfChangeAnyone) => {
           height: '370px',
           opacity: '0.15',
           backgroundImage: 'url(' + backgroundImage + ')',
+          userSelect: 'none',
         }}
       ></div>
-      <div className="flex h-16">
+      <div className="flex">
         {/* <div className="flex-none">
           <AddAnyone />
         </div> */}

@@ -145,20 +145,20 @@ const LargeSelectAnyone = () => {
             key={anyone.id}
             data-hash={anyone.displayName}
             data-anyoneid={anyone.id}
-            className=" text-center"
+            className="text-center"
           >
             {({ isActive }) => (
               <div
-                className={clsx(
-                  // 'mx-2',
-                  'inline-block',
-                  'items-center',
-                  'text-gray',
-                  {
-                    'relative h-20 w-20': isActive,
-                    'inline-block w-12': !isActive,
-                  }
-                )}
+              // className={clsx(
+              //   // 'mx-2',
+              //   'inline-block',
+              //   'items-center',
+              //   'text-gray',
+              //   {
+              //     'relative left-[27px] ': isActive,
+              //     'left-0 inline-block': !isActive,
+              //   }
+              // )}
               >
                 {/* <ConditionalWrapper
                 condition={isActive}
@@ -170,36 +170,53 @@ const LargeSelectAnyone = () => {
                   condition={isActive}
                   wrapper={(children) => <div>{children}</div>}
                 >
-                  <img
-                    className={clsx('mx-auto', 'rounded-full', {
-                      'h-20 w-20': isActive,
-                      'h-10 w-10': !isActive,
-                    })}
-                    alt="Profile"
-                    // @ts-expect-error Hardcoded for now, should move to own DB? TODO
-                    src={anyone.profiles[0].importedData.pfp.url}
-                  ></img>
-                  <div className="mt-2 flex justify-center">
-                    <span
-                      className={clsx(
-                        'mx-auto',
-                        'flex',
-                        'w-fit',
-                        'text-center',
+                  <div
+                    className={clsx(
+                      // 'mx-2',
+                      'items-center',
+                      'text-gray',
+                      'width-full',
+                      {
+                        'relative ': isActive,
+                        'left-0 inline-block': !isActive,
+                      }
+                    )}
+                  >
+                    <div className="flex justify-center">
+                      <span className="mx-auto flex w-fit text-center">
+                        <img
+                          className={clsx('max-w-none rounded-full', {
+                            'm-0 h-20 w-20': isActive,
+                            'mx-auto h-10 w-10': !isActive,
+                          })}
+                          alt="Profile"
+                          // @ts-expect-error Hardcoded for now, should move to own DB? TODO
+                          src={anyone.profiles[0].importedData.pfp.url}
+                        ></img>
+                      </span>
+                    </div>
+                    <div className="mt-2 flex justify-center">
+                      <span
+                        className={clsx(
+                          'mx-auto',
+                          'flex',
+                          'w-fit',
+                          'text-center',
 
-                        {
-                          'text-white': isActive,
-                          'text-2xl': isActive,
-                          'font-semibold': isActive,
-                          'text-[10px]': !isActive,
-                          'leading-[12px]': !isActive,
-                          'leading-[22px]': isActive,
-                          // hidden: isActive,
-                        }
-                      )}
-                    >
-                      {anyone.displayName}
-                    </span>
+                          {
+                            'text-white': isActive,
+                            'whitespace-nowrap text-2xl': isActive,
+                            'font-semibold': isActive,
+                            'text-[10px]': !isActive,
+                            'leading-[12px]': !isActive,
+                            'leading-[24px]': isActive,
+                            // hidden: isActive,
+                          }
+                        )}
+                      >
+                        {anyone.displayName}
+                      </span>
+                    </div>
                   </div>
                 </ConditionalWrapper>
               </div>

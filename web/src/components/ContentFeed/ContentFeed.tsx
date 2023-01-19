@@ -66,7 +66,10 @@ const ContentFeed = ({ farcasterCasts }) => {
       <ul className="divide-gray-200 mt-[-10px]">
         {/* TODO MAKE THIS WORK WITH BOTH CALLS! */}
         {farcasterCasts.activity.map((casts) => (
-          <li key={casts.timestamp} className="py-3">
+          <li
+            key={casts.timestamp}
+            className="border-b border-gray-dark py-3 px-4"
+          >
             <div className="flex space-x-3 overflow-hidden">
               <Link
                 to={routes.be({ name: casts.author.username })}
@@ -93,7 +96,8 @@ const ContentFeed = ({ farcasterCasts }) => {
                     {casts.text}
                   </p>
                 </Link>
-                <div className=" mt-2 flex justify-between space-x-8 border-b border-gray-dark pt-1 pb-2">
+                {/* <div className=" mt-2 flex justify-between space-x-8 border-b border-gray-dark pt-1 pb-2"> */}
+                <div className=" mt-2 flex justify-between space-x-8 pt-1 pb-2">
                   <div className="flex space-x-6">
                     <span className="inline-flex items-center text-sm text-gray">
                       <button

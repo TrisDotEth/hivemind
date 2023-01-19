@@ -38,37 +38,15 @@ const HomePage = () => {
 
   const addFirstSwiper = useSwiperStore((state) => state.addFirstSwiper)
   const secondSwiper = useSwiperStore((state) => state.secondSwiper)
-
   return (
     <>
-      {/* <ActiveHm /> */}
-      {/* <FarcasterUserCell profileId={8} /> */}
-      <div className="mb-2 flex w-full justify-center pt-60">
-        {/* <img
-          className="mr-1 mt-1 h-5 w-5 rounded-full"
-          src={anyoneNoContent.profiles[0].importedData.pfp.url}
-          alt=""
-        /> */}
-        {/* <h3 className=" text-white">
-          {anyoneNoContent.shortName}'s Home
-          <span className="inline-block pl-3 text-gray">
-            {anyoneNoContent.shortName}'s DAO
-          </span>
-        </h3> */}
+      <div className="mb-2 flex w-full justify-center">
         <Swiper
-          style={{
-            '--swiper-navigation-color': '#fff',
-            '--swiper-pagination-color': '#fff',
-          }}
           slidesPerView={1}
           initialSlide={3}
           spaceBetween={200}
-          // navigation={true}
-          // thumbs={{ swiper: thumbsSwiper }}
           // slideToClickedSlide={true}
           // centeredSlides={true}
-          // scrollbar={true}
-          // mousewheel={true}
           modules={[Controller]}
           onSwiper={addFirstSwiper}
           controller={{ control: secondSwiper }}
@@ -124,15 +102,14 @@ const HomePage = () => {
               key={anyone.id}
               data-hash={anyone.displayName}
               data-anyoneid={anyone.id}
-              className="h-[3000px] text-center"
             >
-              {/* <LSAProfile /> */}
-              {({ isActive }) => <LSAProfile isActive={isActive} />}
+              {({ isActive }) => (
+                <LSAProfile isActive={isActive} anyone={anyone} />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-      {/* <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} /> */}
     </>
   )
 }

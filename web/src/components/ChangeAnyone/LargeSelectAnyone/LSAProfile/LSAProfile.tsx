@@ -11,33 +11,20 @@ import LSAProfileChrome from './LSAProfileChrome/LSAProfileChrome'
 
 // import PassDetails from '../PassDetails/PassDetails'
 
-const LsaProfile = (isActive) => {
-  const anyone = useAnyoneStore((state) => state.anyone)
+const LsaProfile = ({ isActive, anyone }) => {
+  // const anyone = useAnyoneStore((state) => state.anyone)
   const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(false)
 
   const openChoose = () => {
     setChooseAnyoneOpen(!chooseAnyoneOpen)
   }
-  // const anyoneNoContent = useAnyoneStoreWithoutContent(
-  //   (state) => state.anyoneNoContent
-  // )
-  // debugger
   return (
-    <div className="test mb-6 mt-1 text-center">
+    <div className="mb-6 mt-1">
       {/* <h2 className="mx-auto flex w-fit text-center text-2xl font-semibold leading-[22px] text-white">
         {anyoneNoContent.displayName}
       </h2> */}
-      <LSAProfileChrome />
-      <button className="focus:ring-indigo-500 absolute left-0 right-0 bottom-[10.5rem] m-auto mb-1 mt-2 inline-flex w-fit items-center rounded-lg border border-transparent bg-primary px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2">
-        <span className="mr-1">be: </span>
-        {/* <img
-          className="mx-auto h-5 w-5 rounded-full"
-          alt="Profile"
-          // @ts-expect-error Hardcoded for now, should move to own DB? TODO
-          src={anyoneNoContent.profiles[0].importedData.pfp.url}
-        ></img> */}
-        {/* <span className="ml-1"> {anyoneNoContent.shortName}</span> */}
-      </button>
+      <LSAProfileChrome anyone={anyone} />
+
       {/* <span
         className="
           mx-auto
