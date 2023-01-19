@@ -1,0 +1,125 @@
+query getRecentCasts($userName: String!) {
+  getRecentCasts(userName: $userName) {
+    activity {
+        author {
+          username
+          displayName
+          pfp {
+            url
+            verified
+          }
+        }
+        reactions {
+          count
+        }
+        recasts {
+          count
+        }
+        replies {
+          count
+        }
+        text
+        timestamp
+      }
+  }
+}
+
+{"userName": "ttris" }
+
+
+----
+
+mutation updateProfile($input: UpdateProfileInput! $id:Int!) {
+  updateProfile(input:$input id:$id) {
+    id
+  }
+}
+
+{
+  "id":1,
+  "input": {
+    "importedData": {"sdfgsdfg": "sfgssdsdfsdsfgdssfsfgsdfgsdfgfsdfsdfsdfsdf"},
+    "profileType": "farcaster",
+    "anyoneId": 1
+  }
+}
+
+----
+
+mutation updateFarcasterProfiles($input: String) {
+  updateFarcasterProfiles(input:$input) {
+    id
+  }
+}
+
+{
+  "input": "f"
+}
+
+----
+
+query getAllAnyones {
+	anyones {
+    id
+    shortName
+    displayName
+    officialName
+    profiles {
+      id
+      importedData
+      profileType
+    }
+  }
+}
+
+----
+
+query getUserDetails($userName: String!) {
+  getUserDetails(userName:$userName) {
+    address
+    avatar {
+      isVerified
+      url
+    }
+    displayName
+    followerCount
+    followingCount
+    isFollowingViewer
+    isViewerFollowing
+    profile {
+      bio {
+        text
+      }
+    }
+    username
+  }
+}
+
+{"userName": "ttris" }
+
+----
+
+query getActivity($userName: String!) {
+  getActivity(userName:$userName) {
+    activity {
+      hash
+    }
+  }
+}
+
+{"userName": "tris" }
+
+----
+
+query getThreadCasts($threadHash: String!) {
+  getThreadCasts(threadHash: $threadHash) {
+    activity {
+      hash
+    }
+  }
+}
+
+{"threadHash": "0x327b14891e15261ad57744f8d053dbe1826d425bde5de43b134dff3646309ede" }
+
+----
+
