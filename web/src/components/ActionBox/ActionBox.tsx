@@ -1,5 +1,3 @@
-import { useContext } from 'react'
-
 import { verifyMessage } from 'ethers/lib/utils'
 import { useAccount } from 'wagmi'
 import { useSignMessage } from 'wagmi'
@@ -13,32 +11,32 @@ import {
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
 
-import { HivemindContext } from 'src/providers/context/HivemindContext'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 const CREATE_ACTION = gql`
   mutation CreateActionInput($input: CreateActionInput!) {
     createAction(input: $input) {
-      id
+      casted
     }
   }
 `
 
 interface FormValues {
   content: string
+  userName: string
   name: string
-  hivemindId: number
   networkLocation: string
   walletAddress: string
   signedTransaction: string
+  parentOwnerfid: number
+  parentHash: string
 }
 
-const ActionBox = () => {
+const ActionBox = ({ reply }) => {
   const { address } = useAccount()
-  const hivemindContext = useContext(HivemindContext)
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
     onCompleted: () => {
-      alert('Success')
+      console.log('Success')
     },
   })
 
@@ -51,19 +49,26 @@ const ActionBox = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<FormValues> = async (data2) => {
-    const message: string = data2.content
-    const signedTransaction = await signMessageAsync({
-      message,
-    })
-    data2.name = 'Test'
-    data2.hivemindId = 1
-    data2.networkLocation = 'farcaster'
-    data2.walletAddress = address
-    data2.signedTransaction = signedTransaction
-    create({ variables: { input: data2 } })
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    // const message: string = data2.content
+    // const signedTransaction = await signMessageAsync({
+    //   message,
+    // })
+    // data2.name = 'Test'
+    // data2.hivemindId = 1
+    // data2.networkLocation = 'farcaster'
+    // data2.walletAddress = address
+    // data2.signedTransaction = signedTransaction
+    if (reply) {
+      data.parentOwnerfid = reply.fid
+      data.parentHash = reply.hash
+    }
+    data.userName = 'Tris'
+    create({ variables: { input: data } })
+    console.log(data)
   }
   const anyone = useAnyoneStore((state) => state.anyone)
+  console.log(reply)
 
   return (
     <div className="flex border-y border-gray-dark">
@@ -71,7 +76,7 @@ const ActionBox = () => {
         <Form onSubmit={onSubmit} className="relative">
           <FormError error={error} wrapperClassName="form-error" />
 
-          {/* Not sure what this is, I think it can be removed  */}
+          {/* Not sure what this is, I think it can be removed */}
           {/* <div className="border-gray-300 focus-within:border-indigo-500 focus-within:ring-indigo-500 overflow-hidden rounded-lg border shadow-sm focus-within:ring-1 "></div> */}
           <div className="align-center flex min-h-[3rem] w-full">
             <img
@@ -118,14 +123,14 @@ const ActionBox = () => {
           </div> */}
 
           {/* <div className="absolute inset-x-0 bottom-0 flex justify-end py-2 pl-3 text-right">
-            <span className="flex pr-2 pt-1 text-sm text-gray">0 passes</span>
-            <Submit
-              disabled={loading}
-              className="focus:ring-indigo-500 mb-1 inline-flex items-center rounded-lg border border-transparent bg-primary-dark px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
-            >
-              CAST
-            </Submit>
-          </div> */}
+            <span className="flex pr-2 pt-1 text-sm text-gray">0 passes</span> */}
+          <Submit
+            disabled={loading}
+            className="focus:ring-indigo-500 mb-1 inline-flex items-center rounded-lg border border-transparent bg-primary-dark px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            CAST
+          </Submit>
+          {/* </div> */}
         </Form>
       </div>
     </div>

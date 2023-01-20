@@ -11,10 +11,14 @@ export const QUERY = gql`
         author {
           username
           displayName
+          fid
           pfp {
             url
             verified
           }
+        }
+        parentAuthor {
+          displayName
         }
         reactions {
           count
@@ -28,6 +32,7 @@ export const QUERY = gql`
         text
         timestamp
         threadHash
+        hash
       }
     }
   }

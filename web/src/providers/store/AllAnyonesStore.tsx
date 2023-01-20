@@ -70,9 +70,7 @@ export const useAnyoneStore = create<AddAnyone>()(
         ],
       },
       addAnyone: (e) => {
-        console.time('set')
         set({ anyone: e })
-        console.timeEnd('set')
       },
     }),
     {

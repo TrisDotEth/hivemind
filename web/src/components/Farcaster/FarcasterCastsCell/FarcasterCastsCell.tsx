@@ -47,6 +47,7 @@ export const QUERY = gql`
         author {
           username
           displayName
+          fid
           pfp {
             url
             verified
@@ -64,6 +65,7 @@ export const QUERY = gql`
         text
         timestamp
         threadHash
+        hash
       }
     }
   }

@@ -3,7 +3,6 @@ import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 const ThreadPage = ({ threadHash }) => {
   const anyone = useAnyoneStore((state) => state.anyone)
-
   return (
     <>
       <div className="mb-2 flex w-full justify-center">
@@ -14,7 +13,9 @@ const ThreadPage = ({ threadHash }) => {
         />
         <h1 className="text-lg text-white">{anyone.displayName}'s Thread</h1>
       </div>
-      <FarcasterThreadCell threadHash={threadHash} />
+      <div className="mt-40">
+        <FarcasterThreadCell threadHash={threadHash} />
+      </div>
     </>
   )
 }

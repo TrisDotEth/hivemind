@@ -202,8 +202,6 @@ export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles
         const importedData = await getUserDetails({
           userName: profile.farcasterUsername.toLowerCase(),
         })
-        // debugger
-        console.log(importedData)
         const input = {
           importedData: importedData,
           profileType: 'farcaster',
@@ -227,6 +225,7 @@ export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles
 
 export const getThreadCasts = async ({ threadHash }) => {
   const activityVariable = { activity: [] }
+  console.log(threadHash)
 
   const endpoint =
     'https://api.farcaster.xyz/v2/all-casts-in-thread?threadHash=' + threadHash
@@ -238,6 +237,7 @@ export const getThreadCasts = async ({ threadHash }) => {
       },
     })
     .catch(function (error) {
+      debugger
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
@@ -256,6 +256,7 @@ export const getThreadCasts = async ({ threadHash }) => {
       console.log(error.config)
     })
     .then((response) => {
+      debugger
       response.data.result.casts.forEach((cast) => {
         // Check cast is not a reply
         // if (cast.parentHash) return false

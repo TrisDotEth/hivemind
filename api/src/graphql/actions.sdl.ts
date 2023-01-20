@@ -13,20 +13,25 @@ export const schema = gql`
     succeeded: Boolean!
   }
 
+  type FarcasterSuccess {
+    casted: Boolean
+  }
+
   type Query {
     actions: [Action!]! @requireAuth
     action(id: Int!): Action @requireAuth
   }
 
   input CreateActionInput {
-    anyoneDisplayName: String!
-    anyoneId: Int!
+    userName: String!
+    parentHash: String
+    parentOwnerfid: Int
     content: String!
-    contentType: String!
-    networkLocation: String!
-    walletAddress: String!
-    signedTransaction: String!
-    succeeded: Boolean!
+    contentType: String
+    networkLocation: String
+    walletAddress: String
+    signedTransaction: String
+    succeeded: Boolean
   }
 
   input UpdateActionInput {
@@ -41,7 +46,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createAction(input: CreateActionInput!): Action! @requireAuth
+    createAction(input: CreateActionInput!): FarcasterSuccess @requireAuth
     updateAction(id: Int!, input: UpdateActionInput!): Action! @requireAuth
     deleteAction(id: Int!): Action! @requireAuth
   }
