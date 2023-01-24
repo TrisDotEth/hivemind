@@ -145,7 +145,6 @@ export const getActivity: QueryResolvers['getActivity'] = async ({
         activityVariable['activity'].push(cast)
       })
     })
-  debugger
   return activityVariable
 }
 
@@ -237,7 +236,6 @@ export const getThreadCasts = async ({ threadHash }) => {
       },
     })
     .catch(function (error) {
-      debugger
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
@@ -256,7 +254,6 @@ export const getThreadCasts = async ({ threadHash }) => {
       console.log(error.config)
     })
     .then((response) => {
-      debugger
       response.data.result.casts.forEach((cast) => {
         // Check cast is not a reply
         // if (cast.parentHash) return false

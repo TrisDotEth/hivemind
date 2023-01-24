@@ -76,8 +76,6 @@ const ContentFeed = ({ farcasterCasts }) => {
       <ActionBox reply={reply()} />
       <ul className="divide-gray-200 mt-[-10px]">
         {farcasterCasts.activity.map((casts) => {
-          console.log('foo')
-          // const replyTo = casts.parentAuthor.displayName ? true : false
           return (
             <li
               key={casts.timestamp}
@@ -111,11 +109,11 @@ const ContentFeed = ({ farcasterCasts }) => {
                         {casts.author.displayName}
                       </h3>
                       {/* <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p> */}
-                      {/* {replyTo && (
+                      {casts.parentAuthor && (
                         <p className="text-gray-400 pl-1 text-sm text-gray">
                           • replying to {casts.parentAuthor.displayName}
                         </p>
-                      )} */}
+                      )}
                       <p className="text-gray-400 pl-1 text-sm text-gray">
                         • <Time time={casts.timestamp} />
                       </p>
