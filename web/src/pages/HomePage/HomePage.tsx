@@ -45,51 +45,11 @@ const HomePage = () => {
           slidesPerView={1}
           initialSlide={3}
           spaceBetween={200}
-          // slideToClickedSlide={true}
-          // centeredSlides={true}
           modules={[Controller]}
           onSwiper={addFirstSwiper}
           controller={{ control: secondSwiper }}
           className="mySwiper2"
-          // onSlideChange={(swiper) => {
-          //   // if (swiper.clickedIndex != swiper.realIndex) {
-          //   //   setlastActiveSlideBeforeClick(swiper.previousIndex)
-          //   // }
-          //   const index = swiper.realIndex
-          //   //Skip over addAnyone slide
-          //   if (index == 1) return true
-          //   // @ts-expect-error Should be an HTML type thing?
-          //   // const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-          //   if (secondSwiper) {
-          //     secondSwiper.slideTo(swiper.realIndex)
-          //   }
-          //   // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
-          //   // changeAnyoneWithoutContent(activeId)
-          // }}
-          // onTransitionEnd={(swiper) => {
-          //   console.log('Slider has stopped moving TRANSITION END')
-
-          //   if (firstSwiper) {
-          //     // debugger
-          //     const index = swiper.realIndex
-          //     const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-          //     // firstSwiper.slideTo(swiper.realIndex)
-
-          //     //Wait for the transition to end before fetching content so it's not downloading it 1000 times
-          //     changeAnyone(activeId)
-          //   }
-          // }}
-          // onSlideChange={(swiper) => {
-          //   if (firstSwiper) {
-          //     // debugger
-          //     const index = swiper.realIndex
-          //     const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-          //     // firstSwiper.slideTo(swiper.realIndex)
-
-          //     //Wait for the transition to end before fetching content so it's not downloading it 1000 times
-          //     changeAnyone(activeId)
-          //   }
-          // }}
+          // enabled={false}
         >
           <SwiperSlide key={'SearchAnyone'} className=" text-center">
             <SearchAnyone />

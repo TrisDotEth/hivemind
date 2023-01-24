@@ -1,4 +1,7 @@
+import { useState } from 'react'
+
 import { verifyMessage } from 'ethers/lib/utils'
+import { useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import { useSignMessage } from 'wagmi'
 
@@ -34,6 +37,7 @@ interface FormValues {
 
 const ActionBox = ({ reply }) => {
   const { address } = useAccount()
+  const [castButtonVisible, setCastButtonVisible] = useState(false)
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
     onCompleted: () => {
       console.log('Success')
@@ -66,14 +70,26 @@ const ActionBox = ({ reply }) => {
     data.userName = 'Tris'
     create({ variables: { input: data } })
     console.log(data)
+    formMethods.reset()
   }
   const anyone = useAnyoneStore((state) => state.anyone)
-  console.log(reply)
+  const formMethods = useForm()
+  const showCastButton = (e) => {
+    if (e.value.length) {
+      setCastButtonVisible(true)
+    } else {
+      setCastButtonVisible(false)
+    }
+  }
 
   return (
     <div className="flex border-y border-gray-dark">
       <div className="min-w-0 flex-1">
-        <Form onSubmit={onSubmit} className="relative">
+        <Form
+          onSubmit={onSubmit}
+          formMethods={formMethods}
+          className="relative"
+        >
           <FormError error={error} wrapperClassName="form-error" />
 
           {/* Not sure what this is, I think it can be removed */}
@@ -86,6 +102,7 @@ const ActionBox = ({ reply }) => {
               src={anyone.profiles[0].importedData.pfp.url}
             ></img>
             <TextAreaField
+              onChange={(e) => showCastButton(e.target)}
               rows={1}
               id="content"
               name="content"
@@ -112,6 +129,7 @@ const ActionBox = ({ reply }) => {
               "
               placeholder={"What's going on, " + anyone.officialName + '?'}
               defaultValue={''}
+              validation={{ required: true }}
             />
           </div>
           {/* Spacer element to match the height of the toolbar */}
@@ -124,12 +142,15 @@ const ActionBox = ({ reply }) => {
 
           {/* <div className="absolute inset-x-0 bottom-0 flex justify-end py-2 pl-3 text-right">
             <span className="flex pr-2 pt-1 text-sm text-gray">0 passes</span> */}
-          <Submit
-            disabled={loading}
-            className="focus:ring-indigo-500 mb-1 inline-flex items-center rounded-lg border border-transparent bg-primary-dark px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
-          >
-            CAST
-          </Submit>
+          {castButtonVisible && (
+            <Submit
+              disabled={loading}
+              className="focus:ring-indigo-500 float-right mb-1 mr-1 inline-flex items-center rounded-lg border border-transparent bg-primary-dark px-4 py-1 text-xs font-medium text-white shadow-sm hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2"
+            >
+              CAST
+            </Submit>
+          )}
+
           {/* </div> */}
         </Form>
       </div>

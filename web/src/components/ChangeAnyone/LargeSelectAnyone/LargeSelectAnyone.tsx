@@ -55,7 +55,7 @@ const LargeSelectAnyone = ({ anyone }) => {
         speed={100}
         // freeMode={true}
         centeredSlides={true}
-        slideToClickedSlide={true}
+        // slideToClickedSlide={true}
         // watchSlidesProgress={true}
         modules={[Controller]}
         hashNavigation={true}
@@ -76,19 +76,14 @@ const LargeSelectAnyone = ({ anyone }) => {
               firstSwiper.slideTo(swiper.realIndex)
             }
           }
-          // firstSwiper.slideTo(swiper.realIndex)
-          // TODO this can be brought back for a massive increase in speed. The issue was having a call go out to pull all of their posts each time
-          // changeAnyoneWithoutContent(activeId)
-          // changeAnyone(activeId)
+          changeAnyoneWithoutContent(activeId)
+          changeAnyone(activeId)
         }}
         onTransitionEnd={(swiper) => {
           const index = swiper.realIndex
           const activeId = parseInt(swiper.slides[index].dataset.anyoneid)
-          // firstSwiper.slideTo(swiper.realIndex)
-
-          //Wait for the transition to end before fetching content so it's not downloading it 1000 times
-          changeAnyone(activeId)
-          changeAnyoneWithoutContent(activeId)
+          // changeAnyone(activeId)
+          // changeAnyoneWithoutContent(activeId)
         }}
         onClick={(swiper) => {
           if (lastActiveSlideBeforeClick != swiper.previousIndex) {

@@ -15,6 +15,7 @@ import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import UpdateFarcasterProfiles from 'src/components/Farcaster/UpdateFarcasterProfiles/UpdateFarcasterProfiles'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
+import { useChooseAnyoneOpenStore } from 'src/providers/store/ChooseAnyoneOpen'
 
 // Notes
 // - Dev mode disabled
@@ -48,20 +49,25 @@ type TopnavbarLayoutProps = {
 // ]
 
 const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
+  const chooseAnyoneOpen = useChooseAnyoneOpenStore(
+    (state) => state.chooseAnyoneOpen
+  )
+  const changeChooseAnyoneOpen = useChooseAnyoneOpenStore(
+    (state) => state.changeChooseAnyoneOpen
+  )
   //Enable dev mode
   const devMode = useContext(DevModeContext)
   // Based on https://tailwindui.com/components/application-ui/navigation/navbars#component-d833265bea66e95da3b499411d4d49b3
 
   //Open and close ChooseAnyone
-  const [chooseAnyoneOpen, setChooseAnyoneOpen] = useState(true)
   const [hideOnScroll, setHideOnScroll] = useState(true)
   const openChoose = () => {
-    setChooseAnyoneOpen(true)
+    changeChooseAnyoneOpen(!chooseAnyoneOpen)
   }
   useScrollPosition(
     ({ prevPos, currPos }) => {
       const isShow = currPos.y > prevPos.y
-      if (isShow !== hideOnScroll) setChooseAnyoneOpen(isShow)
+      if (isShow !== hideOnScroll) changeChooseAnyoneOpen(isShow)
       if (isShow !== hideOnScroll) setLogoAnyone(false)
     },
     [hideOnScroll]
@@ -69,6 +75,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
   //Set logo anyone
   const [logoAnyone, setLogoAnyone] = useState(true)
+
   //Get the current Anyone
   const anyone = useAnyoneStore((state) => state.anyone)
 
@@ -101,7 +108,10 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
             <div className="flex">
               <div className="flex flex-shrink-0 items-center">
                 <h1 className="block w-auto pt-2 text-base font-medium text-white">
-                  <button onClick={openChoose}>
+                  <button
+                    onClick={openChoose}
+                    className="rounded-full bg-[rgba(0,0,0,0.3)]"
+                  >
                     <span>be:</span>
                     {logoAnyone && <span>Anyone</span>}
                     {!logoAnyone && (
@@ -133,7 +143,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <ChangeAnyone large={notHomePage} anyone={anyone} />
+      {chooseAnyoneOpen && <ChangeAnyone large={notHomePage} anyone={anyone} />}
+
       <main className="mx-auto max-w-5xl bg-black ">{children}</main>
     </>
   )

@@ -16,6 +16,7 @@ const ChangeAnyone = ({ large, anyone }: SizeOfChangeAnyone) => {
   const anyoneNoContent = useAnyoneStoreWithoutContent(
     (state) => state.anyoneNoContent
   )
+
   let backgroundImage = 'https://avatars.githubusercontent.com/u/25322?v=4'
 
   if (anyoneNoContent) {
