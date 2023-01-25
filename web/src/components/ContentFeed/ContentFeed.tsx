@@ -74,7 +74,7 @@ const ContentFeed = ({ farcasterCasts }) => {
       </div> */}
 
       <ActionBox reply={reply()} />
-      <ul className="divide-gray-200 mt-[-10px]">
+      <ul className="divide-gray-200">
         {farcasterCasts.activity.map((casts) => {
           return (
             <li
@@ -87,7 +87,7 @@ const ContentFeed = ({ farcasterCasts }) => {
                   className="contents"
                 >
                   <img
-                    className="h-6 w-6 rounded-full"
+                    className="mt-1 h-12 w-12 rounded-full"
                     src={casts.author.pfp.url}
                     alt=""
                   />
@@ -105,7 +105,7 @@ const ContentFeed = ({ farcasterCasts }) => {
                     )}
                   >
                     <div className="flex items-center ">
-                      <h3 className="text-sm text-white">
+                      <h3 className="text-sm font-semibold text-white">
                         {casts.author.displayName}
                       </h3>
                       {/* <p className="text-gray-400 pl-1 text-sm text-gray">• Cast</p> */}

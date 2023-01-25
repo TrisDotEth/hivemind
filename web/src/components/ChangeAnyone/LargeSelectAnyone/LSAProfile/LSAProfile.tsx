@@ -16,11 +16,11 @@ const LsaProfile = ({ isActive, anyone }) => {
     <div className="mb-6 mt-1">
       <LSAProfileChrome anyone={anyone} />
 
-      <div className="mb-2 flex w-full justify-center pt-16">
+      <div className="mb-4 flex w-full justify-center pt-0">
         <h3 className=" text-white">
-          {anyone.shortName}&apos;s Home
-          <span className="inline-block pl-3 text-gray">
-            {anyone.shortName}DAO
+          {/* {anyone.shortName}&apos;s Home */}Home
+          <span className="inline-block pl-10 text-gray">
+            {/* {anyone.shortName}DAO */}DAO
           </span>
         </h3>
       </div>
