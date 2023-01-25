@@ -12,6 +12,7 @@ import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
 import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 import { useAnyoneStoreWithoutContent } from 'src/providers/store/AllAnyonesStore'
+import { useChooseAnyoneOpenStore } from 'src/providers/store/ChooseAnyoneOpen'
 import { useSwiperStore } from 'src/providers/store/SwiperStore'
 
 import LSAProfile from './LSAProfile/LSAProfile'
@@ -22,6 +23,10 @@ const LargeSelectAnyone = ({ anyone }) => {
   const setAnyoneStoreWithoutContent = useAnyoneStoreWithoutContent(
     (state) => state.addAnyoneWithoutContent
   )
+  const changeChooseAnyoneOpen = useChooseAnyoneOpenStore(
+    (state) => state.changeChooseAnyoneOpen
+  )
+  changeChooseAnyoneOpen(true)
   //Annoying that it seemes to have to be done this way. No easy way of checking to see if you are clicking on the active slide with many bugs.
   const [lastActiveSlideBeforeClick, setlastActiveSlideBeforeClick] =
     useState(0)
@@ -57,7 +62,7 @@ const LargeSelectAnyone = ({ anyone }) => {
         centeredSlides={true}
         // slideToClickedSlide={true}
         // watchSlidesProgress={true}
-        modules={[Controller]}
+        // modules={[Controller]}
         hashNavigation={true}
         initialSlide={3}
         className="mySwiper"

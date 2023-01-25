@@ -16,14 +16,14 @@ const LsaProfile = ({ isActive, anyone }) => {
     <div className="mb-6 mt-1">
       <LSAProfileChrome anyone={anyone} />
 
-      <div className="mb-4 flex w-full justify-center pt-0">
+      {/* <div className="mb-4 flex w-full justify-center pt-0">
         <h3 className=" text-white">
-          {/* {anyone.shortName}&apos;s Home */}Home
+          {anyone.shortName}&apos;s HomeHome
           <span className="inline-block pl-10 text-gray">
-            {/* {anyone.shortName}DAO */}DAO
+            {anyone.shortName}DAODAO
           </span>
         </h3>
-      </div>
+      </div> */}
       {isActive && (
         <FarcasterHomeCell
           userName={anyone.profiles[0].importedData.username}

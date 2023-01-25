@@ -13,6 +13,7 @@ import AllAnyonesCell from 'src/components/AnyonesData/AllAnyonesCell'
 import ChangeAnyone from 'src/components/ChangeAnyone/ChangeAnyone'
 import ConnectWallet from 'src/components/ConnectWallet/ConnectWallet'
 import UpdateFarcasterProfiles from 'src/components/Farcaster/UpdateFarcasterProfiles/UpdateFarcasterProfiles'
+import Tagline from 'src/components/Tagline/Tagline'
 import { DevModeContext } from 'src/providers/context/DevModeContext'
 import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 import { useChooseAnyoneOpenStore } from 'src/providers/store/ChooseAnyoneOpen'
@@ -81,10 +82,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
   //TODO this is so dirty - Check if a profile page
   const { pathname } = useLocation()
-  const profilePage = pathname.includes('/be')
-  const addPage = pathname.includes('/add')
-  const threadPage = pathname.includes('/thread')
-  const notHomePage = profilePage || addPage || threadPage
+  const homepage = pathname.length < 2 ? true : false
 
   return (
     <>
@@ -97,8 +95,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
               <div className="flex flex-shrink-0 items-center">
-                {/* Check to see if it's on a profile page or the home page */}
-                {notHomePage && (
+                {/* Check to see if it's not on the home page */}
+                {!homepage && (
                   <Link to={routes.home()}>
                     <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
                   </Link>
@@ -143,7 +141,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      {chooseAnyoneOpen && <ChangeAnyone large={notHomePage} anyone={anyone} />}
+      <Tagline />
+      {chooseAnyoneOpen && <ChangeAnyone large={!homepage} anyone={anyone} />}
 
       <main className="mx-auto max-w-5xl bg-black ">{children}</main>
     </>

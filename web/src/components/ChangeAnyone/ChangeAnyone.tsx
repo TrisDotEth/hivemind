@@ -26,7 +26,7 @@ const ChangeAnyone = ({ large, anyone }: SizeOfChangeAnyone) => {
   return (
     <div className="relative mx-auto w-full max-w-5xl bg-black px-2 pt-1 text-white">
       {/* Background Overlay */}
-      <div
+      {/* <div
         style={{
           position: 'absolute',
           width: '100vw',
@@ -37,7 +37,7 @@ const ChangeAnyone = ({ large, anyone }: SizeOfChangeAnyone) => {
           backgroundImage: 'url(' + backgroundImage + ')',
           userSelect: 'none',
         }}
-      ></div>
+      ></div> */}
       <div className="flex">
         <div className="w-1/6 flex-1">
           {large ? <SelectAnyone /> : <LargeSelectAnyone anyone={anyone} />}

@@ -45,11 +45,12 @@ const HomePage = () => {
           slidesPerView={1}
           initialSlide={3}
           spaceBetween={200}
+          speed={0}
           modules={[Controller]}
           onSwiper={addFirstSwiper}
           controller={{ control: secondSwiper }}
           className="mySwiper2"
-          // enabled={false}
+          centeredSlides={true}
         >
           <SwiperSlide key={'SearchAnyone'} className=" text-center">
             <SearchAnyone />

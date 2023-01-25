@@ -2,7 +2,7 @@ import type { getRecentCasts } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import ContentFeed from '../../ContentFeed/ContentFeed'
+import ContentFeedHome from '../../ContentFeedHome/ContentFeedHome'
 
 export const beforeQuery = (props) => {
   return {
@@ -63,7 +63,7 @@ export const Failure = ({ error }: CellFailureProps) => (
 export const Success = (farcasterCasts: CellSuccessProps<getRecentCasts>) => {
   return (
     <>
-      <ContentFeed farcasterCasts={farcasterCasts.getRecentCasts} />
+      <ContentFeedHome farcasterCasts={farcasterCasts.getRecentCasts} />
     </>
   )
 }

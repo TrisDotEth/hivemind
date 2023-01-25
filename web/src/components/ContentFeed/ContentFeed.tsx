@@ -14,6 +14,13 @@ function classNames(...classes) {
 
 const ContentFeed = ({ farcasterCasts }) => {
   const { pathname } = useLocation()
+  const detectImage = (content) => {
+    //detect imgur regex - https://regex101.com/r/mA7vD8/1
+    const regex =
+      '(^(http|https)://)?(i.)?imgur.com/((?P<gallery>gallery/)(?P<galleryid>w+)|(?P<album>a/)(?P<albumid>w+)#?)?(?P<imgid>w*)'
+    const image = content.match(regex)
+    return image
+  }
 
   const threadPage = pathname.includes('/thread')
   //Work out if a reply
@@ -76,6 +83,8 @@ const ContentFeed = ({ farcasterCasts }) => {
       <ActionBox reply={reply()} />
       <ul className="divide-gray-200">
         {farcasterCasts.activity.map((casts) => {
+          const image = detectImage(casts.text)
+          console.log(image)
           return (
             <li
               key={casts.timestamp}
