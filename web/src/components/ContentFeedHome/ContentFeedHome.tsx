@@ -47,10 +47,13 @@ const ContentFeedHome = ({ farcasterCasts }) => {
               className="z-10 border-b border-gray-dark py-3 px-4"
             >
               {/* I removed overflow hidden from here */}
-              <div className="flex space-x-3">
+              <div
+                className="[grid-template-columns:1fr 1fr] grid space-x-3"
+                style={{ gridTemplateColumns: '0fr 1fr' }}
+              >
                 <Link
                   to={routes.be({ name: casts.author.username })}
-                  className="contents"
+                  className="w-12"
                 >
                   <img
                     className="mt-1 h-12 w-12 rounded-full"
@@ -59,7 +62,7 @@ const ContentFeedHome = ({ farcasterCasts }) => {
                   />
                 </Link>
 
-                <div className="grid flex-wrap items-center space-y-1">
+                <div className="grid items-center space-y-1">
                   <Link to={routes.thread({ threadHash: casts.threadHash })}>
                     <div className="flex items-center ">
                       <h3 className="text-sm font-semibold text-white">
@@ -72,7 +75,8 @@ const ContentFeedHome = ({ farcasterCasts }) => {
                         </p>
                       )}
                       <p className="text-gray-400 pl-1 text-sm text-gray">
-                        • <Time time={casts.timestamp} />
+                        •
+                        <Time time={casts.timestamp} />
                       </p>
                     </div>
                     <p className="text-gray-700 text-sm text-white">
