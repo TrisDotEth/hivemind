@@ -1,4 +1,6 @@
 import { HeartIcon, ChatBubbleLeftIcon } from '@heroicons/react/24/outline'
+import LinkifyIt from 'linkify-it'
+//http://markdown-it.github.io/linkify-it/doc/
 
 import { Link, routes } from '@redwoodjs/router'
 
@@ -11,17 +13,33 @@ const ContentFeedHome = ({ farcasterCasts }) => {
     const regex5 = /(https?:\/\/i\.imgur\.com\/(.*?)(?:[#\/].*|$))/m // eslint-disable-line
 
     const imageLink = regex5.exec(content)
+
+    const linkify = new LinkifyIt()
+    const links = linkify.match(content)
+    const contentProcessing = { image: null, content: content, linkUrl: null }
+
     if (imageLink) {
-      return imageLink[0]
-    } else {
-      return null
+      contentProcessing.content = contentProcessing.content.replace(
+        imageLink[0],
+        ''
+      )
+      contentProcessing.image = imageLink[0]
     }
+    if (links) {
+      contentProcessing.content = contentProcessing.content.replace(
+        links[0].raw,
+        ''
+      )
+      contentProcessing.linkUrl = links[0].url
+    }
+
+    return contentProcessing
   }
   return (
     <div>
       <ul className="divide-gray-200">
         {farcasterCasts.activity.map((casts) => {
-          const image = detectImage(casts.text)
+          const { image, content, linkUrl } = detectImage(casts.text)
           console.log(image)
           return (
             <li
@@ -41,7 +59,7 @@ const ContentFeedHome = ({ farcasterCasts }) => {
                   />
                 </Link>
 
-                <div className="flex flex-1 flex-wrap items-center space-y-1">
+                <div className="grid flex-wrap items-center space-y-1">
                   <Link to={routes.thread({ threadHash: casts.threadHash })}>
                     <div className="flex items-center ">
                       <h3 className="text-sm font-semibold text-white">
@@ -58,17 +76,26 @@ const ContentFeedHome = ({ farcasterCasts }) => {
                       </p>
                     </div>
                     <p className="text-gray-700 text-sm text-white">
-                      {casts.text}
+                      {content}
                     </p>
-                    {image && (
-                      <img
-                        src={image}
-                        alt="imgur"
-                        className="relative left-[-20%] mt-4 h-full w-screen max-w-[100vw]"
-                        // className="relative left-1/2 right-1/2 mx-[-50vw] h-full w-screen max-w-[100vw]"
-                      ></img>
-                    )}
                   </Link>
+                  {linkUrl && (
+                    <a
+                      className="text-gray-700 text-sm text-white underline"
+                      href={linkUrl}
+                    >
+                      {linkUrl}
+                    </a>
+                  )}
+                  {image && (
+                    <img
+                      src={image}
+                      alt="imgur"
+                      className="relative left-[-20%] mt-4 h-full w-screen max-w-[100vw]"
+                      // className="relative left-1/2 right-1/2 mx-[-50vw] h-full w-screen max-w-[100vw]"
+                    ></img>
+                  )}
+
                   {/* <div className=" mt-2 flex justify-between space-x-8 border-b border-gray-dark pt-1 pb-2"> */}
                   <div className=" mt-2 flex justify-between space-x-8 pt-1 pb-2">
                     <div className="flex space-x-6">

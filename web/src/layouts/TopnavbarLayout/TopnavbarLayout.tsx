@@ -56,26 +56,36 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   const changeChooseAnyoneOpen = useChooseAnyoneOpenStore(
     (state) => state.changeChooseAnyoneOpen
   )
+
   //Enable dev mode
   const devMode = useContext(DevModeContext)
   // Based on https://tailwindui.com/components/application-ui/navigation/navbars#component-d833265bea66e95da3b499411d4d49b3
 
   //Open and close ChooseAnyone
+  //DEV
+  const [currentScrollPosition, setcurrentScrollPosition] = useState(0)
+  const [previousScrollPosition, setpreviousScrollPosition] = useState(0)
+
+  //END DEV
   const [hideOnScroll, setHideOnScroll] = useState(true)
   const openChoose = () => {
     changeChooseAnyoneOpen(!chooseAnyoneOpen)
   }
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isShow = currPos.y > prevPos.y
-      if (isShow !== hideOnScroll) changeChooseAnyoneOpen(isShow)
-      if (isShow !== hideOnScroll) setLogoAnyone(false)
+      setcurrentScrollPosition(currPos.y)
+      setpreviousScrollPosition(prevPos.y)
+      // let isShow = currPos.y > prevPos.y
+      let isShow
+      // Hide <ChooseAnyone> if passing an arb px limit TODO(Can be done better), and is only scrolling down
+      if (currPos.y < -174 && currPos.y < prevPos.y) {
+        isShow = currPos.y > prevPos.y
+        changeChooseAnyoneOpen(isShow)
+      }
+      // if (isShow !== hideOnScroll) changeChooseAnyoneOpen(isShow)
     },
     [hideOnScroll]
   )
-
-  //Set logo anyone
-  const [logoAnyone, setLogoAnyone] = useState(true)
 
   //Get the current Anyone
   const anyone = useAnyoneStore((state) => state.anyone)
@@ -89,6 +99,12 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
       <MetaTags title="be:Anyone" description={'be:Anyone'} />
       <UpdateFarcasterProfiles />
       <AllAnyonesCell />
+      <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
+        c{currentScrollPosition}
+        <br />p{previousScrollPosition}
+        <br />
+        isShow-{chooseAnyoneOpen ? 't' : 'f'}
+      </span>
 
       <header className="sticky top-0 z-10 w-full">
         <div className="mx-auto max-w-5xl px-2">
@@ -111,8 +127,8 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                     className="rounded-full bg-[rgba(0,0,0,0.3)]"
                   >
                     <span>be:</span>
-                    {logoAnyone && <span>Anyone</span>}
-                    {!logoAnyone && (
+                    {chooseAnyoneOpen && <span>Anyone</span>}
+                    {!chooseAnyoneOpen && (
                       <span>
                         <img
                           className=" mx-1 inline-block h-6 w-6 rounded-full"
@@ -141,8 +157,13 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
           </div>
         </div>
       </header>
-      <Tagline />
-      {chooseAnyoneOpen && <ChangeAnyone large={!homepage} anyone={anyone} />}
+      <Tagline fadeOut={!chooseAnyoneOpen} />
+      {/* {chooseAnyoneOpen && <ChangeAnyone large={homepage} anyone={anyone} />} */}
+      <ChangeAnyone
+        large={homepage}
+        anyone={anyone}
+        fadeOut={!chooseAnyoneOpen}
+      />
 
       <main className="mx-auto max-w-5xl bg-black ">{children}</main>
     </>

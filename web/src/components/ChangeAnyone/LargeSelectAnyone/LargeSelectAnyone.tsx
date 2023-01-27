@@ -26,7 +26,7 @@ const LargeSelectAnyone = ({ anyone }) => {
   const changeChooseAnyoneOpen = useChooseAnyoneOpenStore(
     (state) => state.changeChooseAnyoneOpen
   )
-  changeChooseAnyoneOpen(true)
+  //DEV changeChooseAnyoneOpen(true)
   //Annoying that it seemes to have to be done this way. No easy way of checking to see if you are clicking on the active slide with many bugs.
   const [lastActiveSlideBeforeClick, setlastActiveSlideBeforeClick] =
     useState(0)
@@ -159,7 +159,7 @@ const LargeSelectAnyone = ({ anyone }) => {
                         ></img>
                       </span>
                     </div>
-                    <div className="mt-2 flex justify-center">
+                    <div className="mt-2 grid justify-center">
                       <span
                         className={clsx(
                           'mx-auto',
@@ -180,6 +180,11 @@ const LargeSelectAnyone = ({ anyone }) => {
                       >
                         {anyone.displayName}
                       </span>
+                      {isActive && (
+                        <p className="mt-1 w-[80vw] text-sm text-white">
+                          {anyone.profiles[0].importedData.profile.bio.text}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </ConditionalWrapper>

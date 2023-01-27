@@ -15,11 +15,16 @@ function classNames(...classes) {
 const ContentFeed = ({ farcasterCasts }) => {
   const { pathname } = useLocation()
   const detectImage = (content) => {
-    //detect imgur regex - https://regex101.com/r/mA7vD8/1
-    const regex =
-      '(^(http|https)://)?(i.)?imgur.com/((?P<gallery>gallery/)(?P<galleryid>w+)|(?P<album>a/)(?P<albumid>w+)#?)?(?P<imgid>w*)'
-    const image = content.match(regex)
-    return image
+    //detect imgur regex https://regex101.com/r/qI4lY7/3
+
+    const regex5 = /(https?:\/\/i\.imgur\.com\/(.*?)(?:[#\/].*|$))/m // eslint-disable-line
+
+    const imageLink = regex5.exec(content)
+    if (imageLink) {
+      return imageLink[0]
+    } else {
+      return null
+    }
   }
 
   const threadPage = pathname.includes('/thread')

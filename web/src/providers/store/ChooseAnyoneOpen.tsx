@@ -6,6 +6,6 @@ interface chooseAnyoneOpen {
 }
 
 export const useChooseAnyoneOpenStore = create<chooseAnyoneOpen>()((set) => ({
-  chooseAnyoneOpen: false,
+  chooseAnyoneOpen: true,
   changeChooseAnyoneOpen: (e) => set({ chooseAnyoneOpen: e }),
 }))
