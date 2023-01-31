@@ -99,12 +99,12 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
       <MetaTags title="be:Anyone" description={'be:Anyone'} />
       <UpdateFarcasterProfiles />
       <AllAnyonesCell />
-      <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
+      {/* <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
         c{currentScrollPosition}
         <br />p{previousScrollPosition}
         <br />
         isShow-{chooseAnyoneOpen ? 't' : 'f'}
-      </span>
+      </span> */}
 
       <header className="sticky top-0 z-10 w-full">
         <div className="mx-auto max-w-5xl px-2">
@@ -165,7 +165,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
         fadeOut={!chooseAnyoneOpen}
       />
 
-      <main className="mx-auto max-w-5xl bg-black ">{children}</main>
+      <main className="mx-auto mt-10 max-w-5xl bg-black">{children}</main>
     </>
   )
 }
