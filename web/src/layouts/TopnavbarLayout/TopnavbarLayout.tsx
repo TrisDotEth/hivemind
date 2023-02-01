@@ -97,12 +97,12 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   return (
     <>
       <MetaTags title="be:Anyone" description={'be:Anyone'} />
-      <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
+      {/* <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
         c{currentScrollPosition}
         <br />p{previousScrollPosition}
         <br />
         isShow-{chooseAnyoneOpen ? 't' : 'f'}
-      </span>
+      </span> */}
       <div className="mx-auto min-h-full max-w-5xl">
         <header className="sticky top-0 z-10 w-full px-2">
           <div className="flex h-11 justify-between">
