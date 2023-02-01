@@ -13,6 +13,10 @@ interface SizeOfChangeAnyone {
   fadeOut: boolean
 }
 const ChangeAnyone = ({ large, anyone, fadeOut }: SizeOfChangeAnyone) => {
+  let backgroundImage = 'https://avatars.githubusercontent.com/u/25322?v=4'
+  if (anyone) {
+    backgroundImage = anyone.profiles[0].importedData.pfp.url
+  }
   return (
     <div
       className={clsx(
@@ -29,22 +33,27 @@ const ChangeAnyone = ({ large, anyone, fadeOut }: SizeOfChangeAnyone) => {
         {
           'opacity-0': fadeOut,
           '-translate-y-8': fadeOut,
+          'mt-24': large,
         }
       )}
     >
       {/* Background Overlay */}
-      {/* <div
-        style={{
-          position: 'absolute',
-          width: '100vw',
-          left: '0px',
-          top: '-70px',
-          height: '370px',
-          opacity: '0.15',
-          backgroundImage: 'url(' + backgroundImage + ')',
-          userSelect: 'none',
-        }}
-      ></div> */}
+      {large && (
+        <div
+          style={{
+            position: 'absolute',
+            width: '100vw',
+            left: '0px',
+            top: '-125px',
+            height: '370px',
+            opacity: '0.15',
+            backgroundImage: 'url(' + backgroundImage + ')',
+            userSelect: 'none',
+            borderRadius: '9999px',
+          }}
+        ></div>
+      )}
+
       {/* <div className="flex">
         <div className="w-1/6 flex-1"> */}
       {large ? <LargeSelectAnyone anyone={anyone} /> : <SelectAnyone />}

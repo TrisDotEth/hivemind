@@ -21,11 +21,12 @@ const Tagline = ({ fadeOut }: Tagline) => {
             'opacity-100',
             'flex-wrap',
             'justify-center',
-            'text-3xl',
+            'text-4xl',
             'font-semibold',
             'text-white',
             'transition-all',
             'transform-gpu',
+            'no-wrap',
             {
               '!opacity-0': fadeOut,
               '-translate-y-8': fadeOut,
