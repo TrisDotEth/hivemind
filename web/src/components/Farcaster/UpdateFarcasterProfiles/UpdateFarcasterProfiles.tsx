@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 import { useMutation } from '@redwoodjs/web'
 
-const TWEET_AUTH = gql`
+const UPDATE_FARCASTER_PROFILES = gql`
   mutation UpdateFarcasterProfilesMutation($input: String) {
     updateFarcasterProfiles(input: $input) {
       id
@@ -11,13 +11,12 @@ const TWEET_AUTH = gql`
 `
 
 const UpdateFarcasterProfiles = () => {
-  const [create] = useMutation(TWEET_AUTH, {
+  const [create] = useMutation(UPDATE_FARCASTER_PROFILES, {
     onCompleted: () => {
       console.log('Farcaster profiles for all anyones updated')
     },
     onError: (error) => {
       console.log('Error fired')
-      // toast.error(error.message)
       alert(error)
     },
   })

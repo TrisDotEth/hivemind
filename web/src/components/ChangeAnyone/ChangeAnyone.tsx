@@ -45,11 +45,11 @@ const ChangeAnyone = ({ large, anyone, fadeOut }: SizeOfChangeAnyone) => {
           userSelect: 'none',
         }}
       ></div> */}
-      <div className="flex">
-        <div className="w-1/6 flex-1">
-          {large ? <LargeSelectAnyone anyone={anyone} /> : <SelectAnyone />}
-        </div>
-      </div>
+      {/* <div className="flex">
+        <div className="w-1/6 flex-1"> */}
+      {large ? <LargeSelectAnyone anyone={anyone} /> : <SelectAnyone />}
+      {/* </div>
+      </div> */}
     </div>
   )
 }

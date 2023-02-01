@@ -19,6 +19,7 @@ const Routes = () => {
       <Set wrap={TopnavbarLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/be:{name}" page={BePage} name="be" />
+        <Route path="/be:{name}/DAO" page={DaoPage} name="dao" />
         <Route path="/add" page={AddAnyonePage} name="addAnyone" />
         <Route path="/hiveminds/new" page={HivemindNewHivemindPage} name="newHivemind" />
         <Route path="/hiveminds/{id:Int}/edit" page={HivemindEditHivemindPage} name="editHivemind" />

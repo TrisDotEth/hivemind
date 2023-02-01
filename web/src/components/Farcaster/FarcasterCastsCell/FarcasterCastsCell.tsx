@@ -1,4 +1,4 @@
-import type { getActivity } from 'types/graphql'
+import type { Anyone, getActivity } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
@@ -88,12 +88,14 @@ export const Empty = () => <div>Empty</div>
 export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
+interface SuccessProps extends CellSuccessProps<getActivity> {
+  anyone: Anyone
+}
 
-//needs TS
-export const Success = (farcasterCasts: CellSuccessProps<getActivity>) => {
+export const Success = ({ getActivity, anyone }: SuccessProps) => {
   return (
     <>
-      <ContentFeed farcasterCasts={farcasterCasts.getActivity} />
+      <ContentFeed farcasterCasts={getActivity} anyone={anyone} />
     </>
   )
 }

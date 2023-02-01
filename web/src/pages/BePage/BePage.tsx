@@ -1,20 +1,16 @@
-import { useLocation } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
-
-import ActionBox from 'src/components/ActionBox/ActionBox'
-import ActiveHm from 'src/components/ActiveHm/ActiveHm'
-import FarcasterCastsCell from 'src/components/Farcaster/FarcasterCastsCell'
-// import FarcasterUserCell from 'src/components/FarcasterUserCell'
+import AnyoneTab from 'src/components/AnyoneTab/AnyoneTab'
+import FarcasterHomeCell from 'src/components/Farcaster/FarcasterHomeCell'
+import { useAnyoneStore } from 'src/providers/store/AllAnyonesStore'
 
 const BePage = () => {
-  const { pathname } = useLocation()
+  const anyone = useAnyoneStore((state) => state.anyone)
   return (
     <>
       <div className="text-white">
-        {/* <FarcasterUserCell profileId={8} /> */}
-        <ActiveHm />
-        <ActionBox />
-        <FarcasterCastsCell userName={pathname.slice(4).toLowerCase()} />
+        <AnyoneTab anyone={anyone} location="home" />
+        <FarcasterHomeCell
+          userName={anyone.profiles[0].importedData.username}
+        />
       </div>
     </>
   )

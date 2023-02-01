@@ -47,9 +47,10 @@ const ContentFeedHome = ({ farcasterCasts }) => {
               className="z-10 border-b border-gray-dark py-3 px-4"
             >
               {/* I removed overflow hidden from here */}
+              {/* TODO hacky gridTemplateColumns implementation, needs to be fixed for the desktop version */}
               <div
-                className="[grid-template-columns:1fr 1fr] grid space-x-3"
-                style={{ gridTemplateColumns: '0fr 1fr' }}
+                className="grid gap-1"
+                style={{ gridTemplateColumns: '55px 1fr' }}
               >
                 <Link
                   to={routes.be({ name: casts.author.username })}
@@ -62,7 +63,7 @@ const ContentFeedHome = ({ farcasterCasts }) => {
                   />
                 </Link>
 
-                <div className="grid items-center space-y-1">
+                <div className="h-fit items-center space-y-1">
                   <Link to={routes.thread({ threadHash: casts.threadHash })}>
                     <div className="flex items-center ">
                       <h3 className="text-sm font-semibold text-white">

@@ -6,10 +6,12 @@ import { useAllAnyonesStore } from 'src/providers/store/AllAnyonesStore'
 // const addAnyones = useAllAnyonesStore.getState().addAnyones
 
 const UpdateAllAnyones = (anyones) => {
+  console.log('Update All Anyone rendered')
   const addAnyones = useAllAnyonesStore((state) => state.addAnyones)
 
   useEffect(() => {
     addAnyones(anyones.anyones)
+    console.log('Update All Anyone updated store')
   }, [addAnyones])
 
   return null

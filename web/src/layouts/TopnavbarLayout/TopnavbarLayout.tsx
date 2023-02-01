@@ -93,21 +93,18 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
   //TODO this is so dirty - Check if a profile page
   const { pathname } = useLocation()
   const homepage = pathname.length < 2 ? true : false
-
+  console.log('TopNav Rendered')
   return (
     <>
       <MetaTags title="be:Anyone" description={'be:Anyone'} />
-      <UpdateFarcasterProfiles />
-      <AllAnyonesCell />
-      {/* <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
+      <span className="fixed top-0 z-50 h-4 w-8 bg-primary-dark text-xs text-white">
         c{currentScrollPosition}
         <br />p{previousScrollPosition}
         <br />
         isShow-{chooseAnyoneOpen ? 't' : 'f'}
-      </span> */}
-
-      <header className="sticky top-0 z-10 w-full">
-        <div className="mx-auto max-w-5xl px-2">
+      </span>
+      <div className="mx-auto min-h-full max-w-5xl">
+        <header className="sticky top-0 z-10 w-full px-2">
           <div className="flex h-11 justify-between">
             <div className="flex flex-1">
               <div className="flex flex-shrink-0 items-center">
@@ -124,19 +121,25 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                 <h1 className="block w-auto pt-2 text-base font-medium text-white">
                   <button
                     onClick={openChoose}
-                    className="rounded-full bg-[rgba(0,0,0,0.3)]"
+                    // className="rounded-full bg-[rgba(0,0,0,0.3)] p-1"
                   >
-                    <span>be:</span>
-                    {chooseAnyoneOpen && <span>Anyone</span>}
+                    <span style={{ textShadow: '#222 1px 1px 5px' }}>be:</span>
+                    {chooseAnyoneOpen && (
+                      <span style={{ textShadow: '#222 1px 1px 5px' }}>
+                        Anyone
+                      </span>
+                    )}
                     {!chooseAnyoneOpen && (
                       <span>
                         <img
-                          className=" mx-1 inline-block h-6 w-6 rounded-full"
+                          className=" mx-1 inline-block h-6 w-6 rounded-full drop-shadow-xl"
                           alt="Profile"
                           // @ts-expect-error Hardcoded for now, should move to own DB? TODO
                           src={anyone.profiles[0].importedData.pfp.url}
                         ></img>
-                        {anyone.shortName}
+                        <span style={{ textShadow: '#222 1px 1px 5px' }}>
+                          {anyone.shortName}
+                        </span>
                       </span>
                     )}
                   </button>
@@ -146,7 +149,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
-                {/* <ConnectWallet /> */}
+                <ConnectWallet />
                 {/* <WalletIcon className="h-6 w-6 text-white" /> */}
                 {/* Enable Dev mode */}
                 {/* <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
@@ -155,17 +158,17 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
               </div>
             </div>
           </div>
-        </div>
-      </header>
-      <Tagline fadeOut={!chooseAnyoneOpen} />
-      {/* {chooseAnyoneOpen && <ChangeAnyone large={homepage} anyone={anyone} />} */}
-      <ChangeAnyone
-        large={homepage}
-        anyone={anyone}
-        fadeOut={!chooseAnyoneOpen}
-      />
+        </header>
+        <Tagline fadeOut={!chooseAnyoneOpen} />
+        {/* {chooseAnyoneOpen && <ChangeAnyone large={homepage} anyone={anyone} />} */}
+        <ChangeAnyone
+          large={homepage}
+          anyone={anyone}
+          fadeOut={!chooseAnyoneOpen}
+        />
 
-      <main className="mx-auto mt-10 max-w-5xl bg-black">{children}</main>
+        <main className="mt-10 bg-black">{children}</main>
+      </div>
     </>
   )
 }

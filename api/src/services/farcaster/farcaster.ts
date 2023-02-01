@@ -149,7 +149,7 @@ export const getActivity: QueryResolvers['getActivity'] = async ({
 }
 
 export const updateFarcasterProfiles: MutationResolvers['updateFarcasterProfiles'] =
-  async ({ input }) => {
+  async () => {
     // logger.debug('Fired!')
     // console.log(input)
 

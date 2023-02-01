@@ -3,11 +3,9 @@ import { useState } from 'react'
 import clsx from 'clsx'
 import 'swiper/css'
 import 'swiper/css/pagination'
-// import { HashNavigation } from 'swiper'
-import { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, useLocation } from '@redwoodjs/router'
 
 import AddAnyone from 'src/components/ChangeAnyone/AddAnyone/AddAnyone'
 import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
@@ -18,6 +16,8 @@ const SelectAnyone = () => {
   const anyones = useAllAnyonesStore((state) => state.anyones)
   const anyone = useAnyoneStore((state) => state.anyone)
   const setAnyoneStore = useAnyoneStore((state) => state.addAnyone)
+  //Pathname to work out inital slide
+  const { pathname } = useLocation()
   //Annoying that it seemes to have to be done this way. No easy way of checking to see if you are clicking on the active slide with many bugs.
   const [lastActiveSlideBeforeClick, setlastActiveSlideBeforeClick] =
     useState(0)
@@ -29,9 +29,16 @@ const SelectAnyone = () => {
   const ConditionalWrapper = ({ condition, wrapper, children }) =>
     condition ? wrapper(children) : children
 
-  const Foo = (isActive) => {
-    console.log('isActive = ' + isActive)
-  }
+  //Show selected Anyone slide on swiper by looking at the url location
+  const initalSlide =
+    //+2 because of add and search slides
+    anyones.findIndex((anyone) => {
+      if ('/be:' + anyone.officialName.toLowerCase() == pathname) {
+        return true
+      }
+    }) + 2
+
+  console.log(initalSlide)
 
   return (
     <div className="w-full text-white">
@@ -41,18 +48,18 @@ const SelectAnyone = () => {
         slidesPerView={5}
         slideToClickedSlide={true}
         hashNavigation={true}
-        initialSlide={3}
+        initialSlide={initalSlide}
         // watchSlidesProgress={true}
         className="overflow-x-clip"
         // modules={[HashNavigation]}
-        onBeforeSlideChangeStart={(swiper) => {
-          // console.log('2active index is ' + swiper.realIndex)
-          // console.log('2clicked index is ' + swiper.clickedIndex)
-        }}
+        // onBeforeSlideChangeStart={(swiper) => {
+        //   console.log('2active index is ' + swiper.realIndex)
+        //   console.log('2clicked index is ' + swiper.clickedIndex)
+        // }}
         onSlideChange={(swiper) => {
-          console.log('SLIDE active index is ' + swiper.realIndex)
-          console.log('SLIDE clicked index is ' + swiper.clickedIndex)
-          console.log('SLIDE previous index is ' + swiper.previousIndex)
+          // console.log('SLIDE active index is ' + swiper.realIndex)
+          // console.log('SLIDE clicked index is ' + swiper.clickedIndex)
+          // console.log('SLIDE previous index is ' + swiper.previousIndex)
 
           if (swiper.clickedIndex != swiper.realIndex) {
             // setlastActiveSlideBeforeClick(swiper.realIndex)
@@ -62,8 +69,8 @@ const SelectAnyone = () => {
             //   setlastActiveSlideBeforeClick(swiper.previousIndex)
             // }
           }
-          console.log('SLIDE state index is ' + lastActiveSlideBeforeClick)
-          console.log('------')
+          // console.log('SLIDE state index is ' + lastActiveSlideBeforeClick)
+          // console.log('------')
 
           const index = swiper.realIndex
           //Skip over addAnyone slide
@@ -124,12 +131,6 @@ const SelectAnyone = () => {
                   }
                 )}
               >
-                {/* <ConditionalWrapper
-                  condition={isActive}
-                  wrapper={(children) => (
-                    <Link to={routes.home()}>{children}</Link>
-                  )}
-                > */}
                 <ConditionalWrapper
                   condition={isActive}
                   wrapper={(children) => <div>{children}</div>}

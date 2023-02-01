@@ -12,7 +12,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const ContentFeed = ({ farcasterCasts }) => {
+const ContentFeed = ({ farcasterCasts, anyone }) => {
+  //We might not need the anyone here. It causes a rerender when the anyone changes.
   const { pathname } = useLocation()
   const detectImage = (content) => {
     //detect imgur regex https://regex101.com/r/qI4lY7/3
