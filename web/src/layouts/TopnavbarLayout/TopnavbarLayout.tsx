@@ -149,7 +149,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
-                <ConnectWallet />
+                {/* <ConnectWallet /> */}
                 {/* <WalletIcon className="h-6 w-6 text-white" /> */}
                 {/* Enable Dev mode */}
                 {/* <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
