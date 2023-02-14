@@ -24,11 +24,11 @@ const LsaProfile = ({ isActive, anyone }) => {
           </span>
         </h3>
       </div> */}
-      {isActive && (
+      {/* {isActive && (
         <FarcasterHomeCell
           userName={anyone.profiles[0].importedData.username}
         />
-      )}
+      )} */}
       {/* <FarcasterHomeCell userName={anyone.profiles[0].importedData.username} /> */}
     </div>
   )

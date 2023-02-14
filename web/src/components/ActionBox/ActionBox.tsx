@@ -35,12 +35,23 @@ interface FormValues {
   parentHash: string
 }
 
-const ActionBox = ({ reply }) => {
+export interface ActionBox {
+  reply: Reply | null
+  networkLocation: 'reddit' | 'farcaster'
+}
+
+export interface Reply {
+  fid: number
+  hash: string
+}
+
+const ActionBox: React.FC<ActionBox> = ({ reply, networkLocation }) => {
   const { address } = useAccount()
   const [castButtonVisible, setCastButtonVisible] = useState(false)
   const [create, { loading, error }] = useMutation(CREATE_ACTION, {
-    onCompleted: () => {
+    onCompleted: (data) => {
       console.log('Success')
+      console.log(data)
     },
   })
 
@@ -68,6 +79,7 @@ const ActionBox = ({ reply }) => {
       data.parentHash = reply.hash
     }
     data.userName = 'Tris'
+    data.networkLocation = networkLocation
     create({ variables: { input: data } })
     console.log(data)
     formMethods.reset()

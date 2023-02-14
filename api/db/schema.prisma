@@ -41,3 +41,12 @@ model Action {
   signedTransaction String   @default("")
   succeeded         Boolean
 }
+
+model ThirdPartyToken {
+  id           Int      @id @default(autoincrement())
+  profilename  String
+  thirdparty   String
+  refreshtoken String
+  bearertoken  String   @default("0")
+  createdAt    DateTime @default(now())
+}

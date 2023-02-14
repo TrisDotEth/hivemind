@@ -16,6 +16,8 @@ import ThreadPage from './pages/ThreadPage/ThreadPage'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/redditprofile" page={RedditprofilePage} name="redditprofile" />
+      <Route path="/reddit" page={RedditPage} name="reddit" />
       <Set wrap={TopnavbarLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/be:{name}" page={BePage} name="be" />

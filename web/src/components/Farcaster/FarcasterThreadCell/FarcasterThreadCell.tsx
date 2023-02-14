@@ -1,6 +1,8 @@
-import type { getThreadCasts } from 'types/graphql'
+import type { Anyone, getThreadCasts } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
+
+import ActionBox from 'src/components/ActionBox/ActionBox'
 
 import ContentFeed from '../../ContentFeed/ContentFeed'
 
@@ -56,10 +58,19 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = (farcasterCasts: CellSuccessProps<getThreadCasts>) => {
+interface SuccessProps extends CellSuccessProps<getThreadCasts> {
+  anyone: Anyone
+}
+
+export const Success = ({ getThreadCasts, anyone }: SuccessProps) => {
+  const reply = {
+    fid: getThreadCasts.activity[0].author.fid,
+    hash: getThreadCasts.activity[0].hash,
+  }
   return (
     <>
-      <ContentFeed farcasterCasts={farcasterCasts.getThreadCasts} />
+      <ActionBox reply={reply} networkLocation="farcaster" />
+      <ContentFeed farcasterCasts={getThreadCasts} anyone={anyone} />
     </>
   )
 }

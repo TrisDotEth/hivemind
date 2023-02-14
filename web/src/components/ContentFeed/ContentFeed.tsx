@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 const ContentFeed = ({ farcasterCasts, anyone }) => {
   //We might not need the anyone here. It causes a rerender when the anyone changes.
-  const { pathname } = useLocation()
+
   const detectImage = (content) => {
     //detect imgur regex https://regex101.com/r/qI4lY7/3
 
@@ -28,17 +28,18 @@ const ContentFeed = ({ farcasterCasts, anyone }) => {
     }
   }
 
+  const { pathname } = useLocation()
   const threadPage = pathname.includes('/thread')
-  //Work out if a reply
-  const reply = () => {
-    if (threadPage) {
-      const reply = {
-        fid: farcasterCasts.activity[0].author.fid,
-        hash: farcasterCasts.activity[0].hash,
-      }
-      return reply
-    }
-  }
+  // //Work out if a reply
+  // const reply = () => {
+  //   if (threadPage) {
+  //     const reply = {
+  //       fid: farcasterCasts.activity[0].author.fid,
+  //       hash: farcasterCasts.activity[0].hash,
+  //     }
+  //     return reply
+  //   }
+  // }
 
   const [feed, setFeed] = useState('foryou')
   const latestActive = () => {
@@ -86,7 +87,6 @@ const ContentFeed = ({ farcasterCasts, anyone }) => {
         </nav>
       </div> */}
 
-      <ActionBox reply={reply()} />
       <ul className="divide-gray-200">
         {farcasterCasts.activity.map((casts) => {
           const image = detectImage(casts.text)

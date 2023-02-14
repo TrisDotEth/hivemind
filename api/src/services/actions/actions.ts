@@ -9,6 +9,8 @@ import type {
 
 import { db } from 'src/lib/db'
 
+const qs = require('querystring')
+
 export const actions: QueryResolvers['actions'] = () => {
   return db.action.findMany()
 }
@@ -33,6 +35,41 @@ export const createAction: MutationResolvers['createAction'] = async ({
   //TODO change the account it post to based on the user posting
 
   console.log(input)
+
+  if (input.networkLocation == 'reddit') {
+    const data = {
+      api_type: 'json',
+      text: input.content,
+      thing_id: 't3_10s7mcd',
+    }
+
+    const tokensDb = await db.thirdPartyToken.findUnique({
+      where: {
+        id: 1,
+      },
+    })
+
+    const bar = await axios
+      .post('https://oauth.reddit.com/api/comment', qs.stringify(data), {
+        headers: {
+          'User-Agent': 'beAnyone node test',
+          Authorization: 'bearer ' + tokensDb.bearertoken,
+        },
+      })
+      .catch(function (err) {
+        throw err
+      })
+
+    console.log('me')
+    console.log(bar.data)
+    console.log('end me')
+
+    const placeholder = {
+      casted: false,
+    }
+
+    return placeholder
+  }
 
   if (input.parentHash) {
     const cast = {
@@ -71,6 +108,12 @@ export const createAction: MutationResolvers['createAction'] = async ({
         }
         console.log(error.config)
       })
+
+    const placeholder = {
+      casted: true,
+    }
+
+    return placeholder
   } else {
     const cast = { text: input.content }
     await axios
@@ -102,13 +145,13 @@ export const createAction: MutationResolvers['createAction'] = async ({
         }
         console.log(error.config)
       })
-  }
 
-  const placeholder = {
-    casted: true,
-  }
+    const placeholder = {
+      casted: true,
+    }
 
-  return placeholder
+    return placeholder
+  }
   // return db.action.create({
   //   data: input,
   // })

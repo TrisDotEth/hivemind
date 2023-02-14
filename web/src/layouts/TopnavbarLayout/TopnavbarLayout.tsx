@@ -109,11 +109,11 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
             <div className="flex flex-1">
               <div className="flex flex-shrink-0 items-center">
                 {/* Check to see if it's not on the home page */}
-                {!homepage && (
+                {/* {!homepage && (
                   <Link to={routes.home()}>
                     <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
                   </Link>
-                )}
+                )} */}
               </div>
             </div>
             <div className="flex">
