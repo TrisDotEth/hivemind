@@ -83,7 +83,7 @@ const TopnavbarSingleLayout = ({ children }: TopnavbarSingleLayoutProps) => {
 
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
-                <ConnectWallet />
+                <ConnectWallet showWhenConnected={true} />
               </div>
             </div>
           </div>

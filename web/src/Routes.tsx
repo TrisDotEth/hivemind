@@ -21,9 +21,10 @@ const Routes = () => {
       <Route path="/reddit" page={RedditPage} name="reddit" /> */}
       <Set wrap={TopnavbarSingleLayout}>
         <Route path="/be:{name}" page={BePage} name="be" />
+        <Route path="/" page={HomePage} name="home" />
       </Set>
       <Set wrap={TopnavbarLayout}>
-        <Route path="/" page={HomePage} name="home" />
+        {/* <Route path="/" page={HomePage} name="home" /> */}
         {/* <Route path="/be:{name}" page={BePage} name="be" /> */}
         <Route path="/add" page={AddAnyonePage} name="addAnyone" />
         {/* <Route path="/be:{name}/DAO" page={DaoPage} name="dao" />

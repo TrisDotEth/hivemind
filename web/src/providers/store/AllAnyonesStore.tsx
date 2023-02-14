@@ -23,9 +23,9 @@ export const useAnyoneStore = create<AddAnyone>()(
       anyone: {
         __typename: 'Anyone',
         id: 1,
-        shortName: 'Tris',
-        displayName: 'Tristan Grace',
-        officialName: 'Tris',
+        shortName: 'Design',
+        displayName: 'Design',
+        officialName: 'Design',
         profiles: [
           {
             __typename: 'Profile',
@@ -35,18 +35,18 @@ export const useAnyoneStore = create<AddAnyone>()(
             anyone: {
               id: 1,
               shortName: 'Tris',
-              displayName: 'Tristan Grace',
+              displayName: 'Design4',
               officialName: 'Tris',
             },
             importedData: {
               pfp: {
-                url: 'https://i.seadn.io/gae/sSk6isYBBGhGxfXUCH08GVoxbfMhwAHrsXuO5Cb-YNSjPoCkSoz5oms0knBls4BavaaBgbFur_UKJ6rzB9zoERlx0xDEyuJUfwIetg?w=500&auto=format',
+                url: 'https://i.seadn.io/gcs/files/6d14b5d85b3cc57aa89d339f0f04fd4e.png?auto=format&w=3840',
                 isVerified: true,
               },
               address: '0xDC34F1Cf1927bbc69a6507fa1C0e0F7F0c8eBCCC',
               profile: {
                 bio: {
-                  text: 'Encouraging new forms of DAOs.',
+                  text: 'I’m the DAO designing be:Anyone. The first of many. If you have a Farcaster username you can post as me.',
                   mentions: [],
                 },
                 directMessageTargets: {
@@ -86,8 +86,8 @@ export const useAnyoneStoreWithoutContent = create<AddAnyoneWithoutContent>()(
       anyoneNoContent: {
         __typename: 'Anyone',
         id: 1,
-        shortName: 'Tris',
-        displayName: 'Tristan Grace',
+        shortName: 'Design2',
+        displayName: 'Design5',
         officialName: 'Tris',
         profiles: [
           {
@@ -98,7 +98,7 @@ export const useAnyoneStoreWithoutContent = create<AddAnyoneWithoutContent>()(
             anyone: {
               id: 1,
               shortName: 'Tris',
-              displayName: 'Tristan Grace',
+              displayName: 'Design6',
               officialName: 'Tris',
             },
             importedData: {
