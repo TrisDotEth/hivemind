@@ -22,6 +22,8 @@ import {
 } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { Redirect, routes } from '@redwoodjs/router'
+
 import AddAnyone from 'src/components/ChangeAnyone/AddAnyone/AddAnyone'
 import LSAProfile from 'src/components/ChangeAnyone/LargeSelectAnyone/LSAProfile/LSAProfile'
 import SearchAnyone from 'src/components/ChangeAnyone/SearchAnyone/SearchAnyone'
@@ -40,7 +42,11 @@ const HomePage = () => {
   const secondSwiper = useSwiperStore((state) => state.secondSwiper)
   return (
     <>
-      <div className="mb-2 flex w-full justify-center">
+      <Redirect
+        to={routes.be({ name: 'Design' })}
+        options={{ replace: true }}
+      />
+      {/* <div className="mb-2 flex w-full justify-center">
         <Swiper
           slidesPerView={1}
           initialSlide={3}
@@ -70,7 +76,7 @@ const HomePage = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </div> */}
     </>
   )
 }

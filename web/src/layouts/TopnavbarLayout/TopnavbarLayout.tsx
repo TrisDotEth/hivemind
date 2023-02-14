@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 
 import { SquaresPlusIcon } from '@heroicons/react/24/outline'
 import { ArrowSmallLeftIcon } from '@heroicons/react/24/outline'
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline'
 import { WalletIcon } from '@heroicons/react/24/solid'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
 
@@ -114,6 +115,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
                     <ArrowSmallLeftIcon className="h-6 w-6 text-white" />
                   </Link>
                 )} */}
+                <QuestionMarkCircleIcon className="h-6 w-6 text-white" />
               </div>
             </div>
             <div className="flex">
@@ -149,7 +151,7 @@ const TopnavbarLayout = ({ children }: TopnavbarLayoutProps) => {
 
             <div className="flex flex-1 items-center justify-end">
               <div className="flex-shrink-0">
-                {/* <ConnectWallet /> */}
+                <ConnectWallet />
                 {/* <WalletIcon className="h-6 w-6 text-white" /> */}
                 {/* Enable Dev mode */}
                 {/* <button onClick={() => devMode.setDevMode(!devMode.devMode)}>
