@@ -25,7 +25,7 @@ Your browser should automatically open to http://localhost:8910 where you'll see
 > **The Redwood CLI**
 >
 > Congratulations on running your first Redwood CLI command!
-> From dev to deploy, the CLI is with you the whole way.
+> From dev to deploy, the CLI is with you the wholee way.
 > And there's quite a few commands at your disposal:
 > ```
 > yarn redwood --help
